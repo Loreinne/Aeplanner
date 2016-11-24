@@ -53,3 +53,8 @@ CREATE TABLE Event (
 	e_date date,
 	e_time time
 );
+
+CREATE TABLE Note (
+	n_id  serial primary key,
+	n_note Text
+);
