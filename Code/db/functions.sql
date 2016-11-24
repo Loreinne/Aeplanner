@@ -22,6 +22,27 @@ $$
   language 'sql';
 
 
+create or replace function update_proposal(in par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text AS
+$$
+  local_response text;
+    begin 
+      UPDATE Proposal
+      set
+        name = par_name,
+        address = par_address,
+        proposal_num = par_proposal_num,
+        proposal_name = par_proposal_name,
+        proposal_date = par_proposal_date
+      WHERE id = par_id;
+
+      local_response = 'OK';
+      return local_response;
+    end;
+$$
+  language 'plpgsql';
+
+
+
 create or replace function new_contract(in par_id int, in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
 $$
   local_response text;
