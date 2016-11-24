@@ -1,3 +1,4 @@
+
 CREATE TABLE User (
 	user_id SERIAL PRIMARY KEY,
 	email_address VARCHAR(50),
@@ -8,6 +9,7 @@ CREATE TABLE User (
 
 
 CREATE TABLE Venue (
+	V_id SERIAL PRIMARY KEY,
 	V_image VARCHAR(50),
 	V_name VARCHAR (50),
 	V_description TEXT,
@@ -19,6 +21,7 @@ CREATE TABLE Venue (
 
 
 CREATE TABLE Catering_services (
+	c_id SERIAL PRIMARY KEY,
 	c_image VARCHAR(50),
 	c_name VARCHAR (50),
 	c_description TEXT,
@@ -26,4 +29,19 @@ CREATE TABLE Catering_services (
 	c_location VARCHAR (50),
 	c_capacity VARCHAR(50),
 	c_pricing VARCHAR (50)
+
+CREATE TABLE Proposal (
+	id		serial primary key,
+	name	text,
+	address text,
+	proposal_num int,
+	proposal_name text,
+	proposal_date date
+);
+
+CREATE TABLE Contract (
+	id		serial primary key,
+	reference	text,
+	client_name text
+
 );
