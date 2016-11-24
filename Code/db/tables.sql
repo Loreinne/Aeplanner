@@ -42,8 +42,8 @@ CREATE TABLE Proposal (
 CREATE TABLE Contract (
 	id		serial primary key,
 	reference	text,
-	client_name text
-
+	client_name text,
+	termsOfAgreement text
 );
 
 

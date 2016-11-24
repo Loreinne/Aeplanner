@@ -12,18 +12,38 @@ declare local_response text;
 $$
 language 'plpgsql';
 
-create or replace function new_contract(in par_id int, in par_reference text, in par_client_name text) returns text AS
+
+create or replace function show_proposal(in par_id int, out text, out text, out int, out text, out date) returns setof record AS
+$$
+  SELECT *
+  from Proposal
+  WHERE id = par_id;
+$$
+  language 'sql';
+
+
+create or replace function new_contract(in par_id int, in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
 $$
   local_response text;
     begin
-      insert into Contract(id, reference, client_name)
-      values (par_id, par_reference, par_client_name);
+      insert into Contract(id, reference, client_name, termsOfAgreement)
+      values (par_id, par_reference, par_client_name, par_termsOfAgreement);
       local_response = 'OK';
       return local_response;
     end;
 
 $$
 language 'plpgsql';
+
+
+create or replace function show_contract(in par_id, out reference, out client_name, out termsOfAgreement) returns setof record AS
+$$
+  SELECT *
+  from Contract
+  WHERE id = par_id;
+$$
+  language 'sql';
+
 
 create or replace function newuser(par_email VARCHAR,par_firstname VARCHAR, par_lastname VARCHAR, par_password VARCHAR) returns TEXT AS
 $$
