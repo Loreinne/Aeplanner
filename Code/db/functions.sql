@@ -66,6 +66,27 @@ $$
   language 'sql';
 
 
+
+create or replace function update_contract(in par_id int, int par_reference text, in par_client_name text, par_termsOfAgreement text) returns text AS
+$$
+  declare local_response text;
+    begin
+      UPDATE Contract
+      set
+        reference = par_reference,
+        client_name = par_client_name,
+        termsOfAgreement = par_termsOfAgreement
+      WHERE id = par_id;
+
+      local_response = 'OK';
+      return local_response;
+    end;
+
+$$
+  language 'plpgsql'
+
+
+
 create or replace function newuser(par_email VARCHAR,par_firstname VARCHAR, par_lastname VARCHAR, par_password VARCHAR) returns TEXT AS
 $$
    DECLARE
