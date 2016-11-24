@@ -8,11 +8,22 @@ CREATE TABLE User (
 
 
 CREATE TABLE Venue (
-	image VARCHAR(50),
-	name VARCHAR (50),
-	description TEXT,
-	categories VARCHAR (50),
-	location VARCHAR (50),
-	capacity VARCHAR(50),
-	pricing VARCHAR (50)
+	V_image VARCHAR(50),
+	V_name VARCHAR (50),
+	V_description TEXT,
+	V_categories VARCHAR (50),
+	V_location VARCHAR (50),
+	V_capacity VARCHAR(50),
+	V_pricing VARCHAR (50)
+);
+
+
+CREATE TABLE Catering_services (
+	c_image VARCHAR(50),
+	c_name VARCHAR (50),
+	c_description TEXT,
+	c_categories VARCHAR (50),
+	c_location VARCHAR (50),
+	c_capacity VARCHAR(50),
+	c_pricing VARCHAR (50)
 );
