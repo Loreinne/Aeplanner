@@ -49,7 +49,7 @@ CREATE TABLE Contract (
 
 CREATE TABLE Event (
 	e_id serial primary key
-	title VARCHAR(50),
+	e_title VARCHAR(50),
 	e_date date,
 	e_time time
 );
@@ -57,4 +57,12 @@ CREATE TABLE Event (
 CREATE TABLE Note (
 	n_id  serial primary key,
 	n_note Text
+);
+
+CREATE TABLE Appointment (
+	a_id serial primary key
+	a_title VARCHAR(50),
+	a_date date,
+	a_time time
+
 );
