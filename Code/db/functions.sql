@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-create or replace function new_proposal(int par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text par_address
+
+create or replace function new_proposal(in par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text par_address
 $$
 declare local_response text;
 	begin
@@ -12,8 +12,19 @@ declare local_response text;
 $$
 language 'plpgsql';
 
+create or replace function new_contract(in par_id int, in par_reference text, in par_client_name text) returns text AS
+$$
+  local_response text;
+    begin
+      insert into Contract(id, reference, client_name)
+      values (par_id, par_reference, par_client_name);
+      local_response = 'OK';
+      return local_response;
+    end;
 
-=======
+$$
+language 'plpgsql';
+
 create or replace function newuser(par_email VARCHAR,par_firstname VARCHAR, par_lastname VARCHAR, par_password VARCHAR) returns TEXT AS
 $$
    DECLARE
@@ -101,4 +112,4 @@ $$
     END;
 $$
     LANGUAGE 'plpgsql';
->>>>>>> d11ec3d15eeed41daf68937aeec1f4957dc6684e
+
