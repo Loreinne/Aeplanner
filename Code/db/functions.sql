@@ -54,3 +54,34 @@ $$
     END;
 $$
     LANGUAGE 'plpgsql';
+
+
+
+
+create or replace function newcatering(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS
+$$
+   DECLARE
+        loc_name VARCHAR;
+        loc_res TEXT;
+    BEGIN
+      SELECT INTO loc_name par_name FROM Catering_services WHERE name = par_name;
+        if loc_email isnull THEN
+
+      if par_name = '' or par_description = '' or par_categories = ''  or par_location = '' or par_capacity = '' or par_pricing = '' THEN
+        loc_res = 'Error';
+
+      ELSE
+          INSERT INTO Venue (c_name, c_description, c_categories, c_location, c_capacity, c_pricing)
+                        VALUES (par_name, par_description, par_categories, par_location, par_capacity, par_pricing);
+                        loc_res = 'OK';
+          end if;
+
+        ELSE
+          loc_res = 'Error';
+
+        end if;
+        return loc_res;
+
+    END;
+$$
+    LANGUAGE 'plpgsql';
