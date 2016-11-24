@@ -45,3 +45,11 @@ CREATE TABLE Contract (
 	client_name text
 
 );
+
+
+CREATE TABLE Event (
+	e_id serial primary key
+	title VARCHAR(50),
+	e_date date,
+	e_time time
+);
