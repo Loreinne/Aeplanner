@@ -56,6 +56,7 @@ CREATE TABLE Event (
 
 CREATE TABLE Note (
 	n_id  serial primary key,
+	n_title VARCH(50),
 	n_note Text
 );
 

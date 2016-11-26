@@ -106,7 +106,7 @@ $$
           end if;
 
         ELSE
-          loc_res = 'Error';
+          loc_res = 'OK';
 
         end if;
         return loc_res;
@@ -175,3 +175,33 @@ $$
 $$
     LANGUAGE 'plpgsql';
 
+
+
+create or replace function newnote (par_title VARCHAR, par_description TEXT) returns TEXT AS
+  $$ 
+    DECLARE
+      loc_title VARCHAR;
+      loc_res TEXT;
+    BEGIN
+      SELECT INTO loc_title par_title FROM Note WHERE n_title = par_title;
+        if loc_title isnull THEN
+
+      if par_title = '' or par_description = '' THEN
+        loc_res = 'Error';
+
+      ELSE
+          INSERT INTO Note(n_title , n_description) VALUES (par_title, par_description);
+                      loc_res = 'OK';
+
+          end if;
+
+        ELSE
+          loc_res = 'Error';
+
+        end if;
+        return loc_res;
+
+    END;
+$$
+
+  LANGUAGE 'plpgsql';
