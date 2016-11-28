@@ -67,7 +67,7 @@ $$
 
 
 
-create or replace function update_contract(in par_id int, int par_reference text, in par_client_name text, par_termsOfAgreement text) returns text AS
+create or replace function update_contract(in par_id int, in par_reference text, in par_client_name text, par_termsOfAgreement text) returns text AS
 $$
   declare local_response text;
     begin
@@ -145,6 +145,22 @@ $$
     LANGUAGE 'plpgsql';
 
 
+create or replace function updatevenue(par_id int, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
+  $$ 
+    UPDATE Venue
+    SET
+
+    V_name = par_name,
+    V_description = par_description,
+    V_categories = par_categories,
+    V_location = par_location,
+    V_capacity = par_description.
+    V_pricing = par_pricing
+
+    WHERE V_id = par_id;
+$$
+    LANGUAGE 'sql';
+
 
 
 create or replace function newcatering(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS
@@ -205,3 +221,18 @@ create or replace function newnote (par_title VARCHAR, par_description TEXT) ret
 $$
 
   LANGUAGE 'plpgsql';
+
+
+
+create or replace function updatenote(par_id int, par_title VARCHAR, par_description text) returns void AS
+    $$
+      UPDATE Note
+      SET 
+        n_title = par_title,
+        n_description = par_description
+
+      WHERE n_id = par_id;
+
+$$
+
+    LANGUAGE 'sql';
