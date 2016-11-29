@@ -151,6 +151,7 @@ $$
     LANGUAGE 'plpgsql';
 
 
+
 create or replace function showall_venues (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
   $$
 
@@ -159,6 +160,19 @@ create or replace function showall_venues (OUT VARCHAR, OUT TEXT, OUT VARCHAR, O
   $$
 
     LANGUAGE 'sql';
+
+
+
+create or replace function show_venue (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
+  $$
+
+    SELECT V_name, V_description, V_categories, V_location, V_capacity, V_pricing FROM Venue WHERE  V_id = par_id ;
+
+  $$
+
+    LANGUAGE 'sql';
+
+    
 
 
 create or replace function updatevenue(par_id int, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
