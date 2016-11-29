@@ -297,7 +297,7 @@ $$
   LANGUAGE 'plpgsql';
 
 
-create or replace function show_note (IN par_id int ,OUT VARCHAR, OUT TEXT) return as setof record as
+create or replace function show_note (IN par_id int ,OUT VARCHAR, OUT TEXT) return setof record as
   $$
 
     SELECT n_title , n_description FROM Note WHERE  n_id = par_id ;
@@ -307,6 +307,14 @@ create or replace function show_note (IN par_id int ,OUT VARCHAR, OUT TEXT) retu
     LANGUAGE 'sql';
 
 
+create or replace function showall_note (OUT VARCHAR, OUT TEXT) return setof record as
+  $$
+
+  SELECT n_title, n_description FROM Note;
+
+  $$
+
+  LANGUAGE 'sql';
 
 
 create or replace function updatenote(par_id int, par_title VARCHAR, par_description text) returns void AS
