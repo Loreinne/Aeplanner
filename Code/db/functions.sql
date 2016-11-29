@@ -1,3 +1,5 @@
+-- PROPOSAL
+
 
 create or replace function new_proposal(in par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text par_address
 $$
@@ -42,6 +44,7 @@ $$
   language 'plpgsql';
 
 
+-- CONTRACT
 
 create or replace function new_contract(in par_id int, in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
 $$
@@ -86,6 +89,7 @@ $$
   language 'plpgsql'
 
 
+-- USER
 
 create or replace function newuser(par_email VARCHAR,par_firstname VARCHAR, par_lastname VARCHAR, par_password VARCHAR) returns TEXT AS
 $$
@@ -116,6 +120,8 @@ $$
     LANGUAGE 'plpgsql';
 
 
+--VENUE
+
 create or replace function newvenue(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS
 $$
    DECLARE
@@ -129,7 +135,7 @@ $$
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Venue (V_name, V_description, V_categories, V_location, V_capacity, V_)
+          INSERT INTO Venue (V_name, V_description, V_categories, V_location, V_capacity, V_pricing)
                         VALUES (par_name, par_description, par_categories, par_location, par_capacity, par_pricing);
                         loc_res = 'OK';
           end if;
@@ -143,6 +149,16 @@ $$
     END;
 $$
     LANGUAGE 'plpgsql';
+
+
+create or replace function showall_venues (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
+  $$
+
+    SELECT V_name, V_description, V_categories, V_location, V_capacity, V_pricing FROM Venue ;
+
+  $$
+
+    LANGUAGE 'sql';
 
 
 create or replace function updatevenue(par_id int, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
@@ -162,6 +178,7 @@ $$
     LANGUAGE 'sql';
 
 
+-- CATERING
 
 create or replace function newcatering(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS
 $$
@@ -192,6 +209,28 @@ $$
     LANGUAGE 'plpgsql';
 
 
+
+
+create or replace function updatecater() int, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
+  $$ 
+    UPDATE Venue
+    SET
+
+    V_name = par_name,
+    V_description = par_description,
+    V_categories = par_categories,
+    V_location = par_location,
+    V_capacity = par_description.
+    V_pricing = par_pricing
+
+    WHERE V_id = par_id;
+$$
+    LANGUAGE 'sql';
+
+
+
+
+-- NOTE
 
 create or replace function newnote (par_title VARCHAR, par_description TEXT) returns TEXT AS
   $$ 
