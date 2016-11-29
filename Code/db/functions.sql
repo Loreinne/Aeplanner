@@ -224,20 +224,41 @@ $$
 
 
 
+create or replace function showall_cater (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
+  $$
+
+    SELECT c_name, c_description, c_categories, c_location, c_capacity, c_pricing FROM Catering_services ;
+
+  $$
+
+    LANGUAGE 'sql';
+
+
+
+create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
+  $$
+
+    SELECT c_name, c_description, c_categories, c_location, c_capacity, c_pricing FROM Catering_services WHERE  c_id = par_id ;
+
+  $$
+
+    LANGUAGE 'sql';
+
+
 
 create or replace function updatecater() int, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
   $$ 
-    UPDATE Venue
+    UPDATE Catering_services
     SET
 
-    V_name = par_name,
-    V_description = par_description,
-    V_categories = par_categories,
-    V_location = par_location,
-    V_capacity = par_description.
-    V_pricing = par_pricing
+    c_name = par_name,
+    c_description = par_description,
+    c_categories = par_categories,
+    c_location = par_location,
+    c_capacity = par_description.
+    c_pricing = par_pricing
 
-    WHERE V_id = par_id;
+    WHERE c_id = par_id;
 $$
     LANGUAGE 'sql';
 
