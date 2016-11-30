@@ -15,6 +15,15 @@ $$
 language 'plpgsql';
 
 
+create or replace function show_proposalAll(out par_id int, out text, out text, out int, out text, out date) returns setof record AS
+$$
+  SELECT id, name, address, proposal_num, proposal_name, proposal_date
+  from Proposal;
+ 
+$$
+  language 'sql';
+
+
 create or replace function show_proposal(in par_id int, out text, out text, out int, out text, out date) returns setof record AS
 $$
   SELECT *
@@ -42,6 +51,7 @@ $$
     end;
 $$
   language 'plpgsql';
+
 
 
 -- CONTRACT
