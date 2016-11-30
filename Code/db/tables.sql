@@ -1,5 +1,4 @@
-
-CREATE TABLE User (
+CREATE TABLE App_user (
 	user_id SERIAL PRIMARY KEY,
 	email_address VARCHAR(50),
 	first_name VARCHAR(50),
@@ -28,6 +27,7 @@ CREATE TABLE Catering_services (
 	c_location VARCHAR (50),
 	c_capacity VARCHAR(50),
 	c_pricing VARCHAR (50)
+);
 
 CREATE TABLE Proposal (
 	id		serial primary key,
@@ -47,7 +47,7 @@ CREATE TABLE Contract (
 
 
 CREATE TABLE Event (
-	e_id serial primary key
+	e_id serial primary key,
 	e_title VARCHAR(50),
 	e_date date,
 	e_time time
@@ -60,7 +60,7 @@ CREATE TABLE Note (
 );
 
 CREATE TABLE Appointment (
-	a_id serial primary key
+	a_id serial primary key,
 	a_title VARCHAR(50),
 	a_date date,
 	a_time time
