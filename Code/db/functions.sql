@@ -70,7 +70,16 @@ $$
 language 'plpgsql';
 
 
-create or replace function show_contract(in par_id, out reference, out client_name, out termsOfAgreement) returns setof record AS
+create or replace function show_contractAll(out int, out text, out text, out text) returns setof record AS
+$$
+  SELECT reference, client_name, termsOfAgreement from Contract;
+  
+$$
+  language 'sql';
+
+
+
+create or replace function show_contract(in text, out text, out text, out text) returns setof record AS
 $$
   SELECT *
   from Contract
