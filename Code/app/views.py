@@ -20,6 +20,19 @@ def spcall(qry, param, commit=False):
         res = [("Error: " + str(sys.exc_info()[0]) + " " + str(sys.exc_info()[1]),)]
     return res
 
+@app.route('/contract', methods=['GET'])
+@auth.login_required
+def store_new_contract():
+    data = json.loads(request.data)
+    res = spcall('new_contract', (data))
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
+
+    recs = []
+    for r in res:
+        recs.append({"id": r[0], "reference": r[1], "client_name": r[2], "termsOfAgreement": str(r[3])})
+    return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
 
 @app.after_request
 def add_cors(resp):
