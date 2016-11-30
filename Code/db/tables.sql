@@ -19,7 +19,6 @@ CREATE TABLE Venue (
 	V_pricing VARCHAR (50)
 );
 
-
 CREATE TABLE Catering_services (
 	c_id SERIAL PRIMARY KEY,
 	c_image VARCHAR(50),

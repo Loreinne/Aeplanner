@@ -1,7 +1,7 @@
 -- PROPOSAL
 
 
-create or replace function new_proposal(in par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text par_address
+create or replace function new_proposal(in par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text AS
 $$
 declare local_response text;
 	begin
@@ -26,7 +26,7 @@ $$
 
 create or replace function show_proposal(in par_id int, out text, out text, out int, out text, out date) returns setof record AS
 $$
-  SELECT *
+  SELECT name, address, proposal_num, proposal_name, proposal_date
   from Proposal
   WHERE id = par_id;
 $$
@@ -35,7 +35,7 @@ $$
 
 create or replace function update_proposal(in par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text AS
 $$
-  local_response text;
+  declare local_response text;
     begin 
       UPDATE Proposal
       set
@@ -58,7 +58,7 @@ $$
 
 create or replace function new_contract(in par_id int, in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
 $$
-  local_response text;
+  declare local_response text;
     begin
       insert into Contract(id, reference, client_name, termsOfAgreement)
       values (par_id, par_reference, par_client_name, par_termsOfAgreement);
@@ -72,16 +72,17 @@ language 'plpgsql';
 
 create or replace function show_contractAll(out int, out text, out text, out text) returns setof record AS
 $$
-  SELECT reference, client_name, termsOfAgreement from Contract;
+  SELECT id, reference, client_name, termsOfAgreement 
+  from Contract;
   
 $$
   language 'sql';
 
 
 
-create or replace function show_contract(in text, out text, out text, out text) returns setof record AS
+create or replace function show_contract(in par_id int, out text, out text, out text) returns setof record AS
 $$
-  SELECT *
+  SELECT  reference, client_name, termsOfAgreement
   from Contract
   WHERE id = par_id;
 $$
