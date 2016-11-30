@@ -117,14 +117,14 @@ $$
         loc_email VARCHAR;
         loc_res TEXT;
     BEGIN
-      SELECT INTO loc_email par_email FROM User WHERE email_address = par_email;
+      SELECT INTO loc_email par_email FROM App_user WHERE email_address = par_email;
         if loc_email isnull THEN
 
       if par_email = '' or par_firstname = '' or par_lastname = ''  or par_password = '' THEN
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO User (email_address, first_name, last_name, password)
+          INSERT INTO App_user (email_address, first_name, last_name, password)
                         VALUES (par_email, par_firstname, par_lastname, par_password);
                         loc_res = 'OK';
           end if;
@@ -172,7 +172,7 @@ $$
 
 
 
-create or replace function showall_venues (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
+create or replace function showall_venues (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) returns setof record as
   $$
 
     SELECT V_name, V_description, V_categories, V_location, V_capacity, V_pricing FROM Venue ;
@@ -183,7 +183,7 @@ create or replace function showall_venues (OUT VARCHAR, OUT TEXT, OUT VARCHAR, O
 
 
 
-create or replace function show_venue (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
+create or replace function show_venue (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) returns setof record as
   $$
 
     SELECT V_name, V_description, V_categories, V_location, V_capacity, V_pricing FROM Venue WHERE  V_id = par_id ;
@@ -204,7 +204,7 @@ create or replace function updatevenue(par_id int, par_name VARCHAR,par_descript
     V_description = par_description,
     V_categories = par_categories,
     V_location = par_location,
-    V_capacity = par_description.
+    V_capacity = par_description,
     V_pricing = par_pricing
 
     WHERE V_id = par_id;
@@ -244,7 +244,7 @@ $$
 
 
 
-create or replace function showall_cater (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
+create or replace function showall_cater (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) returns setof record as
   $$
 
     SELECT c_name, c_description, c_categories, c_location, c_capacity, c_pricing FROM Catering_services ;
@@ -255,7 +255,7 @@ create or replace function showall_cater (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OU
 
 
 
-create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) return as setof record as
+create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) returns setof record as
   $$
 
     SELECT c_name, c_description, c_categories, c_location, c_capacity, c_pricing FROM Catering_services WHERE  c_id = par_id ;
@@ -266,7 +266,7 @@ create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT
 
 
 
-create or replace function updatecater() int, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
+create or replace function updatecater(in par_id INT, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
   $$ 
     UPDATE Catering_services
     SET
@@ -275,7 +275,7 @@ create or replace function updatecater() int, par_name VARCHAR,par_description T
     c_description = par_description,
     c_categories = par_categories,
     c_location = par_location,
-    c_capacity = par_description.
+    c_capacity = par_description,
     c_pricing = par_pricing
 
     WHERE c_id = par_id;
@@ -287,7 +287,7 @@ $$
 
 -- NOTE
 
-create or replace function newnote (par_title VARCHAR, par_description TEXT) returns TEXT AS
+create or replace function newnote (par_title VARCHAR, par_note TEXT) returns TEXT AS
   $$ 
     DECLARE
       loc_title VARCHAR;
@@ -300,7 +300,7 @@ create or replace function newnote (par_title VARCHAR, par_description TEXT) ret
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Note(n_title , n_description) VALUES (par_title, par_description);
+          INSERT INTO Note(n_title , n_note) VALUES (par_title, par_note);
                       loc_res = 'OK';
 
           end if;
@@ -317,32 +317,32 @@ $$
   LANGUAGE 'plpgsql';
 
 
-create or replace function show_note (IN par_id int ,OUT VARCHAR, OUT TEXT) return setof record as
+create or replace function show_note (IN par_id int ,OUT VARCHAR, OUT TEXT) returns setof record as
   $$
 
-    SELECT n_title , n_description FROM Note WHERE  n_id = par_id ;
+    SELECT n_title , n_note FROM Note WHERE  n_id = par_id ;
 
   $$
 
     LANGUAGE 'sql';
 
 
-create or replace function showall_note (OUT VARCHAR, OUT TEXT) return setof record as
+create or replace function showall_note (OUT VARCHAR, OUT TEXT) returns setof record as
   $$
 
-  SELECT n_title, n_description FROM Note;
+  SELECT n_title, n_note FROM Note;
 
   $$
 
   LANGUAGE 'sql';
 
 
-create or replace function updatenote(par_id int, par_title VARCHAR, par_description text) returns void AS
+create or replace function updatenote(par_id int, par_title VARCHAR, par_note text) returns void AS
     $$
       UPDATE Note
       SET 
         n_title = par_title,
-        n_description = par_description
+        n_note = par_note
 
       WHERE n_id = par_id;
 
