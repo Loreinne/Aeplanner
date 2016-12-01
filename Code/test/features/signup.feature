@@ -13,8 +13,8 @@ Feature: sign up, get user info
 Scenario: Retrieve user details
 	
 	Given a user with id '1'
-	When i retrieve the user id '1'
+	When i retrieve the user with id '1'
 	Then i will get a '200' response 
-	And the following user details are returned:
+	And the following details are returned:
 		| email_address | first_name | last_name |
 		| eloreinne@gmail.com | Loreinne | Estenzo |
