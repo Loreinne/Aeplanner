@@ -23,7 +23,7 @@ def spcall(qry, param, commit=False):
 
 
 
-@app.route('/contract', methods=['GET'])
+@app.route('api/v1.0/contract/', methods=['GET'])
 @auth.login_required
 def store_new_contract():
     data = json.loads(request.data)
@@ -39,7 +39,7 @@ def store_new_contract():
 
 
 
-@app.route('/signup/', methods=['POST'])
+@app.route('api/v1.0/signup/', methods=['POST'])
 def signup():
 
     jsn = json.loads(request.data)
@@ -54,6 +54,20 @@ def signup():
         return jsonify ({'status': 'error', 'message': res[0][0]})
 
     return jsonify({'status': 'OK', 'message': res[0][0]})
+
+
+
+@app.route('/api/v1.0/user/<user_id>/', methods=['GET'])
+def gethotel(hotel_id):
+    res = spcall('getuser', [user_id])
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
+
+    rec = res[0]
+
+    return jsonify({"email_address": str(rec[0]), "first_name": str(rec[1]), "last_name" : str(rec[2])})
+
 
 @app.after_request
 def add_cors(resp):
