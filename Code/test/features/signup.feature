@@ -1,9 +1,20 @@
-Feature: Signup User
+Feature: sign up, get user info
 
   Scenario: Signup System Admin
     Given the following information:
       | email_address | first_name | last_name | password |
       | m@gmail.com | Marjorie | Buctolan | marj123 |
     When I submit the signup form
-    Then it should have a '200' response
+    Then i will get a '200' response
     And it should have a field 'status' containing 'OK'
+
+
+
+Scenario: Retrieve user details
+	
+	Given a user with id '1'
+	When i retrieve the user id '1'
+	Then i will get a '200' response 
+	And the following user details are returned:
+		| email_address | first_name | last_name |
+		| eloreinne@gmail.com | Loreinne | Estenzo |
