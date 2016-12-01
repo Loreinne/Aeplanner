@@ -1,8 +1,9 @@
 from flask import Flask, jsonify
 from flask.ext.httpauth import HTTPBasicAuth
-from model import DBconn
+from models import DBconn
 import flask
 import sys
+import json
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
@@ -20,6 +21,8 @@ def spcall(qry, param, commit=False):
         res = [("Error: " + str(sys.exc_info()[0]) + " " + str(sys.exc_info()[1]),)]
     return res
 
+
+
 @app.route('/contract', methods=['GET'])
 @auth.login_required
 def store_new_contract():
@@ -33,6 +36,24 @@ def store_new_contract():
     for r in res:
         recs.append({"id": r[0], "reference": r[1], "client_name": r[2], "termsOfAgreement": str(r[3])})
     return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+
+
+
+@app.route('/signup/', methods=['POST'])
+def signup():
+
+    jsn = json.loads(request.data)
+
+    if invalid(jsn['email_address']):
+        return jsonify({'status': 'error', 'message': 'Invalid Email address'})
+
+
+    res = spcall('newuser', ( jsn['email_address'], jsn['first_name'], jsn['last_name'], jsn['password']))
+
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
 
 @app.after_request
 def add_cors(resp):

@@ -106,7 +106,7 @@ $$
     end;
 
 $$
-  language 'plpgsql'
+  language 'plpgsql';
 
 
 -- USER
