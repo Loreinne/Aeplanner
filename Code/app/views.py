@@ -3,7 +3,6 @@ from flask.ext.httpauth import HTTPBasicAuth
 from models import DBconn, spcall
 import flask, sys, json
 
-
 app = Flask(__name__)
 
 auth = HTTPBasicAuth()
@@ -45,21 +44,20 @@ def invalid(emailaddress, domains=GENERIC_DOMAINS):
 
 
 @app.route('/api/v1.0/contract/', methods=['POST'])
-@auth.login_required
-def store_new_contract():
+#@auth.login_required
+def new_contract():
     data = json.loads(request.data)
     res = spcall('new_contract', (
         data['reference'],
         data['client_name'],
         data['termsOfAgreement']))
 
-    if 'Error' in str(res[0][0]):
-        return jsonify({'status': 'error', 'message': res[0][0]})
-    return jsonify({'status': 'OK', 'message': res[0][0]})
+    # if 'Error' in str(res[0][0]):
+    #     return jsonify({'status': 'error', 'message': res[0][0]})
+    return jsonify({'status': 'OK', 'message': res[0][0]}), 200
 
 
 
-    
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
     jsn = json.loads(request.data)
