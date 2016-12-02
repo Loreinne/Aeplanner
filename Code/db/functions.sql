@@ -1,6 +1,4 @@
 -- PROPOSAL
-
-
 create or replace function new_proposal(in par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text AS
 $$
 declare local_response text;
