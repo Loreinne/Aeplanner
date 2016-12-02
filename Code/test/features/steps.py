@@ -10,8 +10,6 @@ import json
 def before_all():
     world.app = app.test_client()
 
-""" Common steps for jsonify response """
-
 @step(u'Given the following information')
 def given_the_following_information(step):
     world.info = step.hashes[0]
