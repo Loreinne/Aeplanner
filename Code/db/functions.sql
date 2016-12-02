@@ -1,6 +1,4 @@
 -- PROPOSAL
-
-
 create or replace function new_proposal(in par_id int, in par_name text, in par_address text, in par_proposal_num int, in par_proposal_name text, in par_proposal_date date) returns text AS
 $$
 declare local_response text;
@@ -56,13 +54,13 @@ $$
 
 -- CONTRACT
 
-create or replace function new_contract(in par_id int, in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
+create or replace function new_contract(in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
 $$
   declare local_response text;
     begin
-      insert into Contract(id, reference, client_name, termsOfAgreement)
-      values (par_id, par_reference, par_client_name, par_termsOfAgreement);
-      local_response = 'OK';
+      insert into Contract(reference, client_name, termsOfAgreement)
+      values (par_reference, par_client_name, par_termsOfAgreement);
+          local_response = 'OK';
       return local_response;
     end;
 

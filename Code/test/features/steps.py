@@ -18,7 +18,7 @@ def given_the_following_information(step):
 
 @step(u'When I click the contract button')
 def when_i_click_the_contract_button(step):
-   world.response = world.app.post('/api/v1.0/contract/', data = json.dumps(world.info))
+    world.response = world.app.post('/api/v1.0/contract/', data = json.dumps(world.info))
 
 @step(u'Then i will get a \'([^\']*)\' response')
 def then_it_should_have_a_group1_response(step, expected_status_code):

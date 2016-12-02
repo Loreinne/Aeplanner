@@ -1,9 +1,11 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, session, redirect
 from flask.ext.httpauth import HTTPBasicAuth
 from models import DBconn, spcall
 import flask, sys, json
 
+
 app = Flask(__name__)
+
 auth = HTTPBasicAuth()
 
 
@@ -41,19 +43,19 @@ def invalid(emailaddress, domains=GENERIC_DOMAINS):
         return True  # Email address has funny characters.
 
 
+
 @app.route('/api/v1.0/contract/', methods=['POST'])
 @auth.login_required
 def store_new_contract():
     data = json.loads(request.data)
-    res = spcall('new_contract', (data))
+    res = spcall('new_contract', (
+        data['reference'],
+        data['client_name'],
+        data['termsOfAgreement']))
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'error', 'message': res[0][0]})
-
-    recs = []
-    for r in res:
-        recs.append({"id": r[0], "reference": r[1], "client_name": r[2], "termsOfAgreement": str(r[3])})
-    return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+    return jsonify({'status': 'OK', 'message': res[0][0]})
 
 
 
@@ -102,3 +104,4 @@ def add_cors(resp):
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
