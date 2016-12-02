@@ -1,29 +1,47 @@
 from flask import Flask, jsonify
 from flask.ext.httpauth import HTTPBasicAuth
-from models import DBconn
-import flask
-import sys
-import json
+from models import DBconn, spcall
+import flask, sys, json
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-def spcall(qry, param, commit=False):
+
+GENERIC_DOMAINS = "aero", "asia", "biz", "cat", "com", "coop", \
+                  "edu", "gov", "info", "int", "jobs", "mil", "mobi", "museum", \
+                  "name", "net", "org", "pro", "tel", "travel"
+
+                  
+def invalid(emailaddress, domains=GENERIC_DOMAINS):
+    """Checks for a syntactically invalid email address."""
+
+    # Email address must be 7 characters in total.
+    if len(emailaddress) < 7:
+        return True  # Address too short.
+
+    # Split up email address into parts.
     try:
-        dbo = DBconn()
-        cursor = dbo.getcursor()
-        cursor.callproc(qry, param)
-        res = cursor.fetchall()
-        if commit:
-            dbo.dbcommit()
-        return res
-    except:
-        res = [("Error: " + str(sys.exc_info()[0]) + " " + str(sys.exc_info()[1]),)]
-    return res
+        localpart, domainname = emailaddress.rsplit('@', 1)
+        host, toplevel = domainname.rsplit('.', 1)
+    except ValueError:
+        return True  # Address does not have enough parts.
+
+    # Check for Country code or Generic Domain.
+    if len(toplevel) != 2 and toplevel not in domains:
+        return True  # Not a domain name.
+
+    for i in '-_.%+.':
+        localpart = localpart.replace(i, "")
+    for i in '-_.':
+        host = host.replace(i, "")
+
+    if localpart.isalnum() and host.isalnum():
+        return False  # Email address is fine.
+    else:
+        return True  # Email address has funny characters.
 
 
-
-@app.route('api/v1.0/contract/', methods=['GET'])
+@app.route('/api/v1.0/contract/', methods=['GET'])
 @auth.login_required
 def store_new_contract():
     data = json.loads(request.data)
@@ -39,7 +57,7 @@ def store_new_contract():
 
 
 
-@app.route('api/v1.0/signup/', methods=['POST'])
+@app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
 
     jsn = json.loads(request.data)
@@ -58,7 +76,7 @@ def signup():
 
 
 @app.route('/api/v1.0/user/<user_id>/', methods=['GET'])
-def gethotel(hotel_id):
+def getspecificuser(user_id):
     res = spcall('getuser', [user_id])
 
     if 'Error' in str(res[0][0]):

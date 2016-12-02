@@ -147,6 +147,8 @@ $$
   WHERE user_id = par_id
 $$
   LANGUAGE 'sql';
+
+  
 --VENUE
 
 create or replace function newvenue(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS

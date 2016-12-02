@@ -33,16 +33,15 @@ def and_it_should_have_a_field_group1_containing_group2(step, field, expected_va
 
 @step(u'When i submit the signup form')
 def signup_form(step):
-	world.uri = '/signup/'
+	world.uri = '/api/v1.0/signup/'
 	world.response = world.app.post(world.uri, data = json.dumps(world.info))
 
 
 @step(u'Given a user with id \'(.*)\'')
 def given_some_rooms_are_in_the_system(step,id):
     world.user = world.app.get('/api/v1.0/user/{}/'.format(id))
-    world.resp = json.loads(world.user.data)
 
-@step(u'When I retrieve a user with id \'(.*)\'')
+@step(u'When i retrieve a user with id \'(.*)\'')
 def when_i_retrieve_the_room_number(step,id):
     world.response = world.app.get('/api/v1.0/user/{}/'.format(id))
 
