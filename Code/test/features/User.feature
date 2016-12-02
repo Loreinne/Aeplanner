@@ -28,3 +28,40 @@ Scenario: User already have an account
     When I submit the signup form
     Then i will get a '200' response
     And it should have a field 'message' containing 'Error'
+
+
+
+  Scenario: Signup User with email address empty
+    Given the following information:
+      | email_address | first_name | last_name | password |
+      |  | Mary| Cabz | mar123 |
+    When I submit the signup form
+    Then i will get a '200' response
+    And it should have a field 'status' containing 'Error'
+
+
+   Scenario: Signup User with first name
+    Given the following information:
+      | email_address | first_name | last_name | password |
+      | marcabz@gmail.com | | Cabz | mar123 |
+    When I submit the signup form
+    Then i will get a '200' response
+    And it should have a field 'status' containing 'Error'
+
+
+ Scenario: Signup User with last name
+    Given the following information:
+      | email_address | first_name | last_name | password |
+      | marcabz@gmail.com | Mary | | mar123 |
+    When I submit the signup form
+    Then i will get a '200' response
+    And it should have a field 'status' containing 'Error'
+
+
+ Scenario: Signup User with password
+    Given the following information:
+      | email_address | first_name | last_name | password |
+      | marcabz@gmail.com | Mary| Cabz | |
+    When I submit the signup form
+    Then i will get a '200' response
+    And it should have a field 'status' containing 'Error'
