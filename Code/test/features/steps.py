@@ -31,6 +31,20 @@ def and_it_should_have_a_field_group1_containing_group2(step, field, expected_va
     world.response_json = json.loads(world.response.data)
     assert_equals(str(world.response_json[field]), expected_value)
 
+@step(u'Given a contract \'([^\']*)\' is in the system')
+def given_a_contract_group1_is_in_the_system(step, id):
+    world.contract = world.app.get('/api/v1.0/contract/{}/'.format(id))  
+    world.response_json = json.loads(world.contract.data)
+
+
+@step(u'When I retrive the contract \'([^\']*)\'')
+def when_i_retrive_the_contract_group1(step, id):
+    world.response = world.app.get('/api/v1.0/contract/{}/'.format(id))  
+
+@step(u'And the following contract details are returned:')
+def and_the_following_contract_details_are_returned(step):
+    world.response_json = json.loads(world.contract.data)
+    assert_equals(world.response_json['entries'], response_json['entries'])
 
 @step(u'When i submit the signup form')
 def signup_form(step):
