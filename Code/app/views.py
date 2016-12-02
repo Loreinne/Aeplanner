@@ -11,7 +11,7 @@ GENERIC_DOMAINS = "aero", "asia", "biz", "cat", "com", "coop", \
                   "edu", "gov", "info", "int", "jobs", "mil", "mobi", "museum", \
                   "name", "net", "org", "pro", "tel", "travel"
 
-                  
+
 def invalid(emailaddress, domains=GENERIC_DOMAINS):
     """Checks for a syntactically invalid email address."""
 
@@ -41,7 +41,7 @@ def invalid(emailaddress, domains=GENERIC_DOMAINS):
         return True  # Email address has funny characters.
 
 
-@app.route('/api/v1.0/contract/', methods=['GET'])
+@app.route('/api/v1.0/contract/', methods=['POST'])
 @auth.login_required
 def store_new_contract():
     data = json.loads(request.data)
@@ -57,9 +57,9 @@ def store_new_contract():
 
 
 
+    
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
-
     jsn = json.loads(request.data)
 
     if invalid(jsn['email_address']):

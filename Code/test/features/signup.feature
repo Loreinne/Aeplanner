@@ -1,6 +1,6 @@
-Feature: sign up, get user info
+Feature: Sign up, Retrieve User
 
-  Scenario: Signup System Admin
+  Scenario: Signup User
     Given the following information:
       | email_address | first_name | last_name | password |
       | m@gmail.com | Marjorie | Buctolan | marj123 |
