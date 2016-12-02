@@ -3,7 +3,7 @@ import os
 
 class DBconn:
     def __init__(self):
-        engine = create_engine("postgresql://postgres:aeplanner1234@localhost:5000/aeplanner_db", echo=False)
+        engine = create_engine("postgresql://postgres:aeplanner8888@localhost:5000/aeplanner_db", echo=False)
         self.conn = engine.connect()
         self.trans = self.conn.begin()
 
