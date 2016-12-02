@@ -2,7 +2,7 @@ from lettuce import step, world, before
 from nose.tools import assert_equals
 from webtest import *
 from app import app
-from app.views import *
+#from app.views import *
 import json
 
 
@@ -18,6 +18,7 @@ def given_the_following_information(step):
 
 @step(u'When I click the contract button')
 def when_i_click_the_contract_button(step):
+    world.browser = TestApp(app)
     world.response = world.app.post('/api/v1.0/contract/', data = json.dumps(world.info))
 
 @step(u'Then i will get a \'([^\']*)\' response')
