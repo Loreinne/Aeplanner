@@ -137,6 +137,8 @@ $$
 $$
     LANGUAGE 'plpgsql';
 
+-- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala');
+
 
 create or replace function getuser(IN par_id int, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) RETURNS SETOF RECORD AS
 $$
@@ -145,6 +147,8 @@ $$
   WHERE user_id = par_id
 $$
   LANGUAGE 'sql';
+
+  
 --VENUE
 
 create or replace function newvenue(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS
