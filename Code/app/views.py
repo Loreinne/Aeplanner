@@ -58,10 +58,6 @@ def new_contract():
 
 
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> 4b77540cef40e417749ca00b89d883914937e6ec
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
     jsn = json.loads(request.data)
