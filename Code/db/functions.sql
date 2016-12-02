@@ -106,7 +106,7 @@ $$
     end;
 
 $$
-  language 'plpgsql'
+  language 'plpgsql';
 
 
 -- USER
@@ -140,6 +140,13 @@ $$
     LANGUAGE 'plpgsql';
 
 
+create or replace function getuser(IN par_id int, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) RETURNS SETOF RECORD AS
+$$
+  SELECT email_address, first_name, last_name
+  FROM App_user
+  WHERE user_id = par_id
+$$
+  LANGUAGE 'sql';
 --VENUE
 
 create or replace function newvenue(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS
