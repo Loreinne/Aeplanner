@@ -20,10 +20,18 @@ Scenario: Retrieve user details
 		| eloreinne@gmail.com | Loreinne | Estenzo |
 
 
+Scenario: Update user details
+    Given a user with id no. '4' exist
+    When I update the hotel details into the following:
+    | email_address | first_name | last_name | password |
+    | clark@gmail.com | Dustin | Clark | miming |
+    Then I will get a '200' response
+    And it should have a field "status" containing "OK"
+
 
 Scenario: User already have an account
     Given the following information:
-        | email_address | first_name | last_name | password |
+    | email_address | first_name | last_name | password |
 		| eloreinne@gmail.com | Loreinne | Estenzo | lala |
     When I submit the signup form
     Then i will get a '200' response
