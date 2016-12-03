@@ -140,7 +140,7 @@ $$
           end if;
 
         ELSE
-          loc_res = 'OK';
+          loc_res = 'Error';
 
         end if;
         return loc_res;

@@ -79,13 +79,13 @@ def signup():
     jsn = json.loads(request.data)
 
     if invalid(jsn['email_address']):
-        return jsonify({'status': 'error', 'message': 'Invalid Email address'})
+        return jsonify({'status': 'Error', 'message': 'Invalid Email address'})
 
 
     res = spcall('newuser', ( jsn['email_address'], jsn['first_name'], jsn['last_name'], jsn['password']))
 
     if 'Error' in str (res[0][0]):
-        return jsonify ({'status': 'error', 'message': res[0][0]})
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
 
     return jsonify({'status': 'OK', 'message': res[0][0]})
 
