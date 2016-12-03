@@ -109,6 +109,28 @@ def store_proposal():
 
 
 
+@app.route('/api/v1.0/proposal/<int:id>/', methods=['GET'])
+def getproposal(id):
+    res = spcall('show_proposal', (id, ))
+    recs = []
+    if len(res) == 0:
+        return jsonify({"status": "error", "message": "No entries found", "entries": []})
+    elif 'Error' in str(res[0][0]):
+        return jsonify({"status": "error", "message": res[0][0]})
+    else:
+        for r in res:
+            recs.append({"id": r[0],
+                         "name": r[1],
+                         "address": r[2],
+                         "propsal_num": r[3],
+                         "proposal_name": r[4],
+                         "proposal_date": r[5]})
+
+            return jsonify({"status": "OK", "message": "OK", "entries": recs})
+
+
+
+
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
     jsn = json.loads(request.data)
