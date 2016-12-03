@@ -83,7 +83,6 @@ $$
       UPDATE Contract
       set
         reference = par_reference,
-        client_name = par_client_name,
         termsOfAgreement = par_termsOfAgreement
       WHERE id = par_id;
 
