@@ -13,6 +13,20 @@ GENERIC_DOMAINS = "aero", "asia", "biz", "cat", "com", "coop", \
                   "name", "net", "org", "pro", "tel", "travel"
 
 
+
+@auth.verify_token
+def verify_token(token):
+    g.user = None
+    try:
+        data = jwt.loads(token)
+    except:
+        return False
+    if 'user' in data:
+        g.user = data['user']
+        return True
+    return False
+    
+
 def invalid(emailaddress, domains=GENERIC_DOMAINS):
     """Checks for a syntactically invalid email address."""
 
@@ -41,6 +55,23 @@ def invalid(emailaddress, domains=GENERIC_DOMAINS):
     else:
         return True  # Email address has funny characters.
 
+
+@app.route('/api/v1.0/login/', methods=['POST'])
+def loginhoteladmin():
+    data = request.json
+    # if invalid(data['email_address']):
+    #     status = False
+    #     return jsonify({'status': status, 'message': 'Invalid Email address'})
+
+    res = spcall("loginauth", (data['email_address'], data['password']))
+
+    if res == 'ERROR':
+        status = False
+        return jsonify({'status': status, 'message': 'error'})
+    else:
+        status = True
+        token = jwt.dumps({'user': data['email_address']})
+        return jsonify({'status': status, 'token': token, 'hotel_id': res, 'message': 'success'})
 
 
 @app.route('/api/v1.0/contract/', methods=['POST'])
