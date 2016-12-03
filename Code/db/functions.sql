@@ -176,6 +176,27 @@ $$
     LANGUAGE 'sql';
 
 
+create or replace function loginauth(in par_email text, in par_password text) returns text as
+$$
+  DECLARE
+    loc_email text;
+    loc_password text;
+    loc_res text;
+  BEGIN
+    select into loc_email email_address from App_user where email_address = par_email;
+    select into loc_password password from App_user where password = par_password;
+
+    if loc_email isnull or loc_password isnull or loc_email = '' or loc_password = '' then
+      loc_res = 'Invalid Email or Password';
+    else
+      loc_res = 'Successfully Logged In';
+    end if;
+    return loc_res;
+
+  END;
+$$
+  LANGUAGE 'plpgsql';
+
 create or replace function getuser(IN par_id int, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) RETURNS SETOF RECORD AS
 $$
   SELECT email_address, first_name, last_name
