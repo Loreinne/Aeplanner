@@ -96,14 +96,13 @@ def updatecontract():
 @app.route('/api/v1.0/proposal/', methods=['POST'])
 def store_proposal():
     data = json.loads(request.data)
-    data = json.loads(request.data)
     res = spcall('new_proposal', (
           data['name'],
           data['address'],
           data['proposal_num'],
           data['proposal_name'],
           data['proposal_date']), True) 
-    
+
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'error', 'message': res[0][0]})
     return jsonify({'status': 'OK', 'message': res[0][0]}), 200

@@ -33,7 +33,7 @@ CREATE TABLE Proposal (
 	id		serial primary key,
 	name	text,
 	address text,
-	proposal_num int,
+	proposal_num VARCHAR(50),
 	proposal_name text,
 	proposal_date date
 );

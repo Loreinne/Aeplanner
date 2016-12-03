@@ -7,7 +7,7 @@ Scenario: Create a contract
         | reference | client_name| termsOfAgreement|
         |    Auth   | Ms Reyes   | Termination of registration |
 
-    When I click the add button
+    When I click the add contract button
     Then I will get a '200' response
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'OK'

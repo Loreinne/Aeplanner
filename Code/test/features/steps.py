@@ -14,7 +14,7 @@ def before_all():
 def given_the_following_information(step):
     world.info = step.hashes[0]
 
-@step(u'When I click the add button')
+@step(u'When I click the add contract button')
 def when_i_click_the_add_button(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/v1.0/contract/', data = json.dumps(world.info))
@@ -58,7 +58,9 @@ def when_i_click_the_update_button(step):
     world.response = world.app.put('/api/v1.0/contract/', data = json.dumps(world.contract_updateInfo))
     
 
-
+@step(u'When I click the add propsal button')
+def when_i_click_the_add_propsal_button(step):
+    world.response = world.app.post('/api/v1.0/proposal/', data = json.dumps(world.info))
 
 
 
