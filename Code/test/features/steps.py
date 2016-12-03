@@ -124,3 +124,8 @@ def userupdate(step):
     world.details = step.hashes[0]
     world.url = '/api/v1.0/user/'
     world.response = world.app.put(world.url, data = json.dumps(world.details))
+
+
+@step(u' When I click the add button')
+def addvenue(step):
+     world.response = world.app.post('/api/v1.0/venue/', data = json.dumps(world.info))
