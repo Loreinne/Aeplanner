@@ -22,9 +22,9 @@ Scenario: Retrieve user details
 
 Scenario: Update user details
     Given a user with id no. '4' exist
-    When I update the hotel details into the following:
-    | email_address | first_name | last_name | password |
-    | clark@gmail.com | Dustin | Clark | miming |
+    When I update the user details into the following:
+    |user_id| email_address | first_name | last_name | password |
+    | 4 | clark@gmail.com | Dustin | Clark | miming |
     Then I will get a '200' response
     And it should have a field 'status' containing 'OK'
 

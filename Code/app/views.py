@@ -183,7 +183,7 @@ def getspecificuser(user_id):
     return jsonify({"email_address": str(rec[0]), "first_name": str(rec[1]), "last_name" : str(rec[2])})
 
 
-@app.route('/api/v1.0/user', methods = ['PUT'])
+@app.route('/api/v1.0/user/', methods = ['PUT'])
 def update_user():
   jsn = json.loads(request.data)
 
@@ -200,7 +200,7 @@ def update_user():
     last_name,
     password), True)
 
-  return jsonify("status": "OK")
+  return jsonify({"status": "OK"})
 
 
 @app.after_request

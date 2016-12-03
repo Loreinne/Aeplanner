@@ -115,3 +115,12 @@ def details_returned(step):
 
 
 
+@step(u'Given a user with id no. \'(.*)\' exist')
+def given_some_rooms_are_in_the_system(step,id):
+    world.user = world.app.get('/api/v1.0/user/{}/'.format(id))
+
+@step(u'When I update the user details into the following:')
+def userupdate(step):
+    world.details = step.hashes[0]
+    world.url = '/api/v1.0/user/'
+    world.response = world.app.put(world.url, data = json.dumps(world.details))
