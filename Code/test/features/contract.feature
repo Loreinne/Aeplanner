@@ -7,7 +7,7 @@ Scenario: Create a contract
         | reference | client_name| termsOfAgreement|
         |    Auth   | Ms Reyes   | Termination of registration |
 
-    When I click the contract button
+    When I click the add button
     Then I will get a '200' response
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'OK'
@@ -24,6 +24,7 @@ Scenario: Get a contract
         | 1   | google    | Mr Cruz      | Registration     |
 
 
+
 Scenario: Update contract  
     Given the contract id '2' is in the system with the following information:
         |id |reference | client_name | termsOfAgreement |
@@ -36,3 +37,5 @@ Scenario: Update contract
     Then I will get a '200' response
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'OK'
+
+
