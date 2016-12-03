@@ -14,18 +14,6 @@ GENERIC_DOMAINS = "aero", "asia", "biz", "cat", "com", "coop", \
 
 
 
-@auth.verify_token
-def verify_token(token):
-    g.user = None
-    try:
-        data = jwt.loads(token)
-    except:
-        return False
-    if 'user' in data:
-        g.user = data['user']
-        return True
-    return False
-    
 
 def invalid(emailaddress, domains=GENERIC_DOMAINS):
     """Checks for a syntactically invalid email address."""
@@ -232,6 +220,20 @@ def update_user():
     password), True)
 
   return jsonify({"status": "OK"})
+
+
+
+@app.route('/api/v1.0/venue/', methods=['POST'])
+def add_venue():
+    jsn = json.loads(request.data)
+
+
+    res = spcall('newvenue', ( jsn['V_name'], jsn['V_description'], jsn['V_categories'], jsn['V_location'], jsn['V_capacity'], jsn['V_pricing']))
+
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
 
 
 @app.after_request
