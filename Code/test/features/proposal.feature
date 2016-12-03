@@ -10,3 +10,15 @@ Scenario: Create a Proposal
     Then I will get a '200' response
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'OK'
+
+
+
+Scenario: Get Proposal
+    Given a proposal id '1' is in the system
+    When I retrieve the proposal '1'
+    Then I will get a '200' response
+    And it should have a field 'status' containing 'OK'
+    And it should have a field 'message' containing 'OK'
+    And the following contract details are returned:
+        |id |name        | address | proposal_num  | proposal_name | proposal_date   |
+        |1  |Balds       | Baguio  | birthday party| 2             | August 2, 2017  |
