@@ -74,6 +74,23 @@ def getcontract(id):
             return jsonify({"status": "OK", "message": "OK", "entries": recs})
     
 
+@app.route('/api/v1.0/contract/', methods=['PUT'])
+def updatecontract():
+    data = json.loads(request.data)
+    id = data['id']
+    reference = data['reference']
+    client_name = data['client_name']
+    termsOfAgreement = data['termsOfAgreement']
+    
+    res = spcall('update_contract', ( id,
+                                     reference,
+                                     client_name,
+                                     termsOfAgreement), True)
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
+
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
     jsn = json.loads(request.data)

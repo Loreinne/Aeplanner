@@ -27,7 +27,7 @@ Scenario: Get a contract
 Scenario: Update contract  
     Given the contract id '2' is in the system with the following information:
         |id |reference | client_name | termsOfAgreement |
-        |2  | google   | Kyla Gomez  | Privacy          |
+        |2  | Google   | Kyla Gomez  | Privacy          |
     And the new contract information for contract id '2'
         |id | reference | client_name | termsOfAgreement |
         |2  | auth      | Kyla Gomez | registration     |
