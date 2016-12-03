@@ -58,19 +58,18 @@ def when_i_click_the_update_button(step):
     world.response = world.app.put('/api/v1.0/contract/', data = json.dumps(world.contract_updateInfo))
     
 
-@step(u'When I click the add propsal button')
-def when_i_click_the_add_propsal_button(step):
+@step(u'When I click the add proposal button')
+def when_i_click_the_add_proposal_button(step):
     world.response = world.app.post('/api/v1.0/proposal/', data = json.dumps(world.info))
 
 @step(u'Given a proposal id \'([^\']*)\' is in the system')
-def given_a_proposal_id_group1_is_in_the_system(step, group1):
+def given_a_proposal_id_group1_is_in_the_system(step, id):
     world.proposal = world.app.get('/api/v1.0/proposal/{}/'.format(id))
     world.res = json.loads(world.proposal.data)
-    assert_equals(world.res['status'], 'OK') 
-
+   
 @step(u'When I retrieve the proposal \'([^\']*)\'')
-def when_i_retrieve_the_proposal_group1(step, group1):
-    world.proposal = world.app.get('/api/v1.0/proposal/{}/'.format(id))
+def when_i_retrieve_the_proposal_group1(step, id):
+    world.response = world.app.get('/api/v1.0/proposal/{}/'.format(id))
 
 @step(u'And the following proposal details are returned:')
 def and_the_following_proposal_details_are_returned(step):

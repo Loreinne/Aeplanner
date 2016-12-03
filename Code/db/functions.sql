@@ -11,9 +11,9 @@ $$
   language 'sql';
 
 
-create or replace function show_proposal(in par_id int, out text, out text, out int, out text, out date) returns setof record AS
+create or replace function show_proposal(in par_id int, out int, out text, out text, out varchar, out text, out date) returns setof record AS
 $$
-  SELECT name, address, proposal_num, proposal_name, proposal_date
+  SELECT id, name, address, proposal_num, proposal_name, proposal_date
   from Proposal
   WHERE id = par_id;
 $$

@@ -122,9 +122,9 @@ def getproposal(id):
             recs.append({"id": r[0],
                          "name": r[1],
                          "address": r[2],
-                         "propsal_num": r[3],
+                         "propsal_num": str(r[3]),
                          "proposal_name": r[4],
-                         "proposal_date": r[5]})
+                         "proposal_date": str(r[5])})
 
             return jsonify({"status": "OK", "message": "OK", "entries": recs})
 
