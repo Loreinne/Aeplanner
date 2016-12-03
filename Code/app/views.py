@@ -185,7 +185,23 @@ def getspecificuser(user_id):
 
 @app.route('/api/v1.0/user', methods = ['PUT'])
 def update_user():
+  jsn = json.loads(request.data)
+
+  user_id = jsn.get('user_id', '')
+  email_address = jsn.get('email_address', '')
+  first_name = jsn.get('first_name', '')
+  last_name = jsn.get('last_name', '')
+  password = jsn.get('password', '')
   
+  spcall('updateuser', (
+    user_id,
+    email_address,
+    first_name,
+    last_name,
+    password), True)
+
+  return jsonify("status": "OK")
+
 
 @app.after_request
 def add_cors(resp):

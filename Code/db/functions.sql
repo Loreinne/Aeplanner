@@ -161,15 +161,15 @@ $$
 
 -- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala');
 
-create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_pasword VARCHAR) returns void AS
+create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_password VARCHAR) returns void AS
   $$ 
-    UPDATE User
+    UPDATE App_user
     SET
 
     email_address = par_email,
     first_name = par_fname,
     last_name = par_lname,
-    par_pasword = par_password,
+    password = par_password,
 
     WHERE user_id = par_id;
 $$

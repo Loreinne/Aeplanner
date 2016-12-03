@@ -112,3 +112,6 @@ def when_i_retrieve_the_room_number(step,id):
 def details_returned(step):
     world.info = step.hashes[0]
     assert_equals(world.info, json.loads(world.response.data))
+
+
+

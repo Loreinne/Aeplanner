@@ -26,7 +26,7 @@ Scenario: Update user details
     | email_address | first_name | last_name | password |
     | clark@gmail.com | Dustin | Clark | miming |
     Then I will get a '200' response
-    And it should have a field "status" containing "OK"
+    And it should have a field 'status' containing 'OK'
 
 
 Scenario: User already have an account
