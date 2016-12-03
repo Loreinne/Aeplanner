@@ -26,7 +26,7 @@ Scenario: Get Proposal
 
 
 Scenario: Update Proposal
-    Given a proposal id '3' is in the system with the following information:
+    Given a proposal '3' is in the system with the following details:
         |id |name        | address | proposal_num  | proposal_name | proposal_date   |
         |3  | Cris Reyes | Cebu    | 1             | Seminar       | December 3, 2017            |
     And the new proposal information for proposal id '3'

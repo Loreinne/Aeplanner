@@ -77,6 +77,21 @@ def and_the_following_proposal_details_are_returned(step):
     assert_equals(world.res['entries'], res['entries'])
 
 
+@step(u'Given a proposal \'([^\']*)\' is in the system with the following details:')
+def given_a_proposal_group1_is_in_the_system_with_the_following_details(step, group1):
+    world.proposal_oldInfo = step.hashes[0]
+
+@step(u'And the new proposal information for proposal id \'([^\']*)\'')
+def and_the_new_proposal_information_for_proposal_id_group1(step, group1):
+    world.proposal_updateInfo = step.hashes[0]
+
+@step(u'When I click the update proposal button')
+def when_i_click_the_update_proposal_button(step):
+    world.response = world.app.put('/api/v1.0/proposal/', data = json.dumps(world.proposal_updateInfo))
+
+
+
+
 
 @step(u'When i submit the signup form')
 def signup_form(step):
