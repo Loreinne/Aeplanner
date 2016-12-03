@@ -44,6 +44,25 @@ def and_the_following_contract_details_are_returned(step):
     res = json.loads(world.response.data)
     assert_equals(world.res['entries'], res['entries'])
 
+
+@step(u'Given the contract id \'([^\']*)\' is in the system with the following information:')
+def given_the_contract_id_group1_is_in_the_system_with_the_following_information(step, group1):
+    world.contract_oldInfo = step.hashes[0]
+
+@step(u'And the new contract information for contract id \'([^\']*)\'')
+def and_the_new_contract_information_for_contract_id_group1(step, group1):
+    world.contract_updateInfo = step.hashes[0]
+
+@step(u'When I click the update button')
+def when_i_click_the_update_button(step):
+    world.response = world.app.put('/api/v1.0/contract/', data = json.dumps(world.contract_updateInfo))
+    
+
+
+
+
+
+
 @step(u'When i submit the signup form')
 def signup_form(step):
 	world.uri = '/api/v1.0/signup/'
