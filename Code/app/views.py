@@ -129,6 +129,29 @@ def getproposal(id):
             return jsonify({"status": "OK", "message": "OK", "entries": recs})
 
 
+@app.route('/api/v1.0/proposal/', methods=['PUT'])
+def updateproposal():
+    data = json.loads(request.data)
+    id = data['id']
+    name = data['name']
+    address = data['address']
+    proposal_num = data['proposal_num']
+    proposal_name = data['proposal_name']
+    proposal_date = data['proposal_date']
+
+    
+    res = spcall('update_proposal', ( id,
+                                     name,
+                                     address,
+                                     proposal_num,
+                                     proposal_name,
+                                     proposal_date), True)
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
+
+
 
 
 @app.route('/api/v1.0/signup/', methods=['POST'])
