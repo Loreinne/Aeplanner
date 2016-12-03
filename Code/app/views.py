@@ -50,13 +50,29 @@ def new_contract():
     res = spcall('new_contract', (
         data['reference'],
         data['client_name'],
-        data['termsOfAgreement']))
+        data['termsOfAgreement']), True)
 
-    # if 'Error' in str(res[0][0]):
-    #     return jsonify({'status': 'error', 'message': res[0][0]})
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
     return jsonify({'status': 'OK', 'message': res[0][0]}), 200
 
+@app.route('/api/v1.0/contract/<int:id>/', methods=['GET'])
+def getcontract(id):
+    res = spcall('show_contract', (id, ))
+    recs = []
+    if len(res) == 0:
+        return jsonify({"status": "error", "message": "No entries found", "entries": []})
+    elif 'Error' in str(res[0][0]):
+        return jsonify({"status": "error", "message": res[0][0]})
+    else:
+        for r in res:
+            recs.append({"id": r[0],
+                         "reference": r[1],
+                         "client_name": r[2],
+                         "termsOfAgreement": r[3]})
 
+            return jsonify({"status": "OK", "message": "OK", "entries": recs})
+    
 
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():

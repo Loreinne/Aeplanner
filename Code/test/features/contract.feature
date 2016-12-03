@@ -10,13 +10,15 @@ Scenario: Create a contract
     When I click the contract button
     Then I will get a '200' response
     And it should have a field 'status' containing 'OK'
-    And it should have a field 'message' containing 'Successfully created a Contract'
+    And it should have a field 'message' containing 'OK'
 
 
 Scenario: Get a contract
     Given a contract '1' is in the system
-    When I retrive the contract '1'
+    When I retrieve the contract '1'
     Then I will get a '200' response
+    And it should have a field 'status' containing 'OK'
+    And it should have a field 'message' containing 'OK'
     And the following contract details are returned:
-    | id | reference | client_name  | termsOfAgreement |
-    | 1  | google    | Ms Dela Cruz | Termination      |
+        | id  | reference | client_name  | termsOfAgreement |
+        | 1   | google    | Mr Cruz      | Registration     |

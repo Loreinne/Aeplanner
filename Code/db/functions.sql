@@ -54,18 +54,6 @@ $$
 
 -- CONTRACT
 
-create or replace function new_contract(in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
-$$
-  declare local_response text;
-    begin
-      insert into Contract(reference, client_name, termsOfAgreement)
-      values (par_reference, par_client_name, par_termsOfAgreement);
-          local_response = 'OK';
-      return local_response;
-    end;
-
-$$
-language 'plpgsql';
 
 
 create or replace function show_contractAll(out int, out text, out text, out text) returns setof record AS
@@ -78,9 +66,9 @@ $$
 
 
 
-create or replace function show_contract(in par_id int, out text, out text, out text) returns setof record AS
+create or replace function show_contract(in par_id int, out int, out text, out text, out text) returns setof record AS
 $$
-  SELECT  reference, client_name, termsOfAgreement
+  SELECT id, reference, client_name, termsOfAgreement
   from Contract
   WHERE id = par_id;
 $$
@@ -105,6 +93,30 @@ $$
 
 $$
   language 'plpgsql';
+
+create or replace function new_contract(in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
+$$
+  declare 
+  local_response text;
+  local_client_name text;
+    begin
+      SELECT into local_client_name par_client_name from Contract WHERE client_name = par_client_name;
+        if local_client_name isnull THEN
+      if par_reference = '' or par_client_name = '' or par_termsOfAgreement = '' THEN
+        local_response = 'Error';
+      ELSE
+      insert into Contract(reference, client_name, termsOfAgreement)
+      values (par_reference, par_client_name, par_termsOfAgreement);
+          local_response = 'OK';
+      end if;
+      ELSE
+      local_response = 'client name exists';
+      END if;
+      return local_response;
+    end;
+
+$$
+language 'plpgsql';
 
 
 -- USER
