@@ -183,6 +183,10 @@ def getspecificuser(user_id):
     return jsonify({"email_address": str(rec[0]), "first_name": str(rec[1]), "last_name" : str(rec[2])})
 
 
+@app.route('/api/v1.0/user', methods = ['PUT'])
+def update_user():
+  
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')

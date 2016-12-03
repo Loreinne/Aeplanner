@@ -1,4 +1,4 @@
-Feature: Sign up, Retrieve User
+Feature: Sign up, Retrieve User, update user details
 
   Scenario: Signup User
     Given the following information:

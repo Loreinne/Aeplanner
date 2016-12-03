@@ -161,6 +161,20 @@ $$
 
 -- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala');
 
+create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_pasword VARCHAR) returns void AS
+  $$ 
+    UPDATE User
+    SET
+
+    email_address = par_email,
+    first_name = par_fname,
+    last_name = par_lname,
+    par_pasword = par_password,
+
+    WHERE user_id = par_id;
+$$
+    LANGUAGE 'sql';
+
 
 create or replace function getuser(IN par_id int, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) RETURNS SETOF RECORD AS
 $$
