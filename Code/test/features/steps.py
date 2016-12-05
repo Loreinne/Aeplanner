@@ -77,6 +77,19 @@ def and_the_following_note_details_are_returned(step):
     assert_equals(world.res['entries'], res['entries'])
 
 
+@step(u'Given a note \'([^\']*)\' is in the system with the following details:')
+def given_a_note_group1_is_in_the_system_with_the_following_details(step, group1):
+    world.note_oldInfo = step.hashes[0]
+
+@step(u'And the new note information for note id \'([^\']*)\'')
+def and_the_new_note_information_for_note_id_group1(step, group1):
+    world.note_updateInfo = step.hashes[0]
+
+@step(u'When I click the update note button')
+def when_i_click_the_update_note_button(step):
+    world.response = world.app.put('/api/v1.0/note/', data = json.dumps(world.note_updateInfo))
+
+    
 
 
 

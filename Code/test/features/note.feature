@@ -24,7 +24,7 @@ Scenario: Get Note
 
 
 
-Scebnario: Update Note
+Scenario: Update Note
     Given a note '6' is in the system with the following details:
         |n_id | n_title             | n_note                      |
         | 6   | Birthday Party Prep | Theme is disney princesses |
