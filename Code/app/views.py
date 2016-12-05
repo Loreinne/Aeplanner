@@ -114,13 +114,13 @@ def updatecontract():
 
 @app.route('/api/v1.0/proposal/', methods=['POST'])
 def store_proposal():
-    data = json.loads(request.data)
+    jsn = json.loads(request.data)
     res = spcall('new_proposal', (
-          data['name'],
-          data['address'],
-          data['proposal_num'],
-          data['proposal_name'],
-          data['proposal_date']), True) 
+          jsn['name'],
+          jsn['address'],
+          jsn['proposal_num'],
+          jsn['proposal_name'],
+          jsn['proposal_date']), True) 
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'error', 'message': res[0][0]})
@@ -171,6 +171,15 @@ def updateproposal():
     return jsonify({'status': 'OK', 'message': res[0][0]})
 
 
+@app.route('/api/v1.0/note/', methods=['POST'])
+def store_note():
+    jsn = json.loads(request.data)
+    res = spcall('newnote', ( jsn['n_title'],
+                              jsn['n_note']), True) 
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'Error', 'message': res[0][0]})
+    return jsonify({'status': 'OK', 'message': 'OK'}), 200
 
 
 @app.route('/api/v1.0/signup/', methods=['POST'])
@@ -220,6 +229,7 @@ def update_user():
     password), True)
 
   return jsonify({"status": "OK"})
+
 
 
 

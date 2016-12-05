@@ -57,6 +57,15 @@ def and_the_new_contract_information_for_contract_id_group1(step, group1):
 def when_i_click_the_update_contract_button(step):
     world.response = world.app.put('/api/v1.0/contract/', data = json.dumps(world.contract_updateInfo))
     
+@step(u'When I click the add note button')
+def when_i_click_the_add_note_button(step):
+    world.response = world.app.post('/api/v1.0/note/', data = json.dumps(world.info))
+
+
+
+
+
+
 
 @step(u'When I click the add proposal button')
 def when_i_click_the_add_proposal_button(step):
@@ -87,11 +96,6 @@ def and_the_new_proposal_information_for_proposal_id_group1(step, group1):
 @step(u'When I click the update proposal button')
 def when_i_click_the_update_proposal_button(step):
     world.response = world.app.put('/api/v1.0/proposal/', data = json.dumps(world.proposal_updateInfo))
-
-@step(u'When I click the add note button')
-def when_i_click_the_add_note_button(step):
-    world.response = world.app.post('/api/v1.0/note/', data = json.dumps(world.info))
-
 
 
 
