@@ -62,6 +62,23 @@ def when_i_click_the_add_note_button(step):
     world.response = world.app.post('/api/v1.0/note/', data = json.dumps(world.info))
 
 
+@step(u'Given a note id \'([^\']*)\' is in the system')
+def given_a_note_id_group1_is_in_the_system(step, id):
+    world.note = world.app.get('/api/v1.0/note/{}/'.format(id))
+    world.res = json.loads(world.note.data)
+   
+@step(u'When I retrieve the note id \'([^\']*)\'')
+def when_i_retrieve_the_note_id_group1(step, group1):
+    world.response = world.app.get('/api/v1.0/proposal/{}/'.format(id))
+
+@step(u'And the following note details are returned:')
+def and_the_following_note_details_are_returned(step):
+    res = json.loads(world.response.data)
+    assert_equals(world.res['entries'], res['entries'])
+
+
+
+
 
 
 
