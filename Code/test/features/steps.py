@@ -68,8 +68,8 @@ def given_a_note_id_group1_is_in_the_system(step, id):
     world.res = json.loads(world.note.data)
    
 @step(u'When I retrieve the note id \'([^\']*)\'')
-def when_i_retrieve_the_note_id_group1(step, group1):
-    world.response = world.app.get('/api/v1.0/proposal/{}/'.format(id))
+def when_i_retrieve_the_note_id_group1(step, id):
+    world.response = world.app.get('/api/v1.0/note/{}/'.format(id))
 
 @step(u'And the following note details are returned:')
 def and_the_following_note_details_are_returned(step):

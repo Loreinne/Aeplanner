@@ -182,6 +182,23 @@ def store_note():
     return jsonify({'status': 'OK', 'message': 'OK'}), 200
 
 
+@app.route('/api/v1.0/note/<int:n_id>/', methods=['GET'])
+def getnote(n_id):
+    res = spcall('show_note', (n_id, ))
+    recs = []
+    if len(res) == 0:
+        return jsonify({"status": "error", "message": "No entries found", "entries": []})
+    elif 'Error' in str(res[0][0]):
+        return jsonify({"status": "error", "message": res[0][0]})
+    else:
+        for r in res:
+            recs.append({"n_id": r[0],
+                         "n_title": str(r[1]),
+                         "n_note": r[2]})
+
+            return jsonify({"status": "OK", "message": "OK", "entries": recs})
+
+
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
     jsn = json.loads(request.data)
