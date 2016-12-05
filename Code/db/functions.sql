@@ -403,15 +403,22 @@ create or replace function showall_note (OUT VARCHAR, OUT TEXT) returns setof re
   LANGUAGE 'sql';
 
 
-create or replace function updatenote(par_id int, par_title VARCHAR, par_note text) returns void AS
-    $$
+create or replace function updatenote(par_id int, par_title VARCHAR, par_note text) returns text AS
+$$
+  declare local_response text;
+    begin
       UPDATE Note
-      SET 
+      set
+        n_id = par_id,
         n_title = par_title,
         n_note = par_note
 
       WHERE n_id = par_id;
 
+      local_response = 'OK';
+      return local_response;
+    
+    end;
 $$
 
-    LANGUAGE 'sql';
+    LANGUAGE 'plpgsql';

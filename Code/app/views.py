@@ -199,6 +199,23 @@ def getnote(n_id):
             return jsonify({"status": "OK", "message": "OK", "entries": recs})
 
 
+@app.route('/api/v1.0/note/', methods=['PUT'])
+def updatenote():
+    data = json.loads(request.data)
+    n_id = data['n_id']
+    n_title = data['n_title']
+    n_note = data['n_note']
+    
+    res = spcall('updatenote', ( n_id,
+                                n_title,
+                                n_note), True)
+
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
+    
+
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
     jsn = json.loads(request.data)
