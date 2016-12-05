@@ -22,4 +22,18 @@ Scenario: Get Note
         |n_id | n_title          | n_note                  |
         | 1   | Beach Party Prep | the theme color is pink |
 
-        
+
+
+Scebnario: Update Note
+    Given a note '6' is in the system with the following details:
+        |n_id | n_title             | n_note                      |
+        | 6   | Birthday Party Prep | Theme is disney princesses |
+
+    And the new note information for note id '6'
+        |n_id | n_title          | n_note            |
+        | 6   | Anniversary Prep | simple but classy |
+
+    When I click the update note button
+    Then I will get a '200' response
+    And it should have a field 'status' containing 'OK'
+    And it should have a field 'message' containing 'OK'
