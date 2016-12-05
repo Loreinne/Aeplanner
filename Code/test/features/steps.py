@@ -129,3 +129,8 @@ def userupdate(step):
 @step(u'When I click the add button')
 def addvenue(step):
      world.response = world.app.post('/api/v1.0/venue/', data = json.dumps(world.info))
+
+
+@step(u'When I update the venue details into the following:')
+def updatevenue(step):
+    world.response = world.app.put('/api/v1.0/venue/', data = json.dumps(world.proposal_updateInfo))
