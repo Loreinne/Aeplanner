@@ -64,7 +64,7 @@ $$
 language 'plpgsql';
 
 -- CONTRACT
-create or replace function new_contract(in par_reference text, in par_client_name text, in par_termsOfAgreement text) returns text AS
+create or replace function new_contract(par_reference text, par_client_name text, par_termsOfAgreement text) returns text AS
 $$
   declare 
   local_response text;
@@ -362,7 +362,7 @@ create or replace function newnote (par_title VARCHAR, par_note TEXT) returns TE
       SELECT INTO loc_title par_title FROM Note WHERE n_title = par_title;
         if loc_title isnull THEN
 
-      if par_title = '' or par_description = '' THEN
+      if par_title = '' or par_note = '' THEN
         loc_res = 'Error';
 
       ELSE
@@ -372,7 +372,7 @@ create or replace function newnote (par_title VARCHAR, par_note TEXT) returns TE
           end if;
 
         ELSE
-          loc_res = 'Error';
+          loc_res = 'title already exist';
 
         end if;
         return loc_res;
@@ -383,10 +383,10 @@ $$
   LANGUAGE 'plpgsql';
 
 
-create or replace function show_note (IN par_id int ,OUT VARCHAR, OUT TEXT) returns setof record as
+create or replace function show_note (IN par_id int, OUT INT, OUT VARCHAR, OUT TEXT) returns setof record as
   $$
 
-    SELECT n_title , n_note FROM Note WHERE  n_id = par_id ;
+    SELECT n_id, n_title , n_note FROM Note WHERE  n_id = par_id ;
 
   $$
 
@@ -403,15 +403,22 @@ create or replace function showall_note (OUT VARCHAR, OUT TEXT) returns setof re
   LANGUAGE 'sql';
 
 
-create or replace function updatenote(par_id int, par_title VARCHAR, par_note text) returns void AS
-    $$
+create or replace function updatenote(par_id int, par_title VARCHAR, par_note text) returns text AS
+$$
+  declare local_response text;
+    begin
       UPDATE Note
-      SET 
+      set
+        n_id = par_id,
         n_title = par_title,
         n_note = par_note
 
       WHERE n_id = par_id;
 
+      local_response = 'OK';
+      return local_response;
+    
+    end;
 $$
 
-    LANGUAGE 'sql';
+    LANGUAGE 'plpgsql';

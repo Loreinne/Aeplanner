@@ -57,6 +57,45 @@ def and_the_new_contract_information_for_contract_id_group1(step, group1):
 def when_i_click_the_update_contract_button(step):
     world.response = world.app.put('/api/v1.0/contract/', data = json.dumps(world.contract_updateInfo))
     
+@step(u'When I click the add note button')
+def when_i_click_the_add_note_button(step):
+    world.response = world.app.post('/api/v1.0/note/', data = json.dumps(world.info))
+
+
+@step(u'Given a note id \'([^\']*)\' is in the system')
+def given_a_note_id_group1_is_in_the_system(step, id):
+    world.note = world.app.get('/api/v1.0/note/{}/'.format(id))
+    world.res = json.loads(world.note.data)
+   
+@step(u'When I retrieve the note id \'([^\']*)\'')
+def when_i_retrieve_the_note_id_group1(step, id):
+    world.response = world.app.get('/api/v1.0/note/{}/'.format(id))
+
+@step(u'And the following note details are returned:')
+def and_the_following_note_details_are_returned(step):
+    res = json.loads(world.response.data)
+    assert_equals(world.res['entries'], res['entries'])
+
+
+@step(u'Given a note \'([^\']*)\' is in the system with the following details:')
+def given_a_note_group1_is_in_the_system_with_the_following_details(step, group1):
+    world.note_oldInfo = step.hashes[0]
+
+@step(u'And the new note information for note id \'([^\']*)\'')
+def and_the_new_note_information_for_note_id_group1(step, group1):
+    world.note_updateInfo = step.hashes[0]
+
+@step(u'When I click the update note button')
+def when_i_click_the_update_note_button(step):
+    world.response = world.app.put('/api/v1.0/note/', data = json.dumps(world.note_updateInfo))
+
+    
+
+
+
+
+
+
 
 @step(u'When I click the add proposal button')
 def when_i_click_the_add_proposal_button(step):
@@ -75,7 +114,6 @@ def when_i_retrieve_the_proposal_group1(step, id):
 def and_the_following_proposal_details_are_returned(step):
     res = json.loads(world.response.data)
     assert_equals(world.res['entries'], res['entries'])
-
 
 @step(u'Given a proposal \'([^\']*)\' is in the system with the following details:')
 def given_a_proposal_group1_is_in_the_system_with_the_following_details(step, group1):
