@@ -6,7 +6,7 @@ CREATE TABLE App_user (
 	password VARCHAR (50),
 	birthdate date,
 	age VARCHAR(5),
-	is_active BOOLEAN DEFAULT TRUE,
+	is_active BOOLEAN DEFAULT TRUE
  );
 
 
@@ -15,12 +15,11 @@ CREATE TABLE Venue (
 	image VARCHAR(50),
 	name VARCHAR (50),
 	description TEXT,
-	categories VARCHAR (50),
+	cat_id INT references Categories(id),
 	location VARCHAR (50),
 	capacity VARCHAR(50),
 	pricing VARCHAR (50),
-	cat_id INT references Categories(id),
-	is_active BOOLEAN
+	is_active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE Catering_services (
@@ -33,7 +32,7 @@ CREATE TABLE Catering_services (
 	capacity VARCHAR(50),
 	pricing VARCHAR (50),
 	cat_id INT references Categories(id),
-	is_active BOOLEAN
+	is_active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE Proposal (
