@@ -31,18 +31,20 @@ CREATE TABLE Catering_services (
 
 CREATE TABLE Proposal (
 	id		serial primary key,
-	name	text,
-	address text,
+	event_id Int references Event(id),
+	name	VARCHAR(50),
+	address VARCHAR(50),
 	proposal_num VARCHAR(50),
-	proposal_name text,
+	proposal_name VARCHAR(50),
 	proposal_date date
 );
 
 CREATE TABLE Contract (
 	id		serial primary key,
-	reference	text,
-	client_name text,
-	termsOfAgreement text, 
+	event_id Int references Contract(id),
+	contract_reference	VARCHAR(50),
+	client_name VARCHAR(50),
+	termsOfAgreement text 
 );
 
 
@@ -54,9 +56,10 @@ CREATE TABLE Event (
 );
 
 CREATE TABLE Note (
-	n_id  serial primary key,
-	n_title VARCHAR (50),
-	n_note Text
+	id  serial primary key,
+	event_id Int references Event(id),
+	title VARCHAR (50),
+	note Text
 );
 
 CREATE TABLE Appointment (
@@ -64,5 +67,4 @@ CREATE TABLE Appointment (
 	a_title VARCHAR(50),
 	a_date date,
 	a_time time
-
 );
