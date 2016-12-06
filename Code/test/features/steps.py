@@ -154,7 +154,7 @@ def details_returned(step):
 
 
 @step(u'Given a user with id no. \'(.*)\' exist')
-def given_some_rooms_are_in_the_system(step,id):
+def given_a_user_exist(step,id):
     world.user = world.app.get('/api/v1.0/user/{}/'.format(id))
 
 @step(u'When I update the user details into the following:')
@@ -167,3 +167,17 @@ def userupdate(step):
 @step(u'When I click the add button')
 def addvenue(step):
      world.response = world.app.post('/api/v1.0/venue/', data = json.dumps(world.info))
+
+
+@step(u'When I update the venue details into the following:')
+def updatevenue(step):
+    world.response = world.app.put('/api/v1.0/venue/', data = json.dumps(world.info))
+
+
+@step(u'Given that a venue with id no. \'(.*)\' exist')
+def given_a_venue_exist(step, id):
+    world.reponse = world.app.get('/api/v1.0/venue/{}/'.format(id))
+    
+@step(u'When I retrieve a venue with id no. \'(.*)\'')
+def retrieve_venue(step,id):
+    world.res = json.loads(world.response.data)

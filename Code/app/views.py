@@ -280,6 +280,43 @@ def add_venue():
     return jsonify({'status': 'OK', 'message': res[0][0]})
 
 
+
+@app.route('/api/v1.0/venue/<id>/', methods=['GET'])
+def getspecificvenue(id):
+    res = spcall('show_venue', [id])
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
+
+    rec = res[0]
+
+    return jsonify({"V_name": str(rec[0]), "V_description": str(rec[1]), "V_categories" : str(rec[2]), "V_location" : str(rec[3]), "V_capacity": str(rec[4]), "V_pricing" : str(rec[5])})
+
+
+@app.route('/api/v1.0/venue/', methods = ['PUT'])
+def update_venue():
+  jsn = json.loads(request.data)
+
+  V_id = jsn.get('V_id', '')
+  V_name = jsn.get('V_name', '')
+  V_description = jsn.get('V_description', '')
+  V_categories = jsn.get('V_categories', '')
+  V_location = jsn.get('V_location', '')
+  V_capacity = jsn.get('V_capacity', '')
+  V_pricing = jsn.get('V_pricing', '')
+
+  spcall('updatevenue', (
+    V_id,
+    V_name,
+    V_description,
+    V_categories,
+    V_location,
+    V_capacity,
+    V_pricing ), True)
+
+  return jsonify({"status": "OK"})
+
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
