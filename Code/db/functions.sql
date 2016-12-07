@@ -440,7 +440,7 @@ create or replace function newappointment (par_event_id int, par_client Varchar,
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Appointment(event_id, client, about, app_date, app_time) VALUES (par_event_id, par_title, par_appointment_date, par_appointment_time);
+          INSERT INTO Appointment(event_id, client, about, app_date, app_time) VALUES (par_event_id, par_about, par_app_date, par_app_time);
                       loc_res = 'OK';
 
           end if;
