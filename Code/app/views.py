@@ -116,6 +116,7 @@ def updatecontract():
 def store_proposal():
     jsn = json.loads(request.data)
     res = spcall('new_proposal', (
+          jsn['event_id'],
           jsn['name'],
           jsn['address'],
           jsn['proposal_num'],

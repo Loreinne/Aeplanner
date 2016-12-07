@@ -49,10 +49,11 @@ CREATE TABLE Contract (
 
 
 CREATE TABLE Event (
-	e_id serial primary key,
-	e_title VARCHAR(50),
-	e_date date,
-	e_time time
+	id serial primary key,
+	user_id Int references App_user(user_id),
+	title VARCHAR(50),
+	date_event date,
+	time_event time
 );
 
 CREATE TABLE Note (
@@ -63,8 +64,9 @@ CREATE TABLE Note (
 );
 
 CREATE TABLE Appointment (
-	a_id serial primary key,
-	a_title VARCHAR(50),
-	a_date date,
-	a_time time
+	id serial primary key,
+	event_id Int references Event(id),
+	title VARCHAR(50),
+	appointment_date date,
+	appointment_time time
 );

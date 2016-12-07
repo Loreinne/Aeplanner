@@ -7,7 +7,7 @@ $$
   begin
     SELECT into local_name par_name FROM Proposal WHERE name = par_name;
       if local_name isnull THEN
-    if par_name = '' or par_address = '' or par_proposal_num = '' or par_proposal_name = '' or par_proposal_date = isnull THEN
+    if par_name = '' or par_address = '' or par_proposal_num = '' or par_proposal_name = '' or par_proposal_date isnull THEN
       local_response = 'Error';
     ELSE
     insert into Proposal(event_id,name, address, proposal_num, proposal_name, proposal_date)
@@ -422,3 +422,36 @@ $$
 $$
 
     LANGUAGE 'plpgsql';
+
+
+
+--APPOINTMENT
+
+create or replace function newappointment (par_event_id int, par_title VARCHAR, par_appointment_date date, par_appointment_time time) returns TEXT AS
+  $$ 
+    DECLARE
+      loc_title VARCHAR;
+      loc_res TEXT;
+    BEGIN
+      SELECT INTO loc_title par_title FROM Appointment WHERE title = par_title;
+        if loc_title isnull THEN
+
+      if par_title = '' or par_appointment_date isnull or par_appointment_time isnull THEN
+        loc_res = 'Error';
+
+      ELSE
+          INSERT INTO Appointment(event_id, title, appointment_date, appointment_time) VALUES (par_event_id, par_title, par_appointment_date, par_appointment_time);
+                      loc_res = 'OK';
+
+          end if;
+
+        ELSE
+          loc_res = 'title already exist';
+
+        end if;
+        return loc_res;
+
+    END;
+$$
+
+  LANGUAGE 'plpgsql';
