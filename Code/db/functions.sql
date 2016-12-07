@@ -427,26 +427,26 @@ $$
 
 --APPOINTMENT
 
-create or replace function newappointment (par_event_id int, par_title VARCHAR, par_appointment_date date, par_appointment_time time) returns TEXT AS
+create or replace function newappointment (par_event_id int, par_client Varchar, par_about VARCHAR, par_app_date date, par_app_time time) returns TEXT AS
   $$ 
     DECLARE
-      loc_title VARCHAR;
+      local_client VARCHAR;
       loc_res TEXT;
     BEGIN
-      SELECT INTO loc_title par_title FROM Appointment WHERE title = par_title;
-        if loc_title isnull THEN
+      SELECT INTO local_client par_client FROM Appointment WHERE client = par_client;
+        if local_client isnull THEN
 
-      if par_title = '' or par_appointment_date isnull or par_appointment_time isnull THEN
+      if par_client = '' or par_about = '' or par_app_date isnull or par_app_time isnull THEN
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Appointment(event_id, title, appointment_date, appointment_time) VALUES (par_event_id, par_title, par_appointment_date, par_appointment_time);
+          INSERT INTO Appointment(event_id, client, about, app_date, app_time) VALUES (par_event_id, par_title, par_appointment_date, par_appointment_time);
                       loc_res = 'OK';
 
           end if;
 
         ELSE
-          loc_res = 'title already exist';
+          loc_res = 'client already exist';
 
         end if;
         return loc_res;
@@ -455,3 +455,13 @@ create or replace function newappointment (par_event_id int, par_title VARCHAR, 
 $$
 
   LANGUAGE 'plpgsql';
+
+
+create or replace function show_appointment (IN par_id int, OUT INT, out int, OUT VARCHAR, OUT varchar, out date, out time) returns setof record as
+  $$
+
+    SELECT id, event_id, client , about, app_date, app_time  FROM Appointment WHERE  id = par_id ;
+
+  $$
+
+    LANGUAGE 'sql';

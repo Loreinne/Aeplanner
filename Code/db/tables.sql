@@ -1,33 +1,48 @@
 CREATE TABLE App_user (
 	user_id SERIAL PRIMARY KEY,
 	email_address VARCHAR(50),
-	first_name VARCHAR(50),
-	last_name VARCHAR (50),
-	password VARCHAR (50)
+	fname VARCHAR(50),
+	lname VARCHAR (50),
+	password VARCHAR (50),
+	birthdate date,
+	age VARCHAR(5),
+	is_active BOOLEAN DEFAULT TRUE
  );
 
 
 CREATE TABLE Venue (
-	V_id SERIAL PRIMARY KEY,
-	V_image VARCHAR(50),
-	V_name VARCHAR (50),
-	V_description TEXT,
-	V_categories VARCHAR (50),
-	V_location VARCHAR (50),
-	V_capacity VARCHAR(50),
-	V_pricing VARCHAR (50)
+	id SERIAL PRIMARY KEY,
+	image VARCHAR(50),
+	name VARCHAR (50),
+	description TEXT,
+	cat_id INT references Categories(id),
+	location VARCHAR (50),
+	capacity VARCHAR(50),
+	pricing VARCHAR (50),
+	is_active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE Catering_services (
-	c_id SERIAL PRIMARY KEY,
-	c_image VARCHAR(50),
-	c_name VARCHAR (50),
-	c_description TEXT,
-	c_categories VARCHAR (50),
-	c_location VARCHAR (50),
-	c_capacity VARCHAR(50),
-	c_pricing VARCHAR (50)
+	id SERIAL PRIMARY KEY,
+	image VARCHAR(50),
+	name VARCHAR (50),
+	description TEXT,
+	categories VARCHAR (50),
+	location VARCHAR (50),
+	capacity VARCHAR(50),
+	pricing VARCHAR (50),
+	cat_id INT references Categories(id),
+	is_active BOOLEAN DEFAULT TRUE
 );
+
+CREATE TABLE Event (
+	id serial primary key,
+	user_id Int references App_user(user_id),
+	title VARCHAR(50),
+	date_event date,
+	time_event time
+);
+
 
 CREATE TABLE Proposal (
 	id		serial primary key,
@@ -41,20 +56,12 @@ CREATE TABLE Proposal (
 
 CREATE TABLE Contract (
 	id		serial primary key,
-	event_id Int references Contract(id),
+	event_id Int references Event(id),
 	contract_reference	VARCHAR(50),
 	client_name VARCHAR(50),
 	termsOfAgreement text 
 );
 
-
-CREATE TABLE Event (
-	id serial primary key,
-	user_id Int references App_user(user_id),
-	title VARCHAR(50),
-	date_event date,
-	time_event time
-);
 
 CREATE TABLE Note (
 	id  serial primary key,
@@ -66,7 +73,14 @@ CREATE TABLE Note (
 CREATE TABLE Appointment (
 	id serial primary key,
 	event_id Int references Event(id),
-	title VARCHAR(50),
-	appointment_date date,
-	appointment_time time
+	client VARCHAR(50),
+	about VARCHAR(50),
+	app_date date,
+	app_time time
+
+);
+
+CREATE TABLE Categories (
+	id serial primary key,
+	name VARCHAR(50)
 );
