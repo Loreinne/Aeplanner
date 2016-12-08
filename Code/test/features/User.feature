@@ -82,3 +82,5 @@ Scenario: Signup User with birthdate empty
     When I submit the signup form
     Then i will get a '200' response
     And it should have a field 'status' containing 'Error'
+
+

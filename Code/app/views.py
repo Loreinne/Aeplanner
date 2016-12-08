@@ -45,7 +45,7 @@ def invalid(emailaddress, domains=GENERIC_DOMAINS):
 
 
 @app.route('/api/v1.0/login/', methods=['POST'])
-def loginhoteladmin():
+def login():
     data = request.json
 
     res = spcall("loginauth", (data['email_address'], data['password']))
