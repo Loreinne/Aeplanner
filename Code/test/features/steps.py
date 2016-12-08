@@ -89,14 +89,6 @@ def and_the_new_note_information_for_note_id_group1(step, group1):
 def when_i_click_the_update_note_button(step):
     world.response = world.app.put('/api/v1.0/note/', data = json.dumps(world.note_updateInfo))
 
-    
-
-
-
-
-
-
-
 @step(u'When I click the add proposal button')
 def when_i_click_the_add_proposal_button(step):
     world.response = world.app.post('/api/v1.0/proposal/', data = json.dumps(world.info))
@@ -126,6 +118,13 @@ def and_the_new_proposal_information_for_proposal_id_group1(step, group1):
 @step(u'When I click the update proposal button')
 def when_i_click_the_update_proposal_button(step):
     world.response = world.app.put('/api/v1.0/proposal/', data = json.dumps(world.proposal_updateInfo))
+
+@step(u'When I click the add appointment button')
+def when_i_click_the_add_appointment_button(step):
+    world.response = world.app.post('/api/v1.0/appointment/', data = json.dumps(world.info))
+
+
+
 
 
 

@@ -1,4 +1,27 @@
 -- PROPOSAL
+create or replace function new_proposal(in par_event_id int, in par_name varchar, in par_address varchar, in par_proposal_num VARCHAR, in par_proposal_name varchar, in par_proposal_date date) returns text AS
+$$
+  declare 
+  local_response text;
+  local_name text;
+  begin
+    SELECT into local_name par_name FROM Proposal WHERE name = par_name;
+      if local_name isnull THEN
+    if par_name = '' or par_address = '' or par_proposal_num = '' or par_proposal_name = '' or par_proposal_date isnull THEN
+      local_response = 'Error';
+    ELSE
+    insert into Proposal(event_id,name, address, proposal_num, proposal_name, proposal_date)
+    values (par_event_id, par_name, par_address, par_proposal_num, par_proposal_name, par_proposal_date);
+      local_response = 'OK';
+    end if;
+    ELSE
+    local_response ='proposal exists';
+    end if;
+    return local_response;
+  end;
+
+$$
+language 'plpgsql';
 
 
 
@@ -11,9 +34,9 @@ $$
   language 'sql';
 
 
-create or replace function show_proposal(in par_id int, out int, out text, out text, out varchar, out text, out date) returns setof record AS
+create or replace function show_proposal(in par_event_id, in par_id int, out int, out text, out text, out varchar, out text, out date) returns setof record AS
 $$
-  SELECT id, name, address, proposal_num, proposal_name, proposal_date
+  SELECT event_id, id, name, address, proposal_num, proposal_name, proposal_date
   from Proposal
   WHERE id = par_id;
 $$
@@ -39,29 +62,6 @@ $$
 $$
   language 'plpgsql';
 
-create or replace function new_proposal(in par_name text, in par_address text, in par_proposal_num VARCHAR, in par_proposal_name text, in par_proposal_date date) returns text AS
-$$
-  declare 
-  local_response text;
-  local_name text;
-  begin
-    SELECT into local_name par_name FROM Proposal WHERE name = par_name;
-      if local_name isnull THEN
-    if par_name = '' or par_address = '' or par_proposal_num = '' or par_proposal_name = '' or par_proposal_date = isnull THEN
-      local_response = 'Error';
-    ELSE
-    insert into Proposal(name, address, proposal_num, proposal_name, proposal_date)
-    values (par_name, par_address, par_proposal_num, par_proposal_name, par_proposal_date);
-      local_response = 'OK';
-    end if;
-    ELSE
-    local_response ='proposal exists';
-    end if;
-    return local_response;
-  end;
-
-$$
-language 'plpgsql';
 
 -- CONTRACT
 create or replace function new_contract(par_reference text, par_client_name text, par_termsOfAgreement text) returns text AS
@@ -422,3 +422,46 @@ $$
 $$
 
     LANGUAGE 'plpgsql';
+
+
+
+--APPOINTMENT
+
+create or replace function newappointment (par_event_id int, par_client Varchar, par_about VARCHAR, par_app_date date, par_app_time time) returns TEXT AS
+  $$ 
+    DECLARE
+      local_client VARCHAR;
+      loc_res TEXT;
+    BEGIN
+      SELECT INTO local_client par_client FROM Appointment WHERE client = par_client;
+        if local_client isnull THEN
+
+      if par_client = '' or par_about = '' or par_app_date isnull or par_app_time isnull THEN
+        loc_res = 'Error';
+
+      ELSE
+          INSERT INTO Appointment(event_id, client, about, app_date, app_time) VALUES (par_event_id, par_about, par_app_date, par_app_time);
+                      loc_res = 'OK';
+
+          end if;
+
+        ELSE
+          loc_res = 'client already exist';
+
+        end if;
+        return loc_res;
+
+    END;
+$$
+
+  LANGUAGE 'plpgsql';
+
+
+create or replace function show_appointment (IN par_id int, OUT INT, out int, OUT VARCHAR, OUT varchar, out date, out time) returns setof record as
+  $$
+
+    SELECT id, event_id, client , about, app_date, app_time  FROM Appointment WHERE  id = par_id ;
+
+  $$
+
+    LANGUAGE 'sql';
