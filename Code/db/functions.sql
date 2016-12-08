@@ -131,7 +131,7 @@ $$
 
 -- USER
 
-create or replace function newuser(par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR, par_password VARCHAR, par_birthdate date, par_age varchar) returns TEXT AS
+create or replace function newuser(par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR, par_password VARCHAR, par_address VARCHAR, par_birthdate date, par_age varchar) returns TEXT AS
 $$
    DECLARE
         loc_email VARCHAR;
@@ -140,12 +140,12 @@ $$
       SELECT INTO loc_email par_email FROM App_user WHERE email_address = par_email;
         if loc_email isnull THEN
 
-      if par_email = '' or par_firstname = '' or par_lastname = ''  or par_password = '' or par_birthdate = '' or par_age = '' THEN
+      if par_email = '' or par_fname = '' or par_lname = ''  or par_password = '' or par_address = '' or par_age = '' THEN
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO App_user (email_address, fname, lname, password, birtdate, age, is_active)
-                        VALUES (par_email, par_fname, par_lname, par_password, par_birthdate, par_age, TRUE);
+          INSERT INTO App_user (email_address, fname, lname, password, address, birthdate, age, is_active)
+                        VALUES (par_email, par_fname, par_lname, par_password, par_address, par_birthdate, par_age, TRUE);
                         loc_res = 'OK';
           end if;
 
@@ -159,9 +159,9 @@ $$
 $$
     LANGUAGE 'plpgsql';
 
--- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala', '11/10/96', '20');
+-- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala', 'Lugait' '11/10/96', '20');
 
-create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_password VARCHAR, par_birthdate date, par_age varchar) returns void AS
+create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_password VARCHAR, par_address VARCHAR, par_birthdate date, par_age varchar) returns void AS
   $$ 
     UPDATE App_user
     SET
@@ -170,8 +170,9 @@ create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VA
     fname = par_fname,
     lname = par_lname,
     password = par_password,
-    birtdate = par_birthdate,
-    age = par_age,
+    address = par_address,
+    birthdate = par_birthdate,
+    age = par_age
 
     WHERE user_id = par_id;
 $$
@@ -201,9 +202,9 @@ $$
 
 
 
-create or replace function getuser(IN par_id int, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT DATE, OUT VARCHAR) RETURNS SETOF RECORD AS
+create or replace function getuser(IN par_id int, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT DATE, OUT VARCHAR) RETURNS SETOF RECORD AS
 $$
-  SELECT email_address, fname, lname, birtdate, age
+  SELECT email_address, fname, lname, address, birthdate, age
   FROM App_user
   WHERE user_id = par_id
 $$

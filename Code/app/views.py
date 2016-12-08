@@ -47,9 +47,6 @@ def invalid(emailaddress, domains=GENERIC_DOMAINS):
 @app.route('/api/v1.0/login/', methods=['POST'])
 def loginhoteladmin():
     data = request.json
-    # if invalid(data['email_address']):
-    #     status = False
-    #     return jsonify({'status': status, 'message': 'Invalid Email address'})
 
     res = spcall("loginauth", (data['email_address'], data['password']))
 
@@ -247,7 +244,7 @@ def signup():
         return jsonify({'status': 'Error', 'message': 'Invalid Email address'})
 
 
-    res = spcall('newuser', ( jsn['email_address'], jsn['first_name'], jsn['last_name'], jsn['password']))
+    res = spcall('newuser', ( jsn['email_address'], jsn['fname'], jsn['lname'], jsn['password'], jsn['address'], jsn['birthdate'], jsn['age']))
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})
@@ -265,7 +262,7 @@ def getspecificuser(user_id):
 
     rec = res[0]
 
-    return jsonify({"email_address": str(rec[0]), "first_name": str(rec[1]), "last_name" : str(rec[2])})
+    return jsonify({"email_address": str(rec[0]), "fname": str(rec[1]), "lname" : str(rec[2]), "address" :str(rec[3]), "birthdate" : str(rec[4]), "age" : str(rec[5])})
 
 
 @app.route('/api/v1.0/user/', methods = ['PUT'])
@@ -274,16 +271,22 @@ def update_user():
 
   user_id = jsn.get('user_id', '')
   email_address = jsn.get('email_address', '')
-  first_name = jsn.get('first_name', '')
-  last_name = jsn.get('last_name', '')
+  fname = jsn.get('fname', '')
+  lname = jsn.get('lname', '')
   password = jsn.get('password', '')
+  address = jsn.get('address', '')
+  birthdate = jsn.get('birthdate', '')
+  age = jsn.get('age', '')
   
   spcall('updateuser', (
     user_id,
     email_address,
-    first_name,
-    last_name,
-    password), True)
+    fname,
+    lname,
+    password,
+    address,
+    birthdate,
+    age), True)
 
   return jsonify({"status": "OK"})
 

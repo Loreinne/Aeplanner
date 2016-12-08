@@ -1,9 +1,11 @@
 CREATE TABLE App_user (
 	user_id SERIAL PRIMARY KEY,
+	image VARCHAR(50),
 	email_address VARCHAR(50),
 	fname VARCHAR(50),
 	lname VARCHAR (50),
 	password VARCHAR (50),
+	address VARCHAR (50),
 	birthdate date,
 	age VARCHAR(5),
 	is_active BOOLEAN DEFAULT TRUE
