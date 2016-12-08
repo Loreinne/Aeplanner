@@ -18,10 +18,10 @@ CREATE TABLE Venue (
 	name VARCHAR (50),
 	email_address VARCHAR(50),
 	description TEXT,
-	cat_id INT references Categories(id),
 	location VARCHAR (50),
 	capacity VARCHAR(50),
 	pricing VARCHAR (50),
+	cat_id INT references Categories(id),
 	is_active BOOLEAN DEFAULT TRUE
 );
 
