@@ -105,20 +105,35 @@
 
 
             <!-- Simple Login - START -->
-            <form id="login-form" class="login-card" method="post" onsubmit="return false">
+            <form id="register-form" class="register-card" method="post" onsubmit="return false">
                 <div class="page-header">
-                    <h1>Please Login</h1>
+                    <h1>Create Account</h1>
                 </div>
 
-                <div id="log-in-alert"></div>
+                <div id="Register-in-alert"></div>
                 <div class="form-group">
-                    <input id="username" name="username" type="text" class="form-control" placeholder="Username">
+                    <input id="fname" name="fname" type="text" class="form-control" placeholder="First Name">
                 </div>
                 <div class="form-group">
-                    <input id="password" name="password" type="password" class="form-control" placeholder="Password">
+                    <input id="lname" name="lname" type="text" class="form-control" placeholder="Last Name">
+                </div>
+                 <div class="form-group">
+                    <input id="address" name="address" type="text" class="form-control" placeholder="Address">
+                </div>
+                 <div class="form-group">
+                    <input id="birthdate" name="birthdate" type="date" class="form-control" placeholder="Birthdate">
+                </div>
+                 <div class="form-group">
+                    <input id="age" name="age" type="number" class="form-control" placeholder="Age">
+                </div>
+                 <div class="form-group">
+                    <input id="email" name="email" type="text" class="form-control" placeholder="Email">
+                </div>
+                 <div class="form-group">
+                    <input id="password" name="password" type="password" class="form-control" placeholder="Last Name">
                 </div>
                 <div class="form-group">
-                    <button onclick="signin();" class="btn btn-primary btn-block btn-lg btn-signin">Sign In</button>
+                    <button onclick="register();" class="btn btn-primary btn-block btn-lg btn-signin">Create your Aeplanner Account</button>
                 </div>
             </form>
             <!-- Simple Login - END -->

@@ -21,7 +21,7 @@ function eraseCookie(name) {
 
 	stop();
 	$('#admin-page').hide(0);
-	$('#log-in-page').show();
+	$('#register-in-page').show();
 	
 
 	var form = document.getElementById("registration-form");
