@@ -397,6 +397,53 @@ def update_catering():
   return jsonify({"status": "OK"})
 
 
+
+  @app.route('/api/v1.0/events/', methods=['POST'])
+def add_event():
+    jsn = json.loads(request.data)
+
+
+    res = spcall('newevent', ( jsn['user_id'], jsn['title'], jsn['date_event'], jsn['time_event']))
+
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
+
+
+
+@app.route('/api/v1.0/events/<id>/', methods=['GET'])
+def get_event(id):
+    res = spcall('get_event', [id])
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
+
+    rec = res[0]
+
+    return jsonify({"title": str(rec[0]),  "date_event": str(rec[1]), "time_event" : str(rec[2])})
+
+
+@app.route('/api/v1.0/events/', methods = ['PUT'])
+def update_event():
+  jsn = json.loads(request.data)
+
+  id = jsn.get('id', '')
+  title = jsn.get('title', '')
+  date_event = jsn.get('date_event', '')
+  time_event = jsn.get('time_event', '')
+
+
+  spcall('updatecater', (
+    id,
+    title,
+    date_event,
+    time_event), True)
+
+  return jsonify({"status": "OK"})
+
+  
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
