@@ -472,6 +472,8 @@ create or replace function show_appointment (IN par_id int, OUT INT, out int, OU
     LANGUAGE 'sql';
 
 
+
+
 -- Event
 
 create or replace function newevent(par_user INT ,par_title VARCHAR, par_date DATE, par_time TIME) returns TEXT AS
@@ -509,9 +511,26 @@ create or replace function getevents(par_user INT, par_title VARCHAR, par_date D
 
   LANGUAGE 'sql';
 
+
+
 create or replace function get_event(IN par_id INT, OUT VARCHAR, OUT DATE, OUT TIME) returns setof record as
   $$
   SELECT title, date_event, time_event FROM Event WHERE id = par_id;
+  $$
+
+  LANGUAGE 'sql';
+  
+
+
+create or replace function update_event(par_id INT, par_title VARCHAR, par_date DATE, par_time TIME) returns void as
+  $$
+  UPDATE Event
+  SET
+    title = par_title,
+    date_event = par_date,
+    time_event = par_time
+
+  WHERE id = par_id;
   $$
 
   LANGUAGE 'sql';
