@@ -68,7 +68,7 @@ Feature: Add, View, Update Venue
 
 
 
-    Scenario: Add new venue with procong field empty
+    Scenario: Add new venue with pricong field empty
         Given the following information:
         | name | description | cat_id | location | capacity | pricing |
         | Clarkson | Nice,hahha | 1 | Paris | 200 | 100,000 |

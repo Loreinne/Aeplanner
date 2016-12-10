@@ -180,3 +180,8 @@ def given_a_venue_exist(step, id):
 @step(u'When I retrieve a venue with id no. \'(.*)\'')
 def retrieve_venue(step,id):
     world.res = json.loads(world.response.data)
+
+
+@step(u'When i click the login button')
+def login_user(step):
+    world.response = world.app.post('/api/v1.0/login/',data = json.dumps(world.info))

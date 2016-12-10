@@ -131,7 +131,7 @@ $$
 
 -- USER
 
-create or replace function newuser(par_email VARCHAR,par_firstname VARCHAR, par_lastname VARCHAR, par_password VARCHAR) returns TEXT AS
+create or replace function newuser(par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR, par_password VARCHAR, par_address VARCHAR, par_birthdate date, par_age varchar) returns TEXT AS
 $$
    DECLARE
         loc_email VARCHAR;
@@ -140,12 +140,12 @@ $$
       SELECT INTO loc_email par_email FROM App_user WHERE email_address = par_email;
         if loc_email isnull THEN
 
-      if par_email = '' or par_firstname = '' or par_lastname = ''  or par_password = '' THEN
+      if par_email = '' or par_fname = '' or par_lname = ''  or par_password = '' or par_address = '' or par_age = '' THEN
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO App_user (email_address, first_name, last_name, password)
-                        VALUES (par_email, par_firstname, par_lastname, par_password);
+          INSERT INTO App_user (email_address, fname, lname, password, address, birthdate, age, is_active)
+                        VALUES (par_email, par_fname, par_lname, par_password, par_address, par_birthdate, par_age, TRUE);
                         loc_res = 'OK';
           end if;
 
@@ -159,17 +159,20 @@ $$
 $$
     LANGUAGE 'plpgsql';
 
--- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala');
+-- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala', 'Lugait' '11/10/96', '20');
 
-create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_password VARCHAR) returns void AS
+create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_password VARCHAR, par_address VARCHAR, par_birthdate date, par_age varchar) returns void AS
   $$ 
     UPDATE App_user
     SET
 
     email_address = par_email,
-    first_name = par_fname,
-    last_name = par_lname,
+    fname = par_fname,
+    lname = par_lname,
     password = par_password,
+    address = par_address,
+    birthdate = par_birthdate,
+    age = par_age
 
     WHERE user_id = par_id;
 $$
@@ -197,9 +200,11 @@ $$
 $$
   LANGUAGE 'plpgsql';
 
-create or replace function getuser(IN par_id int, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) RETURNS SETOF RECORD AS
+
+
+create or replace function getuser(IN par_id int, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT DATE, OUT VARCHAR) RETURNS SETOF RECORD AS
 $$
-  SELECT email_address, first_name, last_name
+  SELECT email_address, fname, lname, address, birthdate, age
   FROM App_user
   WHERE user_id = par_id
 $$
@@ -208,21 +213,21 @@ $$
   
 --VENUE
 
-create or replace function newvenue(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS
+create or replace function newvenue(par_name VARCHAR,par_email VARCHAR, par_description TEXT, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR, par_categories INT) returns TEXT AS
 $$
    DECLARE
-        loc_name VARCHAR;
+        loc_email VARCHAR;
         loc_res TEXT;
     BEGIN
-      SELECT INTO loc_name par_name FROM Venue WHERE name = par_name;
+      SELECT INTO loc_email par_email FROM Venue WHERE email_address = par_email;
         if loc_email isnull THEN
 
-      if par_name = '' or par_description = '' or par_categories = ''  or par_location = '' or par_capacity = '' or par_pricing = '' THEN
+      if par_email = '' or  par_name = '' or par_description = ''  or par_location = '' or par_capacity = '' or par_pricing = '' THEN
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Venue (V_name, V_description, V_categories, V_location, V_capacity, V_pricing)
-                        VALUES (par_name, par_description, par_categories, par_location, par_capacity, par_pricing);
+          INSERT INTO Venue (name, email_address, description, location, capacity, pricing, cat_id)
+                        VALUES (par_name, par_email, par_description, par_location, par_capacity, par_pricing, par_categories);
                         loc_res = 'OK';
           end if;
 
@@ -238,10 +243,10 @@ $$
 
 
 
-create or replace function showall_venues (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) returns setof record as
+create or replace function showall_venues (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT INT) returns setof record as
   $$
 
-    SELECT V_name, V_description, V_categories, V_location, V_capacity, V_pricing FROM Venue ;
+    SELECT name, email_address, description, location, capacity, pricing, cat_id FROM Venue ;
 
   $$
 
@@ -249,10 +254,10 @@ create or replace function showall_venues (OUT VARCHAR, OUT TEXT, OUT VARCHAR, O
 
 
 
-create or replace function show_venue (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) returns setof record as
+create or replace function show_venue (IN par_id int ,OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT INT) returns setof record as
   $$
 
-    SELECT V_name, V_description, V_categories, V_location, V_capacity, V_pricing FROM Venue WHERE  V_id = par_id ;
+    SELECT name, email_address, description, location, capacity, pricing, cat_id FROM Venue WHERE  id = par_id ;
 
   $$
 
@@ -261,19 +266,20 @@ create or replace function show_venue (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT
     
 
 
-create or replace function updatevenue(par_id int, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
+create or replace function updatevenue(par_id int, par_name VARCHAR, par_email VARCHAR, par_description TEXT, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR, par_categories INT) returns void AS
   $$ 
     UPDATE Venue
     SET
 
-    V_name = par_name,
-    V_description = par_description,
-    V_categories = par_categories,
-    V_location = par_location,
-    V_capacity = par_description,
-    V_pricing = par_pricing
+    name = par_name,
+    email_address = par_email,
+    description = par_description,
+    location = par_location,
+    capacity = par_description,
+    pricing = par_pricing,
+    cat_id = par_categories
 
-    WHERE V_id = par_id;
+    WHERE id = par_id;
 $$
     LANGUAGE 'sql';
 
