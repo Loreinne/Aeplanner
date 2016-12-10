@@ -170,12 +170,13 @@ def addvenue(step):
 
 @step(u'When I update the venue details into the following:')
 def updatevenue(step):
-    world.response = world.app.put('/api/v1.0/venue/', data = json.dumps(world.info))
+    world.v = step.hashes[0]
+    world.response = world.app.put('/api/v1.0/venue/', data = json.dumps(world.v))
 
 
 @step(u'Given that a venue with id no. \'(.*)\' exist')
 def given_a_venue_exist(step, id):
-    world.reponse = world.app.get('/api/v1.0/venue/{}/'.format(id))
+    world.response = world.app.get('/api/v1.0/venue/{}/'.format(id))
     
 @step(u'When I retrieve a venue with id no. \'(.*)\'')
 def retrieve_venue(step,id):

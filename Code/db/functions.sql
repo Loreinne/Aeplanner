@@ -159,7 +159,8 @@ $$
 $$
     LANGUAGE 'plpgsql';
 
--- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala', 'Lugait' '11/10/96', '20');
+-- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala', 'Lugait', '11/10/96', '20');
+-- select newuser('emal@gmail.com', 'Leila', 'Reyes', 'hellopo', 'iligan' ,'10/10/96', '20');
 
 create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_password VARCHAR, par_address VARCHAR, par_birthdate date, par_age varchar) returns void AS
   $$ 
@@ -243,7 +244,7 @@ $$
 
 
 
-create or replace function showall_venues (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT INT) returns setof record as
+create or replace function showall_venues (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR,OUT INT) returns setof record as
   $$
 
     SELECT name, email_address, description, location, capacity, pricing, cat_id FROM Venue ;
