@@ -470,3 +470,48 @@ create or replace function show_appointment (IN par_id int, OUT INT, out int, OU
   $$
 
     LANGUAGE 'sql';
+
+
+-- Event
+
+create or replace function newevent(par_user INT ,par_title VARCHAR, par_date DATE, par_time TIME) returns TEXT AS
+$$
+   DECLARE
+        loc_title VARCHAR;
+        loc_res TEXT;
+    BEGIN
+      SELECT INTO loc_title par_title FROM Event WHERE title = par_title;
+        if loc_email isnull THEN
+
+      if par_title = '' or  par_user = '' or par_date = ''  or par_time = '' THEN
+        loc_res = 'Error';
+
+      ELSE
+          INSERT INTO Event (user_id, title, date_event, time_event)
+                        VALUES (par_user, par_title, par_date, par_date);
+                        loc_res = 'OK';
+          end if;
+
+        ELSE
+          loc_res = 'Error';
+
+        end if;
+        return loc_res;
+
+    END;
+$$
+    LANGUAGE 'plpgsql';
+
+create or replace function getevents(par_user INT, par_title VARCHAR, par_date DATE, par_time TIME) returns setof record as
+  $$
+  SELECT title, date_event, time_event FROM Event;
+  $$
+
+  LANGUAGE 'sql';
+
+create or replace function get_event(IN par_id INT, OUT VARCHAR, OUT DATE, OUT TIME) returns setof record as
+  $$
+  SELECT title, date_event, time_event FROM Event WHERE id = par_id;
+  $$
+
+  LANGUAGE 'sql';
