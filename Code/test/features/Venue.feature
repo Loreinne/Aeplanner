@@ -27,6 +27,14 @@ Feature: Add, View, Update Venue
         Then I will get a '200' response
         And it should have a field 'status' containing 'OK'
 
+    Scenario: Add Venue that already exist
+        Given the following information:
+        |id| name | email_address | description | location | capacity | pricing | cat_id |
+        |4| leila | leila@gmail.com | nice | iligan | 200 | 800000 | 1 |
+        When I click the add button
+        Then i will get a '200' response
+        And it should have a field 'message' containing 'Error'
+
 
     Scenario: Add new venue with name field empty
         Given the following information:
@@ -76,3 +84,10 @@ Feature: Add, View, Update Venue
         Then i will get a '200' response
         And it should have a field 'status' containing 'Error'
 
+Scenario: Add new venue with email_address field empty
+        Given the following information:
+        | name | email_address | description | location | capacity | pricing | cat_id |
+        | Clarkson | | Nice,hahha | Paris | 200 | 100,000 | 1 |
+        When I click the add button
+        Then i will get a '200' response
+        And it should have a field 'status' containing 'Error'
