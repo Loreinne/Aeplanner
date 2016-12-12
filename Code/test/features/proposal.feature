@@ -12,6 +12,17 @@ Scenario: Create a Proposal
     And it should have a field 'message' containing 'OK'
 
 
+Scenario: Create a Proposal with name empty
+    Given the following information of a proposal:
+        |event_id |name        | address | proposal_num | proposal_name | proposal_date   |
+        |   1     |            | Cebu    | 2            | Wedding       | October 4, 2016 |
+
+    When I click the add proposal button
+    Then I will get a '200' response
+    And it should have a field 'status' containing 'Error'
+   
+
+
 
 Scenario: Get Proposal
     Given a proposal id '1' is in the system 
