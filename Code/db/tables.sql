@@ -31,9 +31,7 @@ CREATE TABLE Catering_services (
 	name VARCHAR (50),
 	email_address VARCHAR(50),
 	description TEXT,
-	categories VARCHAR (50),
 	location VARCHAR (50),
-	capacity VARCHAR(50),
 	pricing VARCHAR (50),
 	cat_id INT references Categories(id),
 	is_active BOOLEAN DEFAULT TRUE

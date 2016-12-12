@@ -298,7 +298,7 @@ def add_venue():
     jsn = json.loads(request.data)
 
 
-    res = spcall('newvenue', ( jsn['V_name'], jsn['V_description'], jsn['V_categories'], jsn['V_location'], jsn['V_capacity'], jsn['V_pricing']))
+    res = spcall('newvenue', ( jsn['name'], jsn['email_address'], jsn['description'], jsn['location'], jsn['capacity'], jsn['pricing'], jsn['cat_id']))
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})
@@ -309,6 +309,58 @@ def add_venue():
 
 @app.route('/api/v1.0/venue/<id>/', methods=['GET'])
 def getspecificvenue(id):
+    res = spcall('show_cater', [id])
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
+
+    rec = res[0]
+
+    return jsonify({"name": str(rec[0]),  "email_address": str(rec[1]), "description" : str(rec[2]), "location" : str(rec[3]), "capacity": str(rec[4]), "pricing" : str(rec[5]), "cat_id" : str(rec[6])})
+
+@app.route('/api/v1.0/venue/', methods = ['PUT'])
+def update_venue():
+  jsn = json.loads(request.data)
+
+  id = jsn.get('id', '')
+  name = jsn.get('name', '')
+  email_address = jsn.get('email_address', '')
+  description = jsn.get('description', '')
+  location = jsn.get('location', '')
+  capacity = jsn.get('capacity', '')
+  pricing = jsn.get('pricing', '')
+  cat_id = jsn.get('cat_id', '')
+
+
+  spcall('updatevenue', (
+    id,
+    name,
+    email_address,
+    description,
+    location,
+    capacity,
+    pricing,
+    cat_id ), True)
+
+  return jsonify({"status": "OK"})
+
+
+
+@app.route('/api/v1.0/catering_services/', methods=['POST'])
+def add_catering():
+    jsn = json.loads(request.data)
+
+
+    res = spcall('newcatering', ( jsn['name'], jsn['email_address'], jsn['description'], jsn['location'], jsn['pricing'], jsn['cat_id']))
+
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
+
+
+@app.route('/api/v1.0/catering_services/<id>/', methods=['GET'])
+def getspecificcater(id):
     res = spcall('show_venue', [id])
 
     if 'Error' in str(res[0][0]):
@@ -316,32 +368,81 @@ def getspecificvenue(id):
 
     rec = res[0]
 
-    return jsonify({"V_name": str(rec[0]), "V_description": str(rec[1]), "V_categories" : str(rec[2]), "V_location" : str(rec[3]), "V_capacity": str(rec[4]), "V_pricing" : str(rec[5])})
+    return jsonify({"name": str(rec[0]),  "email_address": str(rec[1]), "description" : str(rec[2]), "location" : str(rec[3]), "pricing" : str(rec[4]), "cat_id" : str(rec[5])})
 
 
-@app.route('/api/v1.0/venue/', methods = ['PUT'])
-def update_venue():
+
+@app.route('/api/v1.0/catering_services/', methods = ['PUT'])
+def update_catering():
   jsn = json.loads(request.data)
 
-  V_id = jsn.get('V_id', '')
-  V_name = jsn.get('V_name', '')
-  V_description = jsn.get('V_description', '')
-  V_categories = jsn.get('V_categories', '')
-  V_location = jsn.get('V_location', '')
-  V_capacity = jsn.get('V_capacity', '')
-  V_pricing = jsn.get('V_pricing', '')
+  id = jsn.get('id', '')
+  name = jsn.get('name', '')
+  email_address = jsn.get('email_address', '')
+  description = jsn.get('description', '')
+  location = jsn.get('location', '')
+  pricing = jsn.get('pricing', '')
+  cat_id = jsn.get('cat_id', '')
 
-  spcall('updatevenue', (
-    V_id,
-    V_name,
-    V_description,
-    V_categories,
-    V_location,
-    V_capacity,
-    V_pricing ), True)
+
+  spcall('updatecater', (
+    id,
+    name,
+    email_address,
+    description,
+    location,
+    pricing,
+    cat_id ), True)
 
   return jsonify({"status": "OK"})
 
+
+
+  @app.route('/api/v1.0/events/', methods=['POST'])
+def add_event():
+    jsn = json.loads(request.data)
+
+
+    res = spcall('newevent', ( jsn['user_id'], jsn['title'], jsn['date_event'], jsn['time_event']))
+
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
+
+
+
+@app.route('/api/v1.0/events/<id>/', methods=['GET'])
+def get_event(id):
+    res = spcall('get_event', [id])
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
+
+    rec = res[0]
+
+    return jsonify({"title": str(rec[0]),  "date_event": str(rec[1]), "time_event" : str(rec[2])})
+
+
+@app.route('/api/v1.0/events/', methods = ['PUT'])
+def update_event():
+  jsn = json.loads(request.data)
+
+  id = jsn.get('id', '')
+  title = jsn.get('title', '')
+  date_event = jsn.get('date_event', '')
+  time_event = jsn.get('time_event', '')
+
+
+  spcall('updatecater', (
+    id,
+    title,
+    date_event,
+    time_event), True)
+
+  return jsonify({"status": "OK"})
+
+  
 
 @app.after_request
 def add_cors(resp):

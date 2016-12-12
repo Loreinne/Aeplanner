@@ -170,12 +170,13 @@ def addvenue(step):
 
 @step(u'When I update the venue details into the following:')
 def updatevenue(step):
-    world.response = world.app.put('/api/v1.0/venue/', data = json.dumps(world.info))
+    world.v = step.hashes[0]
+    world.response = world.app.put('/api/v1.0/venue/', data = json.dumps(world.v))
 
 
 @step(u'Given that a venue with id no. \'(.*)\' exist')
 def given_a_venue_exist(step, id):
-    world.reponse = world.app.get('/api/v1.0/venue/{}/'.format(id))
+    world.response = world.app.get('/api/v1.0/venue/{}/'.format(id))
     
 @step(u'When I retrieve a venue with id no. \'(.*)\'')
 def retrieve_venue(step,id):
@@ -185,3 +186,25 @@ def retrieve_venue(step,id):
 @step(u'When i click the login button')
 def login_user(step):
     world.response = world.app.post('/api/v1.0/login/',data = json.dumps(world.info))
+
+
+
+
+@step(u'When I click the add catering services')
+def addcater(step):
+    world.response = world.app.post('/api/v1.0/catering_services/', data = json.dumps(world.info))
+
+
+@step(u'Given that a catering service with id no. \'(.*)\' exist')
+def given_cater_exist(step,id):
+    world.response = world.app.get('/api/v1.0/catering_service/{}/'.format(id))
+
+@step(u'When I retrieve a catering service with id no. \'(.*)\'')
+def retrieve_venue(step,id):
+    world.res = json.loads(world.response.data)
+
+@step('When I update the catering service details into the following:')
+def update_cater(step):
+    world.u = step.hashes[0]
+    world.response = world.app.put('/api/v1.0/catering_services/', data = json.dumps(world.u))
+    

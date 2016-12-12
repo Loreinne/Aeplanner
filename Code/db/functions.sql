@@ -159,7 +159,8 @@ $$
 $$
     LANGUAGE 'plpgsql';
 
--- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala', 'Lugait' '11/10/96', '20');
+-- select newuser('eloreinne@gmail.com', 'Loreinne', 'Estenzo', 'lala', 'Lugait', '11/10/96', '20');
+-- select newuser('emal@gmail.com', 'Leila', 'Reyes', 'hellopo', 'iligan' ,'10/10/96', '20');
 
 create or replace function updateuser(par_id int, par_email VARCHAR,par_fname VARCHAR, par_lname VARCHAR,  par_password VARCHAR, par_address VARCHAR, par_birthdate date, par_age varchar) returns void AS
   $$ 
@@ -222,7 +223,7 @@ $$
       SELECT INTO loc_email par_email FROM Venue WHERE email_address = par_email;
         if loc_email isnull THEN
 
-      if par_email = '' or  par_name = '' or par_description = ''  or par_location = '' or par_capacity = '' or par_pricing = '' THEN
+      if par_email = '' or  par_name = '' or par_description = ''  or par_location = '' or par_capacity = '' or par_pricing = '' or par_email = '' THEN
         loc_res = 'Error';
 
       ELSE
@@ -243,7 +244,7 @@ $$
 
 
 
-create or replace function showall_venues (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT INT) returns setof record as
+create or replace function showall_venues (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR,OUT INT) returns setof record as
   $$
 
     SELECT name, email_address, description, location, capacity, pricing, cat_id FROM Venue ;
@@ -286,21 +287,21 @@ $$
 
 -- CATERING
 
-create or replace function newcatering(par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns TEXT AS
+create or replace function newcatering(par_name VARCHAR,par_email VARCHAR, par_description TEXT, par_location VARCHAR,  par_pricing VARCHAR, par_categories INT) returns TEXT AS
 $$
    DECLARE
-        loc_name VARCHAR;
+        loc_email VARCHAR;
         loc_res TEXT;
     BEGIN
-      SELECT INTO loc_name par_name FROM Catering_services WHERE name = par_name;
+      SELECT INTO loc_email par_email FROM Catering_services WHERE email_address = par_email;
         if loc_email isnull THEN
 
-      if par_name = '' or par_description = '' or par_categories = ''  or par_location = '' or par_capacity = '' or par_pricing = '' THEN
+      if par_email = '' or  par_name = '' or par_description = ''  or par_location = '' or par_pricing = '' or par_email = '' THEN
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Venue (c_name, c_description, c_categories, c_location, c_capacity, c_pricing)
-                        VALUES (par_name, par_description, par_categories, par_location, par_capacity, par_pricing);
+          INSERT INTO Catering_services (name, email_address, description, location, pricing, cat_id)
+                        VALUES (par_name, par_email, par_description, par_location,par_pricing, par_categories);
                         loc_res = 'OK';
           end if;
 
@@ -314,23 +315,10 @@ $$
 $$
     LANGUAGE 'plpgsql';
 
-
-
-create or replace function showall_cater (OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) returns setof record as
+create or replace function showall_cater (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT INT) returns setof record as
   $$
 
-    SELECT c_name, c_description, c_categories, c_location, c_capacity, c_pricing FROM Catering_services ;
-
-  $$
-
-    LANGUAGE 'sql';
-
-
-
-create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR) returns setof record as
-  $$
-
-    SELECT c_name, c_description, c_categories, c_location, c_capacity, c_pricing FROM Catering_services WHERE  c_id = par_id ;
+    SELECT name, email_address, description, location, pricing, cat_id FROM Catering_services ;
 
   $$
 
@@ -338,19 +326,30 @@ create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT TEXT, OUT
 
 
 
-create or replace function updatecater(in par_id INT, par_name VARCHAR,par_description TEXT, par_categories VARCHAR, par_location VARCHAR,  par_capacity VARCHAR,  par_pricing VARCHAR) returns void AS
+create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT VARCHAR ,OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT INT) returns setof record as
+  $$
+
+    SELECT name, email_address, description, location, pricing, cat_id FROM Catering_services WHERE  id = par_id ;
+
+  $$
+
+    LANGUAGE 'sql';
+
+
+
+create or replace function updatecater(in par_id INT, par_name VARCHAR, par_email VARCHAR, par_description TEXT, par_location VARCHAR,  par_pricing VARCHAR, par_categories INT) returns void AS
   $$ 
     UPDATE Catering_services
     SET
 
-    c_name = par_name,
-    c_description = par_description,
-    c_categories = par_categories,
-    c_location = par_location,
-    c_capacity = par_description,
-    c_pricing = par_pricing
+    name = par_name,
+    email_address = par_email,
+    description = par_description,
+    location = par_location,
+    pricing = par_pricing,
+    cat_id = par_categories
 
-    WHERE c_id = par_id;
+    WHERE id = par_id;
 $$
     LANGUAGE 'sql';
 
@@ -471,3 +470,67 @@ create or replace function show_appointment (IN par_id int, OUT INT, out int, OU
   $$
 
     LANGUAGE 'sql';
+
+
+
+
+-- Event
+
+create or replace function newevent(par_user INT ,par_title VARCHAR, par_date DATE, par_time TIME) returns TEXT AS
+$$
+   DECLARE
+        loc_title VARCHAR;
+        loc_res TEXT;
+    BEGIN
+      SELECT INTO loc_title par_title FROM Event WHERE title = par_title;
+        if loc_email isnull THEN
+
+      if par_title = '' or  par_user = '' or par_date = ''  or par_time = '' THEN
+        loc_res = 'Error';
+
+      ELSE
+          INSERT INTO Event (user_id, title, date_event, time_event)
+                        VALUES (par_user, par_title, par_date, par_date);
+                        loc_res = 'OK';
+          end if;
+
+        ELSE
+          loc_res = 'Error';
+
+        end if;
+        return loc_res;
+
+    END;
+$$
+    LANGUAGE 'plpgsql';
+
+create or replace function getevents(par_user INT, par_title VARCHAR, par_date DATE, par_time TIME) returns setof record as
+  $$
+  SELECT title, date_event, time_event FROM Event;
+  $$
+
+  LANGUAGE 'sql';
+
+
+
+create or replace function get_event(IN par_id INT, OUT VARCHAR, OUT DATE, OUT TIME) returns setof record as
+  $$
+  SELECT title, date_event, time_event FROM Event WHERE id = par_id;
+  $$
+
+  LANGUAGE 'sql';
+  
+
+
+create or replace function update_event(par_id INT, par_title VARCHAR, par_date DATE, par_time TIME) returns void as
+  $$
+  UPDATE Event
+  SET
+    title = par_title,
+    date_event = par_date,
+    time_event = par_time
+
+  WHERE id = par_id;
+  $$
+
+  LANGUAGE 'sql';
