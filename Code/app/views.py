@@ -398,7 +398,7 @@ def update_catering():
 
 
 
-  @app.route('/api/v1.0/events/', methods=['POST'])
+@app.route('/api/v1.0/events/', methods=['POST'])
 def add_event():
     jsn = json.loads(request.data)
 
