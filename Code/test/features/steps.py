@@ -207,4 +207,24 @@ def retrieve_venue(step,id):
 def update_cater(step):
     world.u = step.hashes[0]
     world.response = world.app.put('/api/v1.0/catering_services/', data = json.dumps(world.u))
-    
+
+
+
+@step('When I add the event')
+def addevent(step):
+    world.response= world.app.post('/api/v1.0/events/', data = json.dumps(world.info))
+
+
+@step(u'Given that an event with id no. \'(.*)\' exist')
+def getevent(step,id):
+    world.response = world.app.get('/api/v1.0/events/{}/'.format(id))
+
+@step(u'When I retrieve the event with id \'(.*)\'')
+def retrieve_venue(step,id):
+    world.res = json.loads(world.response.data)
+
+
+@step('When I update event details with the following:')
+def updateevent(step):
+    world.u = step.hashes[0]
+    world.response = world.app.put('/api/v1.0/events/', data=json.dumps(world.u))
