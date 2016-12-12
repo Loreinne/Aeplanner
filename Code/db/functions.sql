@@ -483,14 +483,14 @@ $$
         loc_res TEXT;
     BEGIN
       SELECT INTO loc_title par_title FROM Event WHERE title = par_title;
-        if loc_email isnull THEN
+        if loc_title isnull THEN
 
-      if par_title = '' or  par_user = '' or par_date = ''  or par_time = '' THEN
+      if par_title = '' THEN
         loc_res = 'Error';
 
       ELSE
           INSERT INTO Event (user_id, title, date_event, time_event)
-                        VALUES (par_user, par_title, par_date, par_date);
+                        VALUES (par_user, par_title, par_date, par_time);
                         loc_res = 'OK';
           end if;
 
