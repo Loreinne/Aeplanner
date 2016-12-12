@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frontend</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Hospice Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+    <title>Aeplanner</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="assets/css/agency.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,80">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/_all-skins.css">
+    <link rel="stylesheet" href="assets/css/AdminLTE.css">
+    <link rel="stylesheet" href="assets/css/blue.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/morris.css">
+    <link rel="stylesheet" href="assets/css/select2.min.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Header.css">
+    <link rel="stylesheet" href="assets/css/Wrapper.css">
+    <link rel="stylesheet" href="assets/css/Simple-Footer.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Footer.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="assets/css/Google-Style-Login.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top" >Aeplanner</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li >
+                        <a href="#login-form"></a>
+                    </li>   
+                    <li>
+                        <a class="page-scroll" href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#login-form" class="active" onclick="$('#login-form').show()">Sign in</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#add-user-form" class="active" onclick="$('#add-user-form').show()">Sign up</a>
+                    </li>
+                </ul>
+                 <script>
+                       $( "span.menu" ).click(function() {
+                         $( "ul.nav1" ).slideToggle( 300, function() {
+                         // Animation complete.
+
+                          });
+                         });
+                    </script>
+                    <!-- /script-for-menu -->
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            
+    
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+<!-- LOGIN FORM -->
+
+                <form id="login-form" class="login-card" method="post" style="display:none" onsubmit="return false">
+                    <h3>Please Log in</h3><br>
+                    <div id="log-in-alert"></div>
+                    <div class="form-group">
+                        <input id="email_address" name="email_address" type="text" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <button onclick="login();" id="submit-button" type="submit"class="btn btn-primary btn-block" >Log In</button>
+                    </div>
+                </form>
+            <!-- END LOGIN FORM -->
+
+    </nav>
+
+    
+
+    <!-- SIGNUP FORM -->
+    <section class="content" id="add-user-form" style="display:none" align = "center">
+        <div id="add-user-alert">
+        </div>
+                       <!-- /.box-header -->
+                        <div class="box-body"><div >
+                                <div class="page-header"></div>
+                                    <div class="box-header with-border">
+                                     <h3>Create Account</h3>
+                                     <form id="user-form" class="col-sm-6 col-sm-offset-2" align = "center" method="post">
+                                    </div>
+                                        <div class="form-group" >
+                                            <input id="email_address" name="email_address" type="text" class="form-control" placeholder="Email">
+                                         </div>
+                                        <div class="form-group">
+                                            <input id="password" name="password1" type="password" class="form-control" placeholder="Password">
+                                        </div>
+                                            <p id="confirmMessage"></p>
+                                        <div class="form-group">
+                                            <input id="pass2" onchange="checkPass();" name="password2" type="password" class="form-control" placeholder="Confirm Password" />
+                                        </div>
+                                                
+                                        <div  class="form-group">
+                                            <input id="fname" name="fname" type="text" class="form-control" placeholder="First Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="lname" name="lname" type="text" class="form-control" placeholder="Last Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="address" name="address" type="text" class="form-control" placeholder="Address">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="birthdate" name="birthdate" type="date" class="form-control" placeholder="Birthdate">
+                                        </div>
+                                         <div class="form-group">
+                                            <input id="age" name="age" type="number" class="form-control" placeholder="Age">
+                                        </div>
+                                        <div class="form-group">
+                                            <button id="submit-button" type="submit" class="btn btn-primary btn-block" onclick="signup();">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                    <!-- /.box -->
+                    </section>
+
+            <!-- END SIGNUP FORM -->
+
+   
+
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/agency.js"></script>
+    <script src="assets/js/agency.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-datepicker.js"></script>
+    <script src="assets/js/daterangepicker.js"></script>
+    <script src="assets/js/demo.js"></script>
+    <script src="assets/js/fastclick.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/jquery.inputmask.js"></script>
+    <script src="assets/js/jquery.knob.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.sparkline.min.js"></script>
+    <script src="assets/js/jQuery-2.1.4.min.js"></script>
+    <script src="assets/js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="assets/js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/morris.min.js"></script>
+    <script src="assets/js/select2.full.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+</body>
+
+</html>

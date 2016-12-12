@@ -53,26 +53,9 @@ CREATE TABLE Proposal (
 	address VARCHAR(50),
 	proposal_num VARCHAR(50),
 	proposal_name text,
-	proposal_date date,
-	event_id INT reference Event(id)
+	proposal_date date
 ); 
 
-CREATE TABLE Contract (
-	id		serial primary key,
-	reference	text,
-	client_name text,
-	termsOfAgreement text,
-	event_id INT references Event(id)
-);
-
-
-CREATE TABLE Event (
-	id serial primary key,
-	title VARCHAR(50),
-	date_event date,
-	time_event time,
-	user_id INT references App_user(id)
-);
 
 CREATE TABLE Contract (
 	id		serial primary key,
@@ -87,8 +70,7 @@ CREATE TABLE Note (
 	id  serial primary key,
 	event_id Int references Event(id),
 	title VARCHAR (50),
-	note Text,
-	event_id INT references Event(id)
+	note Text
 );
 
 CREATE TABLE Appointment (
@@ -97,9 +79,7 @@ CREATE TABLE Appointment (
 	client VARCHAR(50),
 	about VARCHAR(50),
 	app_date date,
-	app_time time,
-	event_id INT references Event(id)
-
+	app_time time
 );
 
 CREATE TABLE Categories (
@@ -110,7 +90,7 @@ CREATE TABLE Categories (
 
 CREATE TABLE Reserve (
 	id serial primary key,
-	user_id INT references App_user(user_id).
+	user_id INT references App_user(user_id),
 	ven_id INT references Venue(id),
 	cater_id INT references Catering_services(id),
 	date_in date

@@ -12,3 +12,4 @@ Scenario: Create a contract
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'OK'
 
+
