@@ -14,14 +14,14 @@ Feature: Add, retrieve and update event
     When I retrieve the event with id '2'
     Then i will get a '200' response
     And the following details are returned:
-    | user_id | title | date_event | time_event |
-    | 2 | Lea's Wedding| 2020-11-10 | 9:30 |
+    | title | date_event | time_event |
+    | Lea's Wedding| 2020-11-10 | 09:30:00 |
 
 
  Scenario: Update existing Event
     Given that an event with id no. '2' exist
     When I update event details with the following:
-    | user_id | title | date_event | time_event |
+    | id | title | date_event | time_event |
     | 3 | Ikaii's Wedding| 2020-11-08 | 10:30 |
     Then i will get a '200' response
     And it should have a field 'status' containing 'OK'
