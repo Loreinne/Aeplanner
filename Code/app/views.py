@@ -202,13 +202,13 @@ def getnote(n_id):
 @app.route('/api/v1.0/note/', methods=['PUT'])
 def updatenote():
     data = json.loads(request.data)
-    n_id = data['n_id']
-    n_title = data['n_title']
-    n_note = data['n_note']
+    id = data['id']
+    title = data['title']
+    note = data['note']
     
-    res = spcall('updatenote', ( n_id,
-                                n_title,
-                                n_note), True)
+    res = spcall('updatenote', ( id,
+                                title,
+                                note), True)
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})

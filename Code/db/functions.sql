@@ -414,11 +414,11 @@ $$
     begin
       UPDATE Note
       set
-        n_id = par_id,
-        n_title = par_title,
-        n_note = par_note
+        id = par_id,
+        title = par_title,
+        note = par_note
 
-      WHERE n_id = par_id;
+      WHERE id = par_id;
 
       local_response = 'OK';
       return local_response;

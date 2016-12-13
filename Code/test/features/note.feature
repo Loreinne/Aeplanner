@@ -55,11 +55,11 @@ Scenario: Get Note
 
 Scenario: Update Note
     Given a note '6' is in the system with the following details:
-        |n_id | n_title             | n_note                      |
+        |  id | title               |  note                      |
         | 6   | Birthday Party Prep | Theme is disney princesses |
 
     And the new note information for note id '6'
-        |n_id | n_title          | n_note            |
+        | id  |   title          |   note            |
         | 6   | Anniversary Prep | simple but classy |
 
     When I click the update note button
