@@ -4,8 +4,8 @@ Feature: Contract
 
 Scenario: Create a contract
     Given the following information:
-        | reference | client_name| termsOfAgreement|
-        |    Auth   | Ms Reyes   | Termination of registration |
+        |event_id | contract_reference | client_name| termsOfAgreement            |
+        |     1   |    Auth   | Ms Reyes   | Termination of registration |
 
     When I click the add contract button
     Then I will get a '200' response
@@ -14,19 +14,19 @@ Scenario: Create a contract
 
 Scenario: Create a contract that already exists
     Given the following information:
-        | reference | client_name| termsOfAgreement|
-        |    Auth   | Ms Reyes   | Termination of registration |
+        |event_id  | contract_reference | client_name| termsOfAgreement            |
+        |     1    |    Auth   | Ms Reyes   | Termination of registration |
 
     When I click the add contract button
     Then I will get a '200' response
-     And it should have a field 'status' containing 'OK'
+    And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'contract exists'
 
 
 Scenario: Create a contract with reference field empty
     Given the following information:
-        | reference | client_name| termsOfAgreement|
-        |           | Ms Cruz    | Termination of registration |
+        |event_id  | contract_reference | client_name| termsOfAgreement|
+        |     1    |           | Ms Cruz    | Termination of registration |
 
     When I click the add contract button
     Then I will get a '200' response
@@ -34,8 +34,8 @@ Scenario: Create a contract with reference field empty
 
 Scenario: Create a contract that with client name field empty 
     Given the following information:
-        | reference | client_name| termsOfAgreement|
-        |    Auth   |            | Termination of registration |
+        |event_id   | contract_reference | client_name| termsOfAgreement|
+        |     1     |    Auth   |            | Termination of registration |
 
     When I click the add contract button
     Then I will get a '200' response
@@ -43,13 +43,14 @@ Scenario: Create a contract that with client name field empty
     
 Scenario: Create a contract that with terms of agreement field empty 
     Given the following information:
-        | reference | client_name| termsOfAgreement|
-        |    Auth   | Ms Lee     |                 |
+        |event_id  | reference | client_name| termsOfAgreement|
+        |     1    |    Auth   | Ms Lee     |                 |
 
     When I click the add contract button
     Then I will get a '200' response
     And it should have a field 'status' containing 'Error'
     
+
 Scenario: Get a contract
     Given a contract '1' is in the system
     When I retrieve the contract '1'
@@ -74,5 +75,4 @@ Scenario: Update contract
     Then I will get a '200' response
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'OK'
-
 

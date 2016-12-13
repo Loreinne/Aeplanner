@@ -64,12 +64,13 @@ def login():
 def store_contract():
     data = json.loads(request.data)
     res = spcall('new_contract', (
-        data['reference'],
+        data['event_id'],
+        data['contract_reference'],
         data['client_name'],
         data['termsOfAgreement']), True)
 
     if 'Error' in str(res[0][0]):
-        return jsonify({'status': 'error', 'message': res[0][0]})
+        return jsonify({'status': 'Error', 'message': res[0][0]})
     return jsonify({'status': 'OK', 'message': res[0][0]}), 200
 
 @app.route('/api/v1.0/contract/<int:id>/', methods=['GET'])
