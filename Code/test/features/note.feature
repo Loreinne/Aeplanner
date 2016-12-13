@@ -21,7 +21,15 @@ Scenario: Add a note that already exists
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'note already exist'
 
+Scenario: Add a note with title field empty
+    Given the following information of a note:
+        |event_id|title              |note               |             
+        |    1   |                   |the theme is vintage |
 
+    When I click the add note button
+    Then I will get a '200' response
+    And it should have a field 'status' containing 'Error'
+    And it should have a field 'message' containing 'Error'
 
 
 Scenario: Get Note
