@@ -137,6 +137,17 @@ def and_the_following_appointment_details_are_returned(step):
     res = json.loads(world.response.data)
     assert_equals(world.res['entries'], res['entries'])
 
+@step(u'Given a appointment \'([^\']*)\' is in the system with the following details:')
+def given_a_appointment_group1_is_in_the_system_with_the_following_details(step, group1):
+    world.appointment_oldInfo = step.hashes[0]
+
+@step(u'And the new appointment information for appointment id \'([^\']*)\'')
+def and_the_new_appointment_information_for_appointment_id_group1(step, group1):
+    world.appointment_updateInfo = step.hashes[0]
+
+@step(u'When I click the update appointment button')
+def when_i_click_the_update_appointment_button(step):
+    world.response = world.app.put('/api/v1.0/appointment/', data = json.dumps(world.appointment_updateInfo))
 
 
 
