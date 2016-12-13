@@ -12,6 +12,16 @@ Scenario: Create a contract
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'OK'
 
+Scenario: Create a contract that already exists
+    Given the following information:
+        | reference | client_name| termsOfAgreement|
+        |    Auth   | Ms Reyes   | Termination of registration |
+
+    When I click the add contract button
+    Then I will get a '200' response
+     And it should have a field 'status' containing 'OK'
+    And it should have a field 'message' containing 'contract exists'
+
 
 Scenario: Get a contract
     Given a contract '1' is in the system
