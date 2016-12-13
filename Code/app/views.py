@@ -250,6 +250,27 @@ def getappointment(id):
             return jsonify({"status": "OK", "message": "OK", "entries": recs})
 
 
+@app.route('/api/v1.0/appointment/', methods=['PUT'])
+def updateappointment():
+    data = json.loads(request.data)
+    id = data['id']
+    client = data['client']
+    about = data['about']
+    app_date = data['app_date']
+    app_time = data['app_time']
+
+    res = spcall('update_appointment', ( id,
+                                client,
+                                about,
+                                app_date,
+                                app_time), True)
+
+    if 'Error' in str (res[0][0]):
+        return jsonify ({'status': 'Error', 'message': res[0][0]})
+
+    return jsonify({'status': 'OK', 'message': res[0][0]})
+    
+
 
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
