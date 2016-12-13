@@ -54,3 +54,12 @@ Scenario: Create an appointment with appointment date field empty
     And it should have a field 'status' containing 'Error'
    
 
+Scenario: Create an appointment with appointment timefield empty 
+    Given the following information of an appointment:
+        |event_id| client     | about                 | app_date           |app_time | 
+        |   1    | Maria Cruz | important matters     |   August 13, 2017  |         |
+
+    When I click the add appointment button
+    Then I will get a '200' response
+    And it should have a field 'status' containing 'Error'
+    
