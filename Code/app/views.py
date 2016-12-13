@@ -251,9 +251,6 @@ def getappointment(id):
 
 
 
-
-
-
 @app.route('/api/v1.0/signup/', methods=['POST'])
 def signup():
     jsn = json.loads(request.data)

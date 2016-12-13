@@ -73,3 +73,18 @@ Scenario: Get Appointment
     And the following appointment details are returned:
         |  id    | client     | about                 | app_date           |app_time      | 
         |   1    | Luis Yap   | important matters     |   August 13, 2017  |   10:00      |
+
+
+Scenario: Update Appointment
+    Given a appointment '3' is in the system with the following details:
+        |  id    | client     | about                 | app_date           |app_time      | 
+        |   4    | Yassi Lee  | important matters     |   January 3, 2017  |   9:00      |
+
+    And the new appointment information for appointment id '3'
+        |  id    | client     | about                 | app_date           |app_time      | 
+        |   1    | Yassi Lee  | change location       |   January 30, 2017 |   10:00      |
+
+    When I click the update appointment button
+    Then I will get a '200' response
+    And it should have a field 'status' containing 'OK'
+    And it should have a field 'message' containing 'OK'
