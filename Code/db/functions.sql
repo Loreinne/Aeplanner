@@ -12,10 +12,10 @@ $$
     ELSE
     insert into Proposal(event_id,name, address, proposal_num, proposal_name, proposal_date)
     values (par_event_id, par_name, par_address, par_proposal_num, par_proposal_name, par_proposal_date);
-      local_response = 'OK';
+             local_response = 'OK';
     end if;
     ELSE
-    local_response ='proposal exists';
+    local_response = 'proposal exists';
     end if;
     return local_response;
   end;
