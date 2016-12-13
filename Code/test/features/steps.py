@@ -123,6 +123,20 @@ def when_i_click_the_update_proposal_button(step):
 def when_i_click_the_add_appointment_button(step):
     world.response = world.app.post('/api/v1.0/appointment/', data = json.dumps(world.info))
 
+@step(u'Given a appointment id \'([^\']*)\' is in the system')
+def given_a_appointment_id_group1_is_in_the_system(step, id):
+    world.appointment = world.app.get('/api/v1.0/appointment/{}/'.format(id))
+    world.res = json.loads(world.appointment.data)
+
+@step(u'When I retrieve the appointment \'([^\']*)\'')
+def when_i_retrieve_the_appointment_group1(step, id):
+    world.response = world.app.get('/api/v1.0/appointment/{}/'.format(id))
+
+@step(u'And the following appointment details are returned:')
+def and_the_following_appointment_details_are_returned(step):
+    res = json.loads(world.response.data)
+    assert_equals(world.res['entries'], res['entries'])
+
 
 
 
