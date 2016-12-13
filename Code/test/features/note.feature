@@ -48,7 +48,7 @@ Scenario: Get Note
     And it should have a field 'status' containing 'OK'
     And it should have a field 'message' containing 'OK'
     And the following note details are returned:
-        |n_id | n_title          | n_note                  |
+        | id  |   title          |   note                  |
         | 1   | Beach Party Prep | the theme color is pink |
 
 

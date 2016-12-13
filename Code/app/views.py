@@ -192,9 +192,9 @@ def getnote(n_id):
         return jsonify({"status": "error", "message": res[0][0]})
     else:
         for r in res:
-            recs.append({"n_id": r[0],
-                         "n_title": str(r[1]),
-                         "n_note": r[2]})
+            recs.append({"id": r[0],
+                         "title": str(r[1]),
+                         "note": r[2]})
 
             return jsonify({"status": "OK", "message": "OK", "entries": recs})
 

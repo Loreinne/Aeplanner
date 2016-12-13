@@ -391,7 +391,7 @@ $$
 create or replace function show_note (IN par_id int, OUT INT, OUT VARCHAR, OUT TEXT) returns setof record as
   $$
 
-    SELECT n_id, n_title , n_note FROM Note WHERE  n_id = par_id ;
+    SELECT id, title , note FROM Note WHERE  id = par_id ;
 
   $$
 
