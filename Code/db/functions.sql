@@ -64,7 +64,7 @@ $$
 
 
 -- CONTRACT
-create or replace function new_contract(par_reference text, par_client_name text, par_termsOfAgreement text) returns text AS
+create or replace function new_contract(par_event_id int, par_reference text, par_client_name text, par_termsOfAgreement text) returns text AS
 $$
   declare 
   local_response text;
@@ -75,8 +75,8 @@ $$
       if par_reference = '' or par_client_name = '' or par_termsOfAgreement = '' THEN
         local_response = 'Error';
       ELSE
-      insert into Contract(reference, client_name, termsOfAgreement)
-      values (par_reference, par_client_name, par_termsOfAgreement);
+      insert into Contract(event_id, reference, client_name, termsOfAgreement)
+      values (par_event_id, par_reference, par_client_name, par_termsOfAgreement);
           local_response = 'OK';
       end if;
       ELSE
