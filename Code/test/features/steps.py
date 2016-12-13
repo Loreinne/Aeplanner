@@ -142,8 +142,6 @@ def and_the_following_appointment_details_are_returned(step):
 
 
 
-
-
 @step(u'When i submit the signup form')
 def signup_form(step):
 	world.uri = '/api/v1.0/signup/'

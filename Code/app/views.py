@@ -231,6 +231,23 @@ def store_appointment():
 
 
 
+@app.route('/api/v1.0/appointment/<int: id>/', methods=['GET'])
+def getappointment(id):
+    res = spcall('show_appointment', (id, ))
+    recs = []
+    if len(res) == 0:
+        return jsonify({"status": "error", "message": "No entries found", "entries": []})
+    elif 'Error' in str(res[0][0]):
+        return jsonify({"status": "error", "message": res[0][0]})
+    else:
+        for r in res:
+            recs.append({"id": r[0],
+                         "client": r[1],
+                         "about": r[2],
+                         "app_date": r[3],
+                         "app_time": r[4]})
+
+            return jsonify({"status": "OK", "message": "OK", "entries": recs})
 
 
 
