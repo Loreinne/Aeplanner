@@ -101,7 +101,7 @@ $$
 
 create or replace function show_contract(in par_id int, out int, out text, out text, out text) returns setof record AS
 $$
-  SELECT id, reference, client_name, termsOfAgreement
+  SELECT id, contract_reference, client_name, termsOfAgreement
   from Contract
   WHERE id = par_id;
 $$
@@ -109,14 +109,14 @@ $$
 
 
 
-create or replace function update_contract(in par_id int, in par_reference text, in par_client_name text, par_termsOfAgreement text) returns text AS
+create or replace function update_contract(in par_id int, in par_contract_reference text, in par_client_name text, par_termsOfAgreement text) returns text AS
 $$
   declare local_response text;
     begin
       UPDATE Contract
       set
         id = par_id,
-        reference = par_reference,
+        contract_reference = par_contract_reference,
         client_name = par_client_name,
         termsOfAgreement = par_termsOfAgreement
       WHERE id = par_id;
@@ -358,26 +358,26 @@ $$
 
 -- NOTE
 
-create or replace function newnote (par_title VARCHAR, par_note TEXT) returns TEXT AS
+create or replace function newnote (par_event_id int, par_title VARCHAR, par_note TEXT) returns TEXT AS
   $$ 
     DECLARE
       loc_title VARCHAR;
       loc_res TEXT;
     BEGIN
-      SELECT INTO loc_title par_title FROM Note WHERE n_title = par_title;
+      SELECT INTO loc_title par_title FROM Note WHERE title = par_title;
         if loc_title isnull THEN
 
       if par_title = '' or par_note = '' THEN
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Note(n_title , n_note) VALUES (par_title, par_note);
+          INSERT INTO Note(event_id, title , note) VALUES (par_event_id, par_title, par_note);
                       loc_res = 'OK';
 
           end if;
 
         ELSE
-          loc_res = 'title already exist';
+          loc_res = 'note already exist';
 
         end if;
         return loc_res;

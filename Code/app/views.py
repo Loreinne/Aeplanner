@@ -95,12 +95,12 @@ def getcontract(id):
 def updatecontract():
     data = json.loads(request.data)
     id = data['id']
-    reference = data['reference']
+    contract_reference = data['contract_reference']
     client_name = data['client_name']
     termsOfAgreement = data['termsOfAgreement']
     
     res = spcall('update_contract', ( id,
-                                     reference,
+                                     contract_reference,
                                      client_name,
                                      termsOfAgreement), True)
     if 'Error' in str (res[0][0]):
