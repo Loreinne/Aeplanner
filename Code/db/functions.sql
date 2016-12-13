@@ -462,13 +462,12 @@ $$
   LANGUAGE 'plpgsql';
 
 
-create or replace function show_appointment (IN par_id int, OUT INT, out int, OUT VARCHAR, OUT varchar, out date, out time) returns setof record as
+create or replace function show_appointment (IN par_id int, out int, OUT VARCHAR, OUT varchar, out date, out time) returns setof record as
   $$
 
-    SELECT id, event_id, client , about, app_date, app_time  FROM Appointment WHERE  id = par_id ;
+    SELECT id, client , about, app_date, app_time  FROM Appointment WHERE  id = par_id ;
 
   $$
-
     LANGUAGE 'sql';
 
 
