@@ -173,12 +173,13 @@ def updateproposal():
 @app.route('/api/v1.0/note/', methods=['POST'])
 def store_note():
     jsn = json.loads(request.data)
-    res = spcall('newnote', ( jsn['n_title'],
-                              jsn['n_note']), True) 
+    res = spcall('newnote', ( jsn['event_id'],
+                              jsn['title'],
+                              jsn['note']), True) 
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'Error', 'message': res[0][0]})
-    return jsonify({'status': 'OK', 'message': 'OK'}), 200
+    return jsonify({'status': 'OK', 'message': res[0][0]}), 200
 
 
 @app.route('/api/v1.0/note/<int:n_id>/', methods=['GET'])
