@@ -31,6 +31,17 @@ Scenario: Create a contract with reference field empty
     When I click the add contract button
     Then I will get a '200' response
      And it should have a field 'status' containing 'Error'
+
+Scenario: Create a contract that with client name field empty 
+    Given the following information:
+        | reference | client_name| termsOfAgreement|
+        |    Auth   |            | Termination of registration |
+
+    When I click the add contract button
+    Then I will get a '200' response
+    And it should have a field 'status' containing 'Error'
+    
+
     
 Scenario: Get a contract
     Given a contract '1' is in the system
