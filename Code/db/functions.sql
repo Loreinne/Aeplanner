@@ -471,6 +471,30 @@ create or replace function show_appointment (IN par_id int, out int, OUT VARCHAR
     LANGUAGE 'sql';
 
 
+create or replace function update_appointment(in par_id int, in par_client VARCHAR, in par_about varchar, in par_app_date date, in par_app_time time) returns text AS
+$$
+  declare local_response text;
+    begin
+      UPDATE Appointment
+      set
+        id = par_id,
+        client = par_client,
+        about = par_about,
+        app_date = par_app_date,
+        app_time = par_app_time
+      WHERE id = par_id;
+
+      local_response = 'OK';
+      return local_response;
+    
+    end;
+$$
+
+    LANGUAGE 'plpgsql';
+
+
+
+
 
 
 -- Event

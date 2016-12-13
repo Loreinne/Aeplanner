@@ -242,8 +242,8 @@ def getappointment(id):
     else:
         for r in res:
             recs.append({"id": r[0],
-                         "client": r[1],
-                         "about": r[2],
+                         "client": str(r[1]),
+                         "about": str(r[2]),
                          "app_date": str(r[3]),
                          "app_time": str(r[4])})
 
@@ -252,22 +252,21 @@ def getappointment(id):
 
 @app.route('/api/v1.0/appointment/', methods=['PUT'])
 def updateappointment():
-    data = json.loads(request.data)
-    id = data['id']
-    client = data['client']
-    about = data['about']
-    app_date = data['app_date']
-    app_time = data['app_time']
+    jsn = json.loads(request.data)
+    id = jsn['id']
+    client = jsn['client']
+    about = jsn['about']
+    app_date = jsn['app_date']
+    app_time = jsn['app_time']
 
     res = spcall('update_appointment', ( id,
-                                client,
-                                about,
-                                app_date,
-                                app_time), True)
+                                         client,
+                                         about,
+                                         app_date,
+                                         app_time), True)
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})
-
     return jsonify({'status': 'OK', 'message': res[0][0]})
     
 

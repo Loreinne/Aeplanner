@@ -76,13 +76,13 @@ Scenario: Get Appointment
 
 
 Scenario: Update Appointment
-    Given a appointment '3' is in the system with the following details:
+    Given a appointment '4' is in the system with the following details:
         |  id    | client     | about                 | app_date           |app_time      | 
         |   4    | Yassi Lee  | important matters     |   January 3, 2017  |   9:00      |
 
-    And the new appointment information for appointment id '3'
+    And the new appointment information for appointment id '4'
         |  id    | client     | about                 | app_date           |app_time      | 
-        |   1    | Yassi Lee  | change location       |   January 30, 2017 |   10:00      |
+        |   4    | Yassi Lee  | change location       |   January 30, 2017 |   10:00      |
 
     When I click the update appointment button
     Then I will get a '200' response
