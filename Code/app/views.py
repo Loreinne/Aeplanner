@@ -219,12 +219,11 @@ def updatenote():
 @app.route('/api/v1.0/appointment/', methods=['POST'])
 def store_appointment():
     jsn = json.loads(request.data)
-    res = spcall('newappointment', (
-          jsn['event_id'],
-          jsn['client'],
-          jsn['about'],
-          jsn['app_date'],
-          jsn['app_time']), True) 
+    res = spcall('newappointment', (jsn['event_id'],
+                                      jsn['client'],
+                                      jsn['about'],
+                                      jsn['app_date'],
+                                      jsn['app_time']), True) 
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'Error', 'message': res[0][0]})
