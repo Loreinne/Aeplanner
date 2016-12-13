@@ -59,7 +59,7 @@ Scenario: Create a Proposal with proposal name empty
     Then I will get a '200' response
     And it should have a field 'status' containing 'Error'
    
-Scenario: Create a Proposal with name empty
+Scenario: Create a Proposal with proposal date empty
     Given the following information of a proposal:
         |event_id |name        | address | proposal_num | proposal_name | proposal_date   |
         |   1     |Yum Diaz    | Cebu    | 2            | Wedding       |                 |
