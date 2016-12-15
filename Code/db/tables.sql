@@ -21,7 +21,7 @@ CREATE TABLE Venue (
 	location VARCHAR (50),
 	capacity VARCHAR(50),
 	pricing VARCHAR (50),
-	cat_id INT references Categories(id),
+	categories TEXT,
 	is_active BOOLEAN DEFAULT TRUE
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE Catering_services (
 	description TEXT,
 	location VARCHAR (50),
 	pricing VARCHAR (50),
-	cat_id INT references Categories(id),
+	categories TEXT,
 	is_active BOOLEAN DEFAULT TRUE
 );
 

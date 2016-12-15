@@ -333,7 +333,7 @@ def add_venue():
     jsn = json.loads(request.data)
 
 
-    res = spcall('newvenue', ( jsn['name'], jsn['email_address'], jsn['description'], jsn['location'], jsn['capacity'], jsn['pricing'], jsn['cat_id']))
+    res = spcall('newvenue', ( jsn['name'], jsn['email_address'], jsn['description'], jsn['location'], jsn['capacity'], jsn['pricing'], jsn['categories']))
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})
@@ -351,7 +351,7 @@ def getspecificvenue(id):
 
     rec = res[0]
 
-    return jsonify({"name": str(rec[0]),  "email_address": str(rec[1]), "description" : str(rec[2]), "location" : str(rec[3]), "capacity": str(rec[4]), "pricing" : str(rec[5]), "cat_id" : str(rec[6])})
+    return jsonify({"name": str(rec[0]),  "email_address": str(rec[1]), "description" : str(rec[2]), "location" : str(rec[3]), "capacity": str(rec[4]), "pricing" : str(rec[5]), "categories" : str(rec[6])})
 
 @app.route('/api/v1.0/venue/', methods = ['PUT'])
 def update_venue():
@@ -364,7 +364,7 @@ def update_venue():
   location = jsn.get('location', '')
   capacity = jsn.get('capacity', '')
   pricing = jsn.get('pricing', '')
-  cat_id = jsn.get('cat_id', '')
+  categories = jsn.get('categories', '')
 
 
   spcall('updatevenue', (
@@ -375,7 +375,7 @@ def update_venue():
     location,
     capacity,
     pricing,
-    cat_id ), True)
+    categories ), True)
 
   return jsonify({"status": "OK"})
 
