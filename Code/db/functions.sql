@@ -287,7 +287,7 @@ $$
 
 -- CATERING
 
-create or replace function newcatering(par_name VARCHAR,par_email VARCHAR, par_description TEXT, par_location VARCHAR,  par_pricing VARCHAR, par_categories INT) returns TEXT AS
+create or replace function newcatering(par_name VARCHAR,par_email VARCHAR, par_description TEXT, par_location VARCHAR,  par_pricing VARCHAR, par_categories TEXT) returns TEXT AS
 $$
    DECLARE
         loc_email VARCHAR;
@@ -300,7 +300,7 @@ $$
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Catering_services (name, email_address, description, location, pricing, cat_id)
+          INSERT INTO Catering_services (name, email_address, description, location, pricing, categories)
                         VALUES (par_name, par_email, par_description, par_location,par_pricing, par_categories);
                         loc_res = 'OK';
           end if;
@@ -315,21 +315,10 @@ $$
 $$
     LANGUAGE 'plpgsql';
 
-create or replace function showall_cater (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT INT) returns setof record as
+create or replace function showall_cater (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT TEXT) returns setof record as
   $$
 
-    SELECT name, email_address, description, location, pricing, cat_id FROM Catering_services ;
-
-  $$
-
-    LANGUAGE 'sql';
-
-
-
-create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT VARCHAR ,OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT INT) returns setof record as
-  $$
-
-    SELECT name, email_address, description, location, pricing, cat_id FROM Catering_services WHERE  id = par_id ;
+    SELECT name, email_address, description, location, pricing, categories FROM Catering_services ;
 
   $$
 
@@ -337,7 +326,18 @@ create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT VARCHAR ,
 
 
 
-create or replace function updatecater(in par_id INT, par_name VARCHAR, par_email VARCHAR, par_description TEXT, par_location VARCHAR,  par_pricing VARCHAR, par_categories INT) returns void AS
+create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT VARCHAR ,OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT TEXT) returns setof record as
+  $$
+
+    SELECT name, email_address, description, location, pricing, categories FROM Catering_services WHERE  id = par_id ;
+
+  $$
+
+    LANGUAGE 'sql';
+
+
+
+create or replace function updatecater(in par_id INT, par_name VARCHAR, par_email VARCHAR, par_description TEXT, par_location VARCHAR,  par_pricing VARCHAR, par_categories TEXT) returns void AS
   $$ 
     UPDATE Catering_services
     SET
@@ -347,7 +347,7 @@ create or replace function updatecater(in par_id INT, par_name VARCHAR, par_emai
     description = par_description,
     location = par_location,
     pricing = par_pricing,
-    cat_id = par_categories
+    categories = par_categories
 
     WHERE id = par_id;
 $$

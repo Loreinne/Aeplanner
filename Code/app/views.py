@@ -344,7 +344,7 @@ def add_venue():
 
 @app.route('/api/v1.0/venue/<id>/', methods=['GET'])
 def getspecificvenue(id):
-    res = spcall('show_cater', [id])
+    res = spcall('show_venue', [id])
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'error', 'message': res[0][0]})
@@ -386,7 +386,7 @@ def add_catering():
     jsn = json.loads(request.data)
 
 
-    res = spcall('newcatering', ( jsn['name'], jsn['email_address'], jsn['description'], jsn['location'], jsn['pricing'], jsn['cat_id']))
+    res = spcall('newcatering', ( jsn['name'], jsn['email_address'], jsn['description'], jsn['location'], jsn['pricing'], jsn['categories']))
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})
@@ -403,7 +403,7 @@ def getspecificcater(id):
 
     rec = res[0]
 
-    return jsonify({"name": str(rec[0]),  "email_address": str(rec[1]), "description" : str(rec[2]), "location" : str(rec[3]), "pricing" : str(rec[4]), "cat_id" : str(rec[5])})
+    return jsonify({"name": str(rec[0]),  "email_address": str(rec[1]), "description" : str(rec[2]), "location" : str(rec[3]), "pricing" : str(rec[4]), "categories" : str(rec[5])})
 
 
 
@@ -417,7 +417,7 @@ def update_catering():
   description = jsn.get('description', '')
   location = jsn.get('location', '')
   pricing = jsn.get('pricing', '')
-  cat_id = jsn.get('cat_id', '')
+  categories = jsn.get('categories', '')
 
 
   spcall('updatecater', (
@@ -427,7 +427,7 @@ def update_catering():
     description,
     location,
     pricing,
-    cat_id ), True)
+    categories ), True)
 
   return jsonify({"status": "OK"})
 
