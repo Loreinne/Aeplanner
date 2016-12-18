@@ -51,7 +51,7 @@ function storeCater(){
 
 					$("#add-cater-form").hide();
 
-					clearVenueForm();
+					clearCaterForm();
 
 				}
 
@@ -123,6 +123,62 @@ function viewcaterById(id){
 
 						 '!</strong>'+ results.message +' </div>');
 				$("#view-cater-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
+
+function viewAllcater(){
+
+	$.ajax({
+		type:"GET",
+		url: "http://127.0.0.1:5000/api/v1.0/catering_services/",
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{
+			if(results.status == 'OK'){
+				$('#view-cater-table-body').html(function(){
+					var cater_row = '';
+					var cater;
+
+					for (var i = 0; i < results.entries.length; i++) {
+						cater = '<tr>' +
+										'<td>' + results.entries[i].name + '</td>' +
+										'<td>' + results.entries[i].email_address + '</td>' +
+										'<td>' + results.entries[i].description + '</td>' +
+										'<td>' + results.entries[i].location + '</td>' +
+										'<td>' + results.entries[i].pricing + '</td>' +
+										'<td>' + results.entries[i].categories + '</td>' +
+                                        '<td>'+'<button onclick="viewcaterById('+ results.entries[i].id +'); $(\'#view-cater\').show();$(\'#view-all-cater\').hide()" class="btn btn-info">View</button>'+'</td>'+
+										'<td>'+'<button onclick="updateCater('+ results.entries[i].id +'); $(\'#update-cater-form\').show();$(\'#view-all-cater\').hide()" class="btn btn-info">Update</button>'+'</td>'+
+									 '</tr>';
+
+						cater_row  += cater
+					}
+
+					return cater_row;
+				})
+
+				$('#add-cater-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#message-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#message-alert").fadeTo(2000, 500).slideUp(500);
 
 			}
 		},
