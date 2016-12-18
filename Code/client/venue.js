@@ -26,7 +26,7 @@ function storeVenue(){
 	var categories = $('#categories').val();
 
 	var data = JSON.stringify({ 'name' : name,
-                                'email_address' email_address,
+                                'email_address': email_address,
 								'description' : description,
 								'location' : location,
                                 'capacity' : capacity,
@@ -211,7 +211,7 @@ function updateVenue(id){
 	var categories = $('#update_categories').val();
 
 	var data = JSON.stringify({ 'name' : name,
-                                'email_address' email_address,
+                                'email_address': email_address,
 								'description' : description,
 								'location' : location,
                                 'capacity' : capacity,
