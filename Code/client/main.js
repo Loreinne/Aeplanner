@@ -262,3 +262,55 @@ function viewnoteById(id){
 
 	});
 }
+
+
+function viewAllnote(){
+
+	$.ajax({
+		type:"GET",
+		url: "http://127.0.0.1:5000/api/v1.0/note/",
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{
+			if(results.status == 'OK'){
+				$('#view-note-table-body').html(function(){
+					var note_row = '';
+					var note;
+
+					for (var i = 0; i < results.entries.length; i++) {
+						note = '<tr>' +
+										'<td>' + results.entries[i].title + '</td>' +
+                                        '<td>'+'<button onclick="viewnoteById('+ results.entries[i].id +'); $(\'#view-note\').show();$(\'#view-all-note\').hide()" class="btn btn-info">View</button>'+'</td>'+
+										'<td>'+'<button onclick="updateNote('+ results.entries[i].id +'); $(\'#update-note-form\').show();$(\'#view-all-note\').hide()" class="btn btn-info">Update</button>'+'</td>'+
+									 '</tr>';
+
+						note_row  += note
+					}
+
+					return note_row;
+				})
+
+				$('#add-note-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#message-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#message-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
