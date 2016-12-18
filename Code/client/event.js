@@ -67,3 +67,61 @@ function storeEvent(){
 	        }
 	    });
 }
+
+
+function vieweventById(id){
+	$.ajax({
+		type:"GET",
+		url: "http://127.0.0.1:5000/api/v1.0/events/" + id,
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{;
+			if(results.status == 'OK'){
+				$('#view-cater-info').html(function(){
+					var event_row = '';
+					var event
+					for (var i = 0; i < results.entries.length; i++) {
+						event = '<div class="box-body">' +
+										'<div class="container">' +
+			                                '<div class="row">' +
+			                                	'<h4 class="box-title"><b>'+ 'Event Title: ' + results. entries[i].name +'</b></h3></div>' +
+			                                    '<div class="col-md-4">' +
+			                                        '<p style="margin-left: 5px">' +
+														 'Date: ' + results.entries[i].date_event + '<br><br>' +
+														 'Time: ' + results.entries[i].time_event + '<br><br>' +
+			                                        '</p>' +
+			                                    '</div>'
+			                                '</div>' +
+			                            '</div>' +
+			                        '</div>'
+
+						event_row  += event
+					}
+
+					return event_row;
+				})
+
+				$('#add-event-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#view-event-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#view-event-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
