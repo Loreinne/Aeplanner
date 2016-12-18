@@ -191,3 +191,63 @@ function viewAllcater(){
 
 	});
 }
+
+
+function updateCater(id){
+	var name = $('#update_name').val();
+	var email_address = $('#update_email_address').val();
+	var description = $('#update_description').val();
+	var location = $('#update_location').val();
+	var pricing = $('#update_pricing').val();
+	var location = $('#update_location').val();
+	var categories = $('#update_categories').val();
+
+	var data = JSON.stringify({ 'name' : name,
+                                'email_address': email_address,
+								'description' : description,
+								'location' : location,
+                                'pricing' : pricing,
+                                'location' : location,
+                                'categories' : categories
+							});
+
+	$.ajax({
+		type:"PUT",
+    	url: "http://127.0.0.1:5000/api/v1.0/catering_services/" + id,
+    	contentType:"application/json; charset=utf-8",
+		data:data,
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#update-cater-alert').html(
+						'<div class="alert alert-success"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-cater-alert").fadeTo(2000, 500).slideUp(500);
+
+					clearCaterForm();
+
+				}
+
+				if(results.status == 'FAILED'){
+
+					$('#update-cater-alert').html(
+						'<div class="alert alert-danger"><strong>Failed ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-cater-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
+}
