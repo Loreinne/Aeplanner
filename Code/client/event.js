@@ -125,3 +125,57 @@ function vieweventById(id){
 
 	});
 }
+
+
+function viewAllcater(){
+
+	$.ajax({
+		type:"GET",
+		url: "http://127.0.0.1:5000/api/v1.0/events/",
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{
+			if(results.status == 'OK'){
+				$('#view-event-table-body').html(function(){
+					var event_row = '';
+					var event;
+
+					for (var i = 0; i < results.entries.length; i++) {
+						event = '<tr>' +
+										'<td>' + results.entries[i].title + '</td>' +
+										'<td>' + results.entries[i].date_event + '</td>' +
+										'<td>' + results.entries[i].time_event + '</td>' +
+                                        '<td>'+'<button onclick="vieweventById('+ results.entries[i].id +'); $(\'#view-event\').show();$(\'#view-all-event\').hide()" class="btn btn-info">View</button>'+'</td>'+
+										'<td>'+'<button onclick="updateEvent('+ results.entries[i].id +'); $(\'#update-event-form\').show();$(\'#view-all-event\').hide()" class="btn btn-info">Update</button>'+'</td>'+
+									 '</tr>';
+
+						event_row  += event
+					}
+
+					return event_row;
+				})
+
+				$('#add-event-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#message-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#message-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
