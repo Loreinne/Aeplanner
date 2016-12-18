@@ -200,3 +200,63 @@ function viewAllVenue(){
 	});
 }
 
+function updateVenue(id){
+	var name = $('#update_name').val();
+	var email_address = $('#update_email_address').val();
+	var description = $('#update_description').val();
+	var location = $('#update_location').val();
+	var capacity = $('#update_capacity').val();
+	var pricing = $('#update_pricing').val();
+	var location = $('#update_location').val();
+	var categories = $('#update_categories').val();
+
+	var data = JSON.stringify({ 'name' : name,
+                                'email_address' email_address,
+								'description' : description,
+								'location' : location,
+                                'capacity' : capacity,
+                                'pricing' : pricing,
+                                'location' : location,
+                                'categories' : categories
+							});
+
+	$.ajax({
+		type:"PUT",
+    	url: "http://127.0.0.1:5000/api/v1.0/venue/" + id,
+    	contentType:"application/json; charset=utf-8",
+		data:data,
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#update-venue-alert').html(
+						'<div class="alert alert-success"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-venue-alert").fadeTo(2000, 500).slideUp(500);
+
+					clearVenueForm();
+
+				}
+
+				if(results.status == 'FAILED'){
+
+					$('#update-venue-alert').html(
+						'<div class="alert alert-danger"><strong>Failed ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-venue-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
+}
