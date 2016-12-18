@@ -67,7 +67,7 @@ def store_contract():
         data['event_id'],
         data['contract_reference'],
         data['client_name'],
-        data['termsOfAgreement']), True)
+        data['termsOfAgreement']))
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'Error', 'message': res[0][0]})
@@ -119,7 +119,7 @@ def store_proposal():
           jsn['address'],
           jsn['proposal_num'],
           jsn['proposal_name'],
-          jsn['proposal_date']), True) 
+          jsn['proposal_date']))
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'Error', 'message': res[0][0]})
@@ -175,7 +175,7 @@ def store_note():
     jsn = json.loads(request.data)
     res = spcall('newnote', ( jsn['event_id'],
                               jsn['title'],
-                              jsn['note']), True) 
+                              jsn['note']))
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'Error', 'message': res[0][0]})
@@ -223,7 +223,7 @@ def store_appointment():
                                       jsn['client'],
                                       jsn['about'],
                                       jsn['app_date'],
-                                      jsn['app_time']), True) 
+                                      jsn['app_time']))
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'Error', 'message': res[0][0]})
@@ -279,7 +279,7 @@ def signup():
         return jsonify({'status': 'Error', 'message': 'Invalid Email address'})
 
 
-    res = spcall('newuser', ( jsn['email_address'], jsn['fname'], jsn['lname'], jsn['password'], jsn['address'], jsn['birthdate'], jsn['age']), True)
+    res = spcall('newuser', ( jsn['email_address'], jsn['fname'], jsn['lname'], jsn['password'], jsn['address'], jsn['birthdate'], jsn['age']))
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})
@@ -394,9 +394,36 @@ def add_catering():
     return jsonify({'status': 'OK', 'message': res[0][0]})
 
 
+
+@app.route('/api/v1.0/catering_services/', methods=['GET'])
+def get_all_catering_services():
+    res = spcall('showall_cater', ())
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
+
+    recs = []
+
+    for r in res:
+        recs.append(
+            {"name": str(r[0]), "email_address": str(r[1]), "description": str(r[2]), "location": str(r[3]),
+             "pricing": str(r[4]),"categories": str(r[5])})
+
+    return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+
+    if len(res) > 0:
+        for r in res:
+            recs.append({"name": str(r[0]), "email_address": str(r[1]), "description": str(r[2]), "location": str(r[3]),
+             "pricing": str(r[4]),"categories": str(r[5])})
+            return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+    else:
+        return jsonify({'status': 'no entries in database'})
+
+
+
 @app.route('/api/v1.0/catering_services/<id>/', methods=['GET'])
 def getspecificcater(id):
-    res = spcall('show_venue', [id])
+    res = spcall('show_cater', [id])
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'error', 'message': res[0][0]})
