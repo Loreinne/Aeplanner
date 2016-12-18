@@ -90,7 +90,7 @@ function viewvenueById(id){
 		success: function(results)
 		{;
 			if(results.status == 'OK'){
-				$('#view-resto-info').html(function(){
+				$('#view-venue-info').html(function(){
 					var venue_row = '';
 					var venue
 					for (var i = 0; i < results.entries.length; i++) {
@@ -141,3 +141,62 @@ function viewvenueById(id){
 
 	});
 }
+
+
+function viewAllVenue(){
+
+	$.ajax({
+		type:"GET",
+		url: "http://127.0.0.1:5000/api/v1.0/venue/",
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{
+			if(results.status == 'OK'){
+				$('#view-venue-table-body').html(function(){
+					var venue_row = '';
+					var venue;
+
+					for (var i = 0; i < results.entries.length; i++) {
+						venue = '<tr>' +
+										'<td>' + results.entries[i].name + '</td>' +
+										'<td>' + results.entries[i].email_address + '</td>' +
+										'<td>' + results.entries[i].description + '</td>' +
+										'<td>' + results.entries[i].location + '</td>' +
+										'<td>' + results.entries[i].capacity + '</td>' +
+										'<td>' + results.entries[i].pricing + '</td>' +
+										'<td>' + results.entries[i].categories + '</td>' +
+                                        '<td>'+'<button onclick="viewVenueById('+ results.entries[i].id +'); $(\'#view-venue\').show();$(\'#view-all-venue\').hide()" class="btn btn-info">View</button>'+'</td>'+
+										'<td>'+'<button onclick="updateVenue('+ results.entries[i].id +'); $(\'#update-venue-form\').show();$(\'#view-all-venue\').hide()" class="btn btn-info">Update</button>'+'</td>'+
+									 '</tr>';
+
+						venue_row  += venue
+					}
+
+					return venue_row;
+				})
+
+				$('#add-venue-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#message-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#message-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
+
