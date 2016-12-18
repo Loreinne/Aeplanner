@@ -314,3 +314,52 @@ function viewAllnote(){
 
 	});
 }
+
+function updateNote(id){
+	var title = $('#update_title').val();
+	var note = $('#update_note').val();
+
+	var data = JSON.stringify({ 'title' : title,
+                                'note': note
+							});
+
+	$.ajax({
+		type:"PUT",
+    	url: "http://127.0.0.1:5000/api/v1.0/note/" + id,
+    	contentType:"application/json; charset=utf-8",
+		data:data,
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#update-note-alert').html(
+						'<div class="alert alert-success"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-note-alert").fadeTo(2000, 500).slideUp(500);
+
+					clearNoteForm();
+
+				}
+
+				if(results.status == 'FAILED'){
+
+					$('#update-note-alert').html(
+						'<div class="alert alert-danger"><strong>Failed ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-note-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
+}
