@@ -127,7 +127,7 @@ function vieweventById(id){
 }
 
 
-function viewAllcater(){
+function viewAllevent(){
 
 	$.ajax({
 		type:"GET",
@@ -178,4 +178,57 @@ function viewAllcater(){
 		}
 
 	});
+}
+
+
+function updateEvent(id){
+	var title = $('#update_title').val();
+	var date_event = $('#update_date_event').val();
+	var time_event = $('#update_time_event').val();
+
+	var data = JSON.stringify({ 'title' : title,
+                                'date_event': date_event,
+								'time_event' : time_event
+
+							});
+
+	$.ajax({
+		type:"PUT",
+    	url: "http://127.0.0.1:5000/api/v1.0/events/" + id,
+    	contentType:"application/json; charset=utf-8",
+		data:data,
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#update-event-alert').html(
+						'<div class="alert alert-success"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-event-alert").fadeTo(2000, 500).slideUp(500);
+
+					clearEventForm();
+
+				}
+
+				if(results.status == 'FAILED'){
+
+					$('#update-event-alert').html(
+						'<div class="alert alert-danger"><strong>Failed ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-event-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
 }
