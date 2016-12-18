@@ -78,3 +78,66 @@ function storeVenue(){
 	    });
 }
 
+
+
+function viewvenueById(id){
+	$.ajax({
+		type:"GET",
+		url: "http://127.0.0.1:5000/api/v1.0/venue/" + id,
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{;
+			if(results.status == 'OK'){
+				$('#view-resto-info').html(function(){
+					var venue_row = '';
+					var venue
+					for (var i = 0; i < results.entries.length; i++) {
+						venue = '<div class="box-body">' +
+										'<div class="container">' +
+			                                '<div class="row">' +
+			                                	'<h4 class="box-title"><b>'+ 'Venue\'s Name: ' + results. entries[i].name +'</b></h3></div>' +
+			                                    '<div class="col-md-4">' +
+			                                        '<p style="margin-left: 5px">' +
+                                                         'Name: ' + results.entries[i].name + '<br><br>' +
+														 'Email Address: ' + results.entries[i].email_address + '<br><br>' +
+														 'Description: ' + results.entries[i].description + '<br><br>' +
+                                                         'Location.: ' + results.entries[i].location + '<br><br>' +
+                                                         'Capacity.: ' + results.entries[i].capacity + '<br><br>' +
+                                                         'Pricing: ' + results.entries[i].pricing + '<br><br>' +
+                                                         'Categories: ' + results.entries[i].capacity + '<br><br>' +
+			                                        '</p>' +
+			                                    '</div>'
+			                                '</div>' +
+			                            '</div>' +
+			                        '</div>'
+
+						venue_row  += venue
+					}
+
+					return venue_row;
+				})
+
+				$('#add-venue-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#view-venue-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#view-venue-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
