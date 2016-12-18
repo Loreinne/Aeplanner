@@ -53,69 +53,73 @@ function login(){
 
 
 
-function registerUser(){
+function registerUser() {
     var email = $('#email_address').val();
-	var fname = $('#fname').val();
-	var lname = $('#lname').val();
-	var password = $('#password').val();
-	var address = $('#address').val();
-	var birthdate = $('#birthdate').val();
-	var age = $('#age').va();
-	
-	
-
-	var data = JSON.stringify({'email_address':email_address, 'fname':fname, 'lname':lname, 'password':password, 'address':address, 'birthdate':birthdate, 'age':age});
+    var fname = $('#fname').val();
+    var lname = $('#lname').val();
+    var password = $('#password').val();
+    var address = $('#address').val();
+    var birthdate = $('#birthdate').val();
+    var age = $('#age').va();
 
 
-	$.ajax({
+    var data = JSON.stringify({
+        'email_address': email_address,
+        'fname': fname,
+        'lname': lname,
+        'password': password,
+        'address': address,
+        'birthdate': birthdate,
+        'age': age
+    });
 
-			type:'POST',
-			url:'http://localhost:8000/api/v1.0/signup/',
-			contentType:"application/json; charset=utf-8",
-			data: data,
-			dataType:'json',
 
-			success: function(results){
+    $.ajax({
 
-				if(results.status == 'OK'){
+        type: 'POST',
+        url: 'http://localhost:8000/api/v1.0/signup/',
+        contentType: "application/json; charset=utf-8",
+        data: data,
+        dataType: 'json',
 
-					$('#add-user-alert').html(
-							'<div class="alert alert-success"><strong>Successfully created ' +
-							fname + lname +'</div>');
-					$("#add-user-alert").fadeTo(2000, 500).slideUp(500);
+        success: function (results) {
 
-					$("#add-user-form");
-					$('#confirmMessage').hide();
+            if (results.status == 'OK') {
 
-                   
-				}
+                $('#add-user-alert').html(
+                    '<div class="alert alert-success"><strong>Successfully created ' +
+                    fname + lname + '</div>');
+                $("#add-user-alert").fadeTo(2000, 500).slideUp(500);
 
-				if(results.status == 'Error'){
-					$('#add-user-alert').html(
-							'<div class="alert alert-danger"><strong>Failed to create ' +
-							fname + lname +
-							 '!</strong>'+ results.message +'</div>');
-					$("#add-user-alert").fadeTo(2000, 500).slideUp(500);
-				}
+                $("#add-user-form");
+                $('#confirmMessage').hide();
 
-			},
 
-			error: function(e){
-				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
-			},
+            }
 
-			beforeSend: function (xhrObj){
+            if (results.status == 'Error') {
+                $('#add-user-alert').html(
+                    '<div class="alert alert-danger"><strong>Failed to create ' +
+                    fname + lname +
+                    '!</strong>' + results.message + '</div>');
+                $("#add-user-alert").fadeTo(2000, 500).slideUp(500);
+            }
 
-	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+        },
 
-	        }
+        error: function (e) {
+            alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+        },
 
-		});
-	}
+        beforeSend: function (xhrObj) {
+
+            xhrObj.setRequestHeader("Authorization", "Basic " + btoa(auth_user));
+
+        }
+
+    });
 
 }
-
-
 
 function checkPass(){
 	var password = document.getElementById('password');
@@ -138,3 +142,67 @@ function checkPass(){
 	  document.getElementById("submit_button").disabled = true;
 	}
 }
+
+
+
+
+
+
+
+function clearNoteForm(){
+	var note_form = document.getElementById("note-form");
+	note_form.reset();
+}
+
+function storeNote(){
+	var title = $('#title').val();
+	var note = $('#note').val();
+
+	var data = JSON.stringify({ 'title' : name,
+                                'note': note
+
+	});
+
+	$.ajax({
+	    	type:"POST",
+	    	url: "http://127.0.0.1:5000/api/v1.0/note/",
+	    	contentType:"application/json; charset=utf-8",
+			data:data,
+			dataType:"json",
+
+			success: function(results){
+				if (results.status == 'OK'){
+
+					$('#add-note-alert').html(
+						'<div class="alert alert-success"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#add-note-alert").fadeTo(2000, 500).slideUp(500);
+
+					$("#add-note-form").hide();
+
+					clearNoteForm();
+
+				}
+
+				if(results.status == 'FAILED'){
+
+					$('#add-note-alert').html(
+						'<div class="alert alert-danger"><strong>Failed ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#add-note-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
+}
+
