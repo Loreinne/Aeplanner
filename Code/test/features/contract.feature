@@ -15,7 +15,7 @@ Scenario: Create a contract
 Scenario: Create a contract that already exists
     Given the following information:
         |event_id  | contract_reference | client_name| termsOfAgreement            |
-        |     1    |    Auth   | Ms Reyes   | Termination of registration |
+        |     1    |    Auth   | Ms Louisa   | Termination of registration |
 
     When I click the add contract button
     Then I will get a '200' response

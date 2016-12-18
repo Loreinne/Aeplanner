@@ -15,8 +15,8 @@ Feature: Add, View, Update Catering service
         When I retrieve a catering service with id no. '2'
         Then i will get a '200' response
         And the following details are returned:
-        |id| name | email_address | description | location | pricing | categories |
-        |2| Clark's Catering Services | clark@gmail.com | nice | Cebu | 200 per person | Wedding |
+        | name | email_address | description | location | pricing | categories |
+        | Clark's Catering Services | clark@gmail.com | nice | Cebu | 200 per person | Wedding |
 
 
     Scenario: Update catering service details

@@ -4,7 +4,7 @@ Feature: Note
 Scenario: Add a note
     Given the following information of a note:
         |event_id|title              |note               |             
-        |    1   |Wedding Preparation|the theme is vintage |
+        |    1   |Birthday |the theme is fairytale |
 
     When I click the add note button
     Then I will get a '200' response

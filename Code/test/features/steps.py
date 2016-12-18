@@ -220,10 +220,10 @@ def addcater(step):
 
 @step(u'Given that a catering service with id no. \'(.*)\' exist')
 def given_cater_exist(step,id):
-    world.response = world.app.get('/api/v1.0/catering_service/{}/'.format(id))
+    world.response = world.app.get('/api/v1.0/catering_services/{}/'.format(id))
 
 @step(u'When I retrieve a catering service with id no. \'(.*)\'')
-def retrieve_venue(step,id):
+def retrieve_cater(step,id):
     world.res = json.loads(world.response.data)
 
 @step('When I update the catering service details into the following:')

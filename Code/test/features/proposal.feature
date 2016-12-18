@@ -4,7 +4,7 @@ Feature: Proposal
 Scenario: Create a Proposal
     Given the following information of a proposal:
         |event_id |name        | address | proposal_num | proposal_name | proposal_date   |
-        |   1     |Ma dela cruz| CDO     | 1            | Wedding       | October 3, 2016 |
+        |   1     |Juan tamad| CDO     | 1            | Wedding       | October 3, 2016 |
 
     When I click the add proposal button
     Then I will get a '200' response
