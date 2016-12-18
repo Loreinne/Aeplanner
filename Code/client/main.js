@@ -206,3 +206,59 @@ function storeNote(){
 	    });
 }
 
+
+function viewnoteById(id){
+	$.ajax({
+		type:"GET",
+		url: "http://127.0.0.1:5000/api/v1.0/note/" + id,
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{;
+			if(results.status == 'OK'){
+				$('#view-note-info').html(function(){
+					var note_row = '';
+					var note
+					for (var i = 0; i < results.entries.length; i++) {
+						cater = '<div class="box-body">' +
+										'<div class="container">' +
+			                                '<div class="row">' +
+			                                	'<h4 class="box-title"><b>'+ 'Title: ' + results. entries[i].title +'</b></h3></div>' +
+			                                    '<div class="col-md-4">' +
+			                                        '<p style="margin-left: 5px">' +
+														 'Note: ' + results.entries[i].Note + '<br><br>' +
+			                                        '</p>' +
+			                                    '</div>'
+			                                '</div>' +
+			                            '</div>' +
+			                        '</div>'
+
+						note_row  += note
+					}
+
+					return note_row;
+				})
+
+				$('#add-cater-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#view-note-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#view-note-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
