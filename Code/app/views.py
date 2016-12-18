@@ -342,6 +342,29 @@ def add_venue():
 
 
 
+@app.route('/api/v1.0/venue/', methods=['GET'])
+def get_all_venue():
+    res = spcall('showall_venues', ())
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'error', 'message': res[0][0]})
+
+    recs = []
+
+    for r in res:
+        recs.append(
+            {"name": str(r[0]), "email_address": str(r[1]), "description": str(r[2]), "location": str(r[3]),
+             "capacity": str(r[4]),"pricing": str(r[5]), "categories": str(r[6])})
+    return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+
+    if len(res) > 0:
+        for r in res:
+            recs.append({"name": str(r[0]), "email_address": str(r[1]), "description": str(r[2]), "location": str(r[3]),
+             "capacity": str(r[4]),"pricing": str(r[5]), "categories": str(r[6])})
+            return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+    else:
+        return jsonify({'status': 'no entries in database'})
+
 @app.route('/api/v1.0/venue/<id>/', methods=['GET'])
 def getspecificvenue(id):
     res = spcall('show_venue', [id])
