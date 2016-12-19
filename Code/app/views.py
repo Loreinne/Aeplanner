@@ -1,12 +1,40 @@
-from flask import Flask, jsonify, request, session, redirect
-from flask.ext.httpauth import HTTPBasicAuth
+from flask import Flask, request, jsonify, session, make_response, g
+from flask_httpauth import HTTPTokenAuth
+from itsdangerous import TimedJSONWebSignatureSerializer as JWT
+from app.config import BaseConfig
+import sys, os, flask, json
 from models import DBconn, spcall
-import flask, sys, json
+from flask.ext.cors import CORS, cross_origin
+from flask.ext.bcrypt import Bcrypt
+# from flaskext.mail import Mail
+from paypalrestsdk import Payout, ResourceNotFound
+import paypalrestsdk
+import requests
+import ssl
+import logging
+import urllib2
+import time
 
 app = Flask(__name__)
 
-auth = HTTPBasicAuth()
+app.config.from_object(BaseConfig)
+app.config['SECRET_KEY'] = 'EERwyDyEfWWO4NLFAqs8m4UZxKhZvMOsgeKqi1G0jgyREwE4LuZLC_g677uCJXcHUP7013FU65yAGoHM'
 
+jwt = JWT(app.config['SECRET_KEY'], expires_in=3600)
+auth = HTTPTokenAuth('Bearer')
+CORS(app, supports_credentials=True)
+
+@auth.verify_token
+def verify_token(token):
+    g.user = None
+    try:
+        data = jwt.loads(token)
+    except:
+        return False
+    if 'user' in data:
+        g.user = data['user']
+        return True
+    return False
 
 GENERIC_DOMAINS = "aero", "asia", "biz", "cat", "com", "coop", \
                   "edu", "gov", "info", "int", "jobs", "mil", "mobi", "museum", \
