@@ -1,9 +1,11 @@
+import json
+
+from app import app
 from lettuce import step, world, before
 from nose.tools import assert_equals
 from webtest import *
-from app import app
-from app.views import *
-import json
+
+from serverside.app.views import *
 
 
 @before.all
