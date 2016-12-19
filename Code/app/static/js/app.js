@@ -1,13 +1,19 @@
+var myApp = angular.module('myApp', ['ui.router']);
 myApp.config(function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/404");
 
   $stateProvider
 
-      .state('landingpage', {
-          url: "",
-          templateUrl: "partials/landingpage.html",
-          controller: 'searchController'
+      .state('login', {
+          url: "/login",
+          templateUrl: "partials/login.html",
+          controller: 'userController'
+      })
+     .state('signup', {
+          url: "/signup",
+          templateUrl: "partials/signup.html",
+          controller: 'userController'
       })
 
     });

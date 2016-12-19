@@ -12,7 +12,7 @@ angular.module('myApp').controller('userController',
                     AuthService.login($scope.loginForm.email_address, $scope.loginForm.password)
                     // handle success
                         .then(function (res) {
-                            $window.location.href = "index2.html#/hotel_personnel"
+                            $window.location.href = "dashboard.html#/dashboard"
                             $scope.isAuthenticated = true;
                             $scope.disabled = false;
                             $scope.loginForm = {};
@@ -42,11 +42,13 @@ angular.module('myApp').controller('userController',
 
                     // call register from service
                     AuthService.register(
+                        $scope.registerForm.email_address,
                         $scope.registerForm.fname,
-                        $scope.registerForm.mname,
                         $scope.registerForm.lname,
-                        $scope.registerForm.email,
-                        $scope.registerForm.password)
+                        $scope.registerForm.password,
+                        $scope.registerForm.address,
+                        $scope.registerForm.birthdate,
+                        $scope.registerForm.age)
 
                     // handle success
                         .then(function () {

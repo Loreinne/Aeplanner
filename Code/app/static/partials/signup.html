@@ -1,0 +1,46 @@
+    <div class="login-box box" ng-controller="userController">
+  <div class="login-logo">
+    <a href="#"><b>Sign up</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body" >
+
+    <form ng-submit="register()">
+      <div class="form-group has-feedback">
+        <input type="email_address" class="form-control" placeholder="Email Address" ng-model="signupForm.email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="fname" class="form-control" placeholder="First Name" ng-model="signupForm.fname">
+      </div>
+      <div class="form-group has-feedback">
+        <input type="lname" class="form-control" placeholder="Last Name" ng-model="signupForm.lname">
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password" ng-model="signupForm.password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="birthdate" class="form-control" placeholder="Birtdate" ng-model="signupForm.birthdate">
+      </div>
+      <div class="form-group has-feedback">
+        <input type="age" class="form-control" placeholder="Age" ng-model="signupForm.age">
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign Up</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+  </div>
+  <!-- /.login-box-body -->
+
+
+</div>
+

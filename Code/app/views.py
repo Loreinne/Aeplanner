@@ -56,7 +56,7 @@ def login():
     else:
         status = True
         token = jwt.dumps({'user': data['email_address']})
-        return jsonify({'status': status, 'token': token, 'hotel_id': res, 'message': 'success'})
+        return jsonify({'status': status, 'token': token, 'id': res, 'message': 'success'})
 
 
 @app.route('/api/v1.0/contract/', methods=['POST'])
