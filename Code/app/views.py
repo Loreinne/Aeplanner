@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify, session, make_response, g
 from flask_httpauth import HTTPTokenAuth
 from itsdangerous import TimedJSONWebSignatureSerializer as JWT
-from app.config import BaseConfig
 import sys, os, flask, json
 from models import DBconn, spcall
 from flask.ext.cors import CORS, cross_origin
@@ -17,7 +16,6 @@ import time
 
 app = Flask(__name__)
 
-app.config.from_object(BaseConfig)
 app.config['SECRET_KEY'] = 'EERwyDyEfWWO4NLFAqs8m4UZxKhZvMOsgeKqi1G0jgyREwE4LuZLC_g677uCJXcHUP7013FU65yAGoHM'
 
 jwt = JWT(app.config['SECRET_KEY'], expires_in=3600)
