@@ -77,12 +77,9 @@
                             <!-- .nav -->
                             <ul class="nav navbar-nav">
                                 <h3>Aeplanner</h3>
-                                <li class="active">
-</li>
-                                <li>
-</li>
-                                <li>
-</li>
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
                                 <li class='dropdown '>
                                     <ul class="dropdown-menu">
                                         <li>
@@ -139,7 +136,8 @@
                         <a href="dashboard.html"><i class="fa fa-dashboard"></i><span class="link-title">&nbsp;Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="Add_Event.html"><i class="fa fa-pencil-square"><span class="link-title">&nbsp;Event</span></i></a>
+                        <a href="#" onclick="$('#add-event-form').show(); 
+                                             $('#view-event-table').hide();""><i class="fa fa-pencil-square"><span class="link-title">&nbsp;Event</span></i></a>
                     </li>
                     <li>
                         <a href="Add_Proposal.html"><span class="fa fa-chevron-left"></span>Proposal</a>
@@ -165,6 +163,41 @@
                     </li>
                 </ul>
                 <!-- /#menu -->
+
+                <!--ADD Event Page -->
+                <section id="add-event-form">
+                     <div class="outer">
+                    <div class="inner bg-light lter">
+                        <div class="row">
+                            <h2><b align="left">Add Event</b></h2>
+                            <div class="form-group clearfix"> 
+                                <label class="control-label" for="formInput1379">
+                                    <h4><b>Title</b></h4>
+                                </label>
+                                <input type="text" class="form-control" id="formInput1379" placeholder="Placeholder text">
+                            </div>
+                            <div class="form-group clearfix"> 
+                                <label class="control-label" for="formInput1484">
+                                    <h4><b>Date</b></h4>
+                                </label>
+                                <input type="date" class="form-control" id="formInput1484" placeholder="Placeholder text">
+                            </div>
+                            <div class="form-group"> 
+                                <label class="control-label" for="formInput1511">
+                                    <h4><b>Time</b></h4>
+                                </label>
+                                <input type="time" class="form-control" id="formInput1511" placeholder="Placeholder text">
+                            </div>
+                            <center>
+                                <button type="button" class="btn btn-primary">Add</button>
+                            </center>
+                        </div>                         
+                    </div>                     
+                    <!-- /.inner -->
+                </div>
+                <!-- /.outer -->
+                </section>
+
             </div>
             <!-- /#left -->
             <div id="content">
