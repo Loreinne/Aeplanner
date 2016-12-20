@@ -137,10 +137,11 @@
                     </li>
                     <li>
                         <a href="#" onclick="$('#add-event-form').show(); 
-                                             $('#view-event-table').hide();""><i class="fa fa-pencil-square"><span class="link-title">&nbsp;Event</span></i></a>
+                                             $('#view-event-table').hide();"><i class="fa fa-pencil-square"><span class="link-title">&nbsp;Event</span></i></a>
                     </li>
                     <li>
-                        <a href="Add_Proposal.html"><span class="fa fa-chevron-left"></span>Proposal</a>
+                        <a href="#" onclick="$('#add-proposal-form').show();
+                                             $('#view-proposal-form').hide();"><span class="fa fa-chevron-left"></span>Proposal</a>
                     </li>
                     <li>
                         <a href=""><i class="fa fa-chevron-left"></i>Contract</a>
@@ -166,7 +167,7 @@
 
                 <!--ADD Event Page -->
                 <section id="add-event-form">
-                     <div class="outer">
+                    <div class="outer">
                     <div class="inner bg-light lter">
                         <div class="row">
                             <h2><b align="left">Add Event</b></h2>
@@ -193,6 +194,51 @@
                             </center>
                         </div>                         
                     </div>                     
+                    <!-- /.inner -->
+                </div>
+                <!-- /.outer -->
+                </section>
+
+                <!--ADD-proposal-form-->
+                <section>
+                    <div class="outer">
+                    <div class="inner bg-light lter">
+                        <div class="row">
+                            <h3 align="center"></h3>
+                            <h2 align="letf">Add Proposal</h2>
+                            <div class="form-group"> 
+                                <label class="control-label" for="formInput490">
+                                    <h3><h4>Name</h4></h3>
+                                </label>
+                                <input type="text" class="form-control" id="formInput490" placeholder="Enter">
+                            </div>
+                            <div class="form-group"> 
+                                <label class="control-label" for="formInput532">
+                                    <h4>Address</h4>
+                                </label>
+                                <input type="text" class="form-control" id="formInput532" placeholder="Enter">
+                            </div>
+                            <div class="form-group"> 
+                                <label class="control-label" for="formInput583">
+                                    <h4>Proposal Number</h4>
+                                </label>
+                                <input type="number" class="form-control" id="formInput583">
+                            </div>
+                            <div class="form-group"> 
+                                <label class="control-label" for="formInput596">
+                                    <h4>Proposal Name&nbsp;</h4>
+                                </label>
+                                <input type="text" class="form-control" id="formInput596" placeholder="Enter">
+                            </div>
+                            <div class="form-group"> 
+                                <label class="control-label" for="formInput625">
+                                    <h4>Proposal Date</h4>
+                                </label>
+                                <input type="date" class="form-control" id="formInput625">
+                            </div>
+                            <button type="button" class="btn btn-primary btn-lg">Add </button>
+                        </div>
+                    </div>
                     <!-- /.inner -->
                 </div>
                 <!-- /.outer -->
@@ -339,6 +385,7 @@
         <script src="assets/js/core.js"></script>
         <!-- Metis demo scripts -->
         <script src="assets/js/app.js"></script>
+        <script src="assets/js/main.js"></script>
         <script>
                     $(function() {
                       Metis.dashboard();
