@@ -23,7 +23,7 @@ function storeProposal(){
 
 	$.ajax({
 		type: "POST",
-		url: "http://localhost:8051/api/v1.0/proposal/",
+		url: "http://localhost:8085/api/v1.0/proposal/",
 		contentType: "application/json; charset=utf-8",
 		data: data,
 		dataType: "json",

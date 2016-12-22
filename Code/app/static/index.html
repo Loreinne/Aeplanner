@@ -13,6 +13,7 @@
         <meta name="msapplication-TileColor" content="#5bc0de" />
         <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
         <!-- Bootstrap -->
+        <link href="assets/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
         <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
@@ -122,8 +123,7 @@
                         <div class="media-body">
                             <h3 class="media-heading">Archie</h3>
                             <ul class="list-unstyled user-info">
-                                <li>
-</li>
+                                <li></li>
                             </ul>
                         </div>
                     </div>
@@ -133,14 +133,20 @@
                     <li class="nav-header">Menu</li>
                     <li class="nav-divider"></li>
                     <li>
-                        <a href="dashboard.html"><i class="fa fa-dashboard"></i><span class="link-title">&nbsp;Dashboard</span></a>
+                        <a href="#" onclick="$('#dashboard').show();
+                                            $('#add-event-form').hide();
+                                            $('#add-proposal-form').hide();"><i class="fa fa-dashboard"></i><span class="link-title">&nbsp;Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="#" onclick="$('#add-event-form').show(); 
+                        <a href="#" onclick="$('#add-event-form').show();
+                                             $('#dashboard').hide();
+                                             $('#add-proposal-form').hide(); 
                                              $('#view-event-table').hide();"><i class="fa fa-pencil-square"><span class="link-title">&nbsp;Event</span></i></a>
                     </li>
                     <li>
                         <a href="#" onclick="$('#add-proposal-form').show();
+                                             $('#dashboard').hide();
+                                             $('#add-event-form').hide();
                                              $('#view-proposal-form').hide();"><span class="fa fa-chevron-left"></span>Proposal</a>
                     </li>
                     <li>
@@ -165,45 +171,65 @@
                 </ul>
                 <!-- /#menu -->
 
-                <!--ADD Event Page -->
-                <section id="add-event-form">
-                    <div class="outer">
+                
+
+                
+            </div>
+            <!-- /#left -->
+            <div id="content">
+                <div class="outer">
                     <div class="inner bg-light lter">
+                        <div class="text-center"></div>
                         <div class="row">
-                            <h2><b align="left">Add Event</b></h2>
-                            <div class="form-group clearfix"> 
+                            <section id="dashboard">
+                                <div class="col-lg-12">
+                                <div class="box">
+                                    <header>
+                                        <h5>Calendar</h5>
+                                    </header>
+                                    <div id="calendar_content" class="body">
+                                        <div id='calendar'></div>
+                                    </div>
+                                </div>
+                            </div>
+                            </section>
+                        </div>
+                        
+                        <div class="row">    
+                            <!--ADD Event Page -->
+                            <section class="content-header">
+                                <div id="welcome-alert-user"></div> 
+                            </section>
+                            <section id="add-event-form">
+                                <h2><b align="left">Add Event</b></h2>
+                                <div class="form-group clearfix"> 
                                 <label class="control-label" for="formInput1379">
                                     <h4><b>Title</b></h4>
                                 </label>
                                 <input type="text" class="form-control" id="formInput1379" placeholder="Placeholder text">
-                            </div>
-                            <div class="form-group clearfix"> 
+                                </div>
+                                <div class="form-group clearfix"> 
                                 <label class="control-label" for="formInput1484">
                                     <h4><b>Date</b></h4>
                                 </label>
                                 <input type="date" class="form-control" id="formInput1484" placeholder="Placeholder text">
-                            </div>
-                            <div class="form-group"> 
+                                </div>
+                                <div class="form-group"> 
                                 <label class="control-label" for="formInput1511">
                                     <h4><b>Time</b></h4>
                                 </label>
                                 <input type="time" class="form-control" id="formInput1511" placeholder="Placeholder text">
-                            </div>
-                            <center>
+                                </div>
+                                <center>
                                 <button type="button" class="btn btn-primary">Add</button>
-                            </center>
-                        </div>                         
-                    </div>                     
-                    <!-- /.inner -->
-                </div>
-                <!-- /.outer -->
-                </section>
+                                </center>
+                            </section>
+                        </div>
+                            
 
-                <!--ADD-proposal-form-->
-                <section>
-                    <div class="outer">
-                    <div class="inner bg-light lter">
-                        <div class="row">
+                        <div class ="row">
+                            <!--ADD-proposal-form-->
+                            <section id = "add-proposal-form">
                             <h3 align="center"></h3>
                             <h2 align="letf">Add Proposal</h2>
                             <div class="form-group"> 
@@ -237,38 +263,17 @@
                                 <input type="date" class="form-control" id="formInput625">
                             </div>
                             <button type="button" class="btn btn-primary btn-lg">Add </button>
-                        </div>
-                    </div>
-                    <!-- /.inner -->
-                </div>
-                <!-- /.outer -->
-                </section>
-
-            </div>
-            <!-- /#left -->
-            <div id="content">
-                <div class="outer">
-                    <div class="inner bg-light lter">
-                        <div class="text-center">
-</div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <header>
-                                        <h5>Calendar</h5>
-                                    </header>
-                                    <div id="calendar_content" class="body">
-                                        <div id='calendar'></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </section>
+                        </div>    
+                        </div>  
                     </div>
                     <!-- /.inner -->
                 </div>
                 <!-- /.outer -->
             </div>
             <!-- /#content -->
+
+
             <div id="right" class="bg-light lter">
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
