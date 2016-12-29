@@ -145,7 +145,7 @@ def store_proposal():
           jsn['address'],
           jsn['proposal_num'],
           jsn['proposal_name'],
-          jsn['proposal_date']))
+          jsn['proposal_date']), True)
 
     if 'Error' in str(res[0][0]):
         return jsonify({'status': 'Error', 'message': res[0][0]})
