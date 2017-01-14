@@ -227,7 +227,7 @@ $$
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Venue (name, email_address, description, location, capacity, pricing, categories)
+          INSERT INTO Venue (v_name, v_email_address, v_description, v_location, v_capacity, v_pricing, v_categories)
                         VALUES (par_name, par_email, par_description, par_location, par_capacity, par_pricing, par_categories);
                         loc_res = 'OK';
           end if;
@@ -247,7 +247,7 @@ $$
 create or replace function showall_venues (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR,OUT TEXT) returns setof record as
   $$
 
-    SELECT name, email_address, description, location, capacity, pricing, categories FROM Venue ;
+    SELECT v_name, v_email_address, v_description, v_location, v_capacity, v_pricing, v_categories FROM Venue ;
 
   $$
 
@@ -258,7 +258,7 @@ create or replace function showall_venues (OUT VARCHAR, OUT VARCHAR, OUT TEXT, O
 create or replace function show_venue (IN par_id int ,OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT TEXT) returns setof record as
   $$
 
-    SELECT name, email_address, description, location, capacity, pricing, categories FROM Venue WHERE  id = par_id ;
+    SELECT v_name, v_email_address, v_description, v_location, v_capacity, v_pricing, v_categories FROM Venue WHERE  v_id = par_id ;
 
   $$
 
@@ -272,15 +272,15 @@ create or replace function updatevenue(par_id int, par_name VARCHAR, par_email V
     UPDATE Venue
     SET
 
-    name = par_name,
-    email_address = par_email,
-    description = par_description,
-    location = par_location,
-    capacity = par_description,
-    pricing = par_pricing,
-    categories = par_categories
+    v_name = par_name,
+    v_email_address = par_email,
+    v_description = par_description,
+    v_location = par_location,
+    v_capacity = par_description,
+    v_pricing = par_pricing,
+    v_categories = par_categories
 
-    WHERE id = par_id;
+    WHERE v_id = par_id;
 $$
     LANGUAGE 'sql';
 
@@ -300,7 +300,7 @@ $$
         loc_res = 'Error';
 
       ELSE
-          INSERT INTO Catering_services (name, email_address, description, location, pricing, categories)
+          INSERT INTO Catering_services (c_name, c_email_address, c_description, c_location, c_pricing, c_categories)
                         VALUES (par_name, par_email, par_description, par_location,par_pricing, par_categories);
                         loc_res = 'OK';
           end if;
@@ -318,7 +318,7 @@ $$
 create or replace function showall_cater (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT TEXT) returns setof record as
   $$
 
-    SELECT name, email_address, description, location, pricing, categories FROM Catering_services ;
+    SELECT c_name, c_email_address, c_description, c_location, c_pricing, c_categories FROM Catering_services ;
 
   $$
 
@@ -329,7 +329,7 @@ create or replace function showall_cater (OUT VARCHAR, OUT VARCHAR, OUT TEXT, OU
 create or replace function show_cater (IN par_id int ,OUT VARCHAR, OUT VARCHAR ,OUT TEXT, OUT VARCHAR, OUT VARCHAR, OUT TEXT) returns setof record as
   $$
 
-    SELECT name, email_address, description, location, pricing, categories FROM Catering_services WHERE  id = par_id ;
+    SELECT c_name, c_email_address, c_description, c_location, c_pricing, c_categories FROM Catering_services WHERE  c_id = par_id ;
 
   $$
 
@@ -342,14 +342,14 @@ create or replace function updatecater(in par_id INT, par_name VARCHAR, par_emai
     UPDATE Catering_services
     SET
 
-    name = par_name,
-    email_address = par_email,
-    description = par_description,
-    location = par_location,
-    pricing = par_pricing,
-    categories = par_categories
+    c_name = par_name,
+    c_email_address = par_email,
+    c_description = par_description,
+    c_location = par_location,
+    c_pricing = par_pricing,
+    c_categories = par_categories
 
-    WHERE id = par_id;
+    WHERE c_id = par_id;
 $$
     LANGUAGE 'sql';
 
