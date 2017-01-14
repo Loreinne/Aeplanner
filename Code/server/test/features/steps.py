@@ -5,7 +5,7 @@ from lettuce import step, world, before
 from nose.tools import assert_equals
 from webtest import *
 
-from serverside.app.views import *
+from app.views import *
 
 
 @before.all

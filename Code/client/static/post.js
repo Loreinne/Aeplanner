@@ -40,7 +40,7 @@ function addVenue() {
 
 
 
-function addVCater() {
+function addCater() {
     var name = $('#name').val();
     var email_address = $('#email_address').val();
     var description = $('#description').val();

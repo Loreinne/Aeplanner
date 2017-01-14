@@ -359,7 +359,7 @@ def add_venue():
     jsn = json.loads(request.data)
 
 
-    res = spcall('newvenue', ( jsn['name'], jsn['email_address'], jsn['description'], jsn['location'], jsn['capacity'], jsn['pricing'], jsn['categories']))
+    res = spcall('newvenue', ( jsn['v_name'], jsn['v_email_address'], jsn['v_description'], jsn['v_location'], jsn['v_capacity'], jsn['v_pricing'], jsn['v_categories']))
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})
@@ -379,14 +379,14 @@ def get_all_venue():
 
     for r in res:
         recs.append(
-            {"name": str(r[0]), "email_address": str(r[1]), "description": str(r[2]), "location": str(r[3]),
-             "capacity": str(r[4]),"pricing": str(r[5]), "categories": str(r[6])})
+            {"v_name": str(r[0]), "v_email_address": str(r[1]), "v_description": str(r[2]), "v_location": str(r[3]),
+             "v_capacity": str(r[4]),"v_pricing": str(r[5]), "v_categories": str(r[6])})
     return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
 
     if len(res) > 0:
         for r in res:
-            recs.append({"name": str(r[0]), "email_address": str(r[1]), "description": str(r[2]), "location": str(r[3]),
-             "capacity": str(r[4]),"pricing": str(r[5]), "categories": str(r[6])})
+            recs.append({"v_name": str(r[0]), "v_email_address": str(r[1]), "v_description": str(r[2]), "v_location": str(r[3]),
+             "v_capacity": str(r[4]),"v_pricing": str(r[5]), "v_categories": str(r[6])})
             return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
     else:
         return jsonify({'status': 'no entries in database'})
@@ -400,31 +400,31 @@ def getspecificvenue(id):
 
     rec = res[0]
 
-    return jsonify({"name": str(rec[0]),  "email_address": str(rec[1]), "description" : str(rec[2]), "location" : str(rec[3]), "capacity": str(rec[4]), "pricing" : str(rec[5]), "categories" : str(rec[6])})
+    return jsonify({"v_name": str(rec[0]),  "v_email_address": str(rec[1]), "v_description" : str(rec[2]), "v_location" : str(rec[3]), "v_capacity": str(rec[4]), "v_pricing" : str(rec[5]), "v_categories" : str(rec[6])})
 
 @app.route('/api/v1.0/venue/', methods = ['PUT'])
 def update_venue():
   jsn = json.loads(request.data)
 
-  id = jsn.get('id', '')
-  name = jsn.get('name', '')
-  email_address = jsn.get('email_address', '')
-  description = jsn.get('description', '')
-  location = jsn.get('location', '')
-  capacity = jsn.get('capacity', '')
-  pricing = jsn.get('pricing', '')
-  categories = jsn.get('categories', '')
+  v_id = jsn.get('v_id', '')
+  v_name = jsn.get('v_name', '')
+  v_email_address = jsn.get('v_email_address', '')
+  v_description = jsn.get('v_description', '')
+  v_location = jsn.get('v_location', '')
+  v_capacity = jsn.get('v_capacity', '')
+  v_pricing = jsn.get('v_pricing', '')
+  v_categories = jsn.get('v_categories', '')
 
 
   spcall('updatevenue', (
-    id,
-    name,
-    email_address,
-    description,
-    location,
-    capacity,
-    pricing,
-    categories ), True)
+    v_id,
+    v_name,
+    v_email_address,
+    v_description,
+    v_location,
+    v_capacity,
+    v_pricing,
+    v_categories ), True)
 
   return jsonify({"status": "OK"})
 
@@ -435,7 +435,7 @@ def add_catering():
     jsn = json.loads(request.data)
 
 
-    res = spcall('newcatering', ( jsn['name'], jsn['email_address'], jsn['description'], jsn['location'], jsn['pricing'], jsn['categories']))
+    res = spcall('newcatering', ( jsn['c_name'], jsn['c_email_address'], jsn['c_description'], jsn['c_location'], jsn['c_pricing'], jsn['c_categories']))
 
     if 'Error' in str (res[0][0]):
         return jsonify ({'status': 'Error', 'message': res[0][0]})
@@ -455,15 +455,15 @@ def get_all_catering_services():
 
     for r in res:
         recs.append(
-            {"name": str(r[0]), "email_address": str(r[1]), "description": str(r[2]), "location": str(r[3]),
-             "pricing": str(r[4]),"categories": str(r[5])})
+            {"c_name": str(r[0]), "c_email_address": str(r[1]), "c_description": str(r[2]), "c_location": str(r[3]),
+             "c_pricing": str(r[4]),"c_categories": str(r[5])})
 
     return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
 
     if len(res) > 0:
         for r in res:
-            recs.append({"name": str(r[0]), "email_address": str(r[1]), "description": str(r[2]), "location": str(r[3]),
-             "pricing": str(r[4]),"categories": str(r[5])})
+            recs.append({"c_name": str(r[0]), "c_email_address": str(r[1]), "c_description": str(r[2]), "c_location": str(r[3]),
+             "c_pricing": str(r[4]),"c_categories": str(r[5])})
             return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
     else:
         return jsonify({'status': 'no entries in database'})
@@ -479,7 +479,7 @@ def getspecificcater(id):
 
     rec = res[0]
 
-    return jsonify({"name": str(rec[0]),  "email_address": str(rec[1]), "description" : str(rec[2]), "location" : str(rec[3]), "pricing" : str(rec[4]), "categories" : str(rec[5])})
+    return jsonify({"c_name": str(rec[0]),  "c_email_address": str(rec[1]), "c_description" : str(rec[2]), "c_location" : str(rec[3]), "c_pricing" : str(rec[4]), "c_categories" : str(rec[5])})
 
 
 
@@ -487,23 +487,23 @@ def getspecificcater(id):
 def update_catering():
   jsn = json.loads(request.data)
 
-  id = jsn.get('id', '')
-  name = jsn.get('name', '')
-  email_address = jsn.get('email_address', '')
-  description = jsn.get('description', '')
-  location = jsn.get('location', '')
-  pricing = jsn.get('pricing', '')
-  categories = jsn.get('categories', '')
+  c_id = jsn.get('c_id', '')
+  c_name = jsn.get('c_name', '')
+  c_email_address = jsn.get('c_email_address', '')
+  c_description = jsn.get('c_description', '')
+  c_location = jsn.get('c_location', '')
+  c_pricing = jsn.get('c_pricing', '')
+  c_categories = jsn.get('c_categories', '')
 
 
   spcall('updatecater', (
-    id,
-    name,
-    email_address,
-    description,
-    location,
-    pricing,
-    categories ), True)
+    c_id,
+    c_name,
+    c_email_address,
+    c_description,
+    c_location,
+    c_pricing,
+    c_categories ), True)
 
   return jsonify({"status": "OK"})
 

@@ -18,8 +18,8 @@
       <file leaf-file-name="post.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/static/post.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+            <state relative-caret-position="630">
+              <caret line="42" column="12" lean-forward="false" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -28,105 +28,100 @@
       <file leaf-file-name="admin.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/static/admin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="369" column="57" lean-forward="false" selection-start-line="369" selection-start-column="57" selection-end-line="369" selection-end-column="57" />
+            <state relative-caret-position="495">
+              <caret line="497" column="17" lean-forward="true" selection-start-line="497" selection-start-column="17" selection-end-line="497" selection-end-column="17" />
               <folding>
-                <marker date="1483029006673" expanded="true" signature="26162:26175" ph="..." />
+                <marker date="1483029909727" expanded="true" signature="30223:30236" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/static/user.js">
+      <file leaf-file-name="tables.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/db/tables.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+            <state relative-caret-position="189">
+              <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+              <folding>
+                <marker date="1484372915220" expanded="true" signature="261:532" ph="CREATE TABLE... Venue" />
+                <marker date="1484372915220" expanded="true" signature="535:793" ph="CREATE TABLE... Catering_services" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/db/functions.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="349" column="33" lean-forward="true" selection-start-line="349" selection-start-column="33" selection-end-line="349" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/static/index.html">
+      <file leaf-file-name="steps.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/test/features/steps.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+            <state relative-caret-position="135">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Catering.feature" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/test/features/Catering.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/static/get.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
-              <caret line="122" column="62" lean-forward="false" selection-start-line="122" selection-start-column="62" selection-end-line="122" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2460">
-              <caret line="144" column="25" lean-forward="false" selection-start-line="144" selection-start-column="24" selection-end-line="144" selection-end-column="25" />
+            <state relative-caret-position="214">
+              <caret line="513" column="34" lean-forward="true" selection-start-line="513" selection-start-column="34" selection-end-line="513" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/app/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1483029230681" expanded="true" signature="4389:4802" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="4470:4629" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="4886:5539" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="5166:5539" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="5188:5539" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="5214:5457" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="5614:6309" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="5893:6139" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="6377:6712" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="6443:6545" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="6791:7293" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="7069:7293" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="7091:7293" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="7117:7211" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="7360:7755" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="7505:7584" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="7841:8310" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="7913:8143" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="8400:9010" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="8683:9010" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="8705:9010" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="8731:8928" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="9091:9673" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="9302:9503" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="9744:10207" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="10297:10624" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="10694:11186" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="11043:11142" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="11256:11612" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="11684:12546" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="11858:12071" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="11893:12069" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="12167:12475" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="12189:12475" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="12215:12391" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="12626:12989" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="13060:13571" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="13421:13526" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="13655:13997" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="14093:14909" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="14266:14456" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="14301:14454" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="14553:14838" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="14575:14838" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="14601:14754" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="15003:15341" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="15429:15889" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="15753:15844" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="15959:16259" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="16335:16590" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="16663:16957" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="16868:16913" ph="..." />
-                <marker date="1483029230681" expanded="true" signature="17001:17558" ph="..." />
+                <element signature="e#0#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/static/js/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="15" column="7" lean-forward="false" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#43#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/static/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -154,6 +149,7 @@
       <find>promo</find>
       <find>/less/theme.less</find>
       <find>prop</find>
+      <find>venue</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -196,13 +192,18 @@
         <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/static/dashboard.html" />
         <option value="$PROJECT_DIR$/app/static/index.html" />
-        <option value="$PROJECT_DIR$/server/app/views.py" />
-        <option value="$PROJECT_DIR$/client/static/post.js" />
         <option value="$PROJECT_DIR$/client/static/get.js" />
         <option value="$PROJECT_DIR$/client/static/style.css" />
-        <option value="$PROJECT_DIR$/client/static/js/routes.js" />
         <option value="$PROJECT_DIR$/client/static/index.html" />
         <option value="$PROJECT_DIR$/client/static/user.js" />
+        <option value="$PROJECT_DIR$/client/static/js/routes.js" />
+        <option value="$PROJECT_DIR$/client/static/post.js" />
+        <option value="$PROJECT_DIR$/client/static/admin.html" />
+        <option value="$PROJECT_DIR$/server/db/tables.sql" />
+        <option value="$PROJECT_DIR$/server/db/functions.sql" />
+        <option value="$PROJECT_DIR$/server/test/features/steps.py" />
+        <option value="$PROJECT_DIR$/server/test/features/Catering.feature" />
+        <option value="$PROJECT_DIR$/server/app/views.py" />
       </list>
     </option>
   </component>
@@ -264,132 +265,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -432,6 +307,52 @@
             <PATH_ELEMENT USER_OBJECT="static">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -695,7 +616,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35207102" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39940828" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -721,11 +642,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/run.py" />
-    <entry file="file://$PROJECT_DIR$/serverside/app/views.py" />
-    <entry file="file://$PROJECT_DIR$/client/appointment.js" />
-    <entry file="file://$PROJECT_DIR$/client/event.js" />
-    <entry file="file://$PROJECT_DIR$/serverside/db/tables.sql" />
     <entry file="file://$PROJECT_DIR$/client/venue.js" />
     <entry file="file://$PROJECT_DIR$/serverside/run..py" />
     <entry file="file://$PROJECT_DIR$/serverside/__init__.py" />
@@ -762,90 +678,10 @@
     <entry file="file://$PROJECT_DIR$/app/static/dashboard.html" />
     <entry file="file://$PROJECT_DIR$/app/static/js/services.js" />
     <entry file="file://$PROJECT_DIR$/db/tables.sql" />
-    <entry file="file://$PROJECT_DIR$/server/db/tables.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="69" column="25" lean-forward="false" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/static/js/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/static/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2460">
-          <caret line="144" column="25" lean-forward="false" selection-start-line="144" selection-start-column="24" selection-end-line="144" selection-end-column="25" />
-          <folding>
-            <marker date="1483029230681" expanded="true" signature="4389:4802" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="4470:4629" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="4886:5539" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="5166:5539" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="5188:5539" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="5214:5457" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="5614:6309" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="5893:6139" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="6377:6712" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="6443:6545" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="6791:7293" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="7069:7293" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="7091:7293" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="7117:7211" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="7360:7755" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="7505:7584" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="7841:8310" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="7913:8143" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="8400:9010" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="8683:9010" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="8705:9010" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="8731:8928" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="9091:9673" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="9302:9503" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="9744:10207" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="10297:10624" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="10694:11186" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="11043:11142" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="11256:11612" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="11684:12546" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="11858:12071" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="11893:12069" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="12167:12475" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="12189:12475" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="12215:12391" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="12626:12989" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="13060:13571" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="13421:13526" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="13655:13997" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="14093:14909" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="14266:14456" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="14301:14454" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="14553:14838" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="14575:14838" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="14601:14754" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="15003:15341" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="15429:15889" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="15753:15844" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="15959:16259" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="16335:16590" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="16663:16957" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="16868:16913" ph="..." />
-            <marker date="1483029230681" expanded="true" signature="17001:17558" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -857,44 +693,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/static/index.html">
+    <entry file="file://$PROJECT_DIR$/client/static/index.html" />
+    <entry file="file://$PROJECT_DIR$/client/static/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-57">
-          <caret line="464" column="35" lean-forward="true" selection-start-line="464" selection-start-column="35" selection-end-line="464" selection-end-column="35" />
+        <state relative-caret-position="1200">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/assets/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-450">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/static/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="7" lean-forward="false" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/static/post.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+        <state relative-caret-position="630">
+          <caret line="42" column="12" lean-forward="false" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/static/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="369" column="57" lean-forward="false" selection-start-line="369" selection-start-column="57" selection-end-line="369" selection-end-column="57" />
+        <state relative-caret-position="495">
+          <caret line="497" column="17" lean-forward="true" selection-start-line="497" selection-start-column="17" selection-end-line="497" selection-end-column="17" />
           <folding>
-            <marker date="1483029006673" expanded="true" signature="26162:26175" ph="..." />
+            <marker date="1483029909727" expanded="true" signature="30223:30236" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/static/user.js">
+    <entry file="file://$PROJECT_DIR$/server/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/db/tables.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+          <folding>
+            <marker date="1484372915220" expanded="true" signature="261:532" ph="CREATE TABLE... Venue" />
+            <marker date="1484372915220" expanded="true" signature="535:793" ph="CREATE TABLE... Catering_services" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/db/functions.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="349" column="33" lean-forward="true" selection-start-line="349" selection-start-column="33" selection-end-line="349" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/index.html">
+    <entry file="file://$PROJECT_DIR$/server/test/features/steps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/test/features/Catering.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="513" column="34" lean-forward="true" selection-start-line="513" selection-start-column="34" selection-end-line="513" selection-end-column="34" />
           <folding />
         </state>
       </provider>

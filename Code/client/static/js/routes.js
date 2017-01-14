@@ -6,7 +6,12 @@ $(document).ready(function() {
         $("#ven2").show();
         $("#new-content").hide();
         $("#cat2").hide();
-        $("#cal2").hide();
+
+    });
+    $("#cat").click(function () {
+        $("#ven2").hide();
+        $("#new-content").hide();
+        $("#cat2").show();
 
     });
 });
