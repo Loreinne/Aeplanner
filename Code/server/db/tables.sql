@@ -13,27 +13,27 @@ CREATE TABLE App_user (
 
 
 CREATE TABLE Venue (
-	id SERIAL PRIMARY KEY,
-	image VARCHAR(50),
-	name VARCHAR (50),
-	email_address VARCHAR(50),
-	description TEXT,
-	location VARCHAR (50),
-	capacity VARCHAR(50),
-	pricing VARCHAR (50),
-	categories TEXT,
+	v_id SERIAL PRIMARY KEY,
+	v_image VARCHAR(50),
+	v_name VARCHAR (50),
+	v_email_address VARCHAR(50),
+	v_description TEXT,
+	v_location VARCHAR (50),
+	v_capacity VARCHAR(50),
+	v_pricing VARCHAR (50),
+	v_categories TEXT,
 	is_active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE Catering_services (
-	id SERIAL PRIMARY KEY,
-	image VARCHAR(50),
-	name VARCHAR (50),
-	email_address VARCHAR(50),
-	description TEXT,
-	location VARCHAR (50),
-	pricing VARCHAR (50),
-	categories TEXT,
+	c_id SERIAL PRIMARY KEY,
+	c_image VARCHAR(50),
+	c_name VARCHAR (50),
+	c_email_address VARCHAR(50),
+	c_description TEXT,
+	c_location VARCHAR (50),
+	c_pricing VARCHAR (50),
+	c_categories TEXT,
 	is_active BOOLEAN DEFAULT TRUE
 );
 
