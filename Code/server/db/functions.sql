@@ -220,7 +220,7 @@ $$
         loc_email VARCHAR;
         loc_res TEXT;
     BEGIN
-      SELECT INTO loc_email par_email FROM Venue WHERE email_address = par_email;
+      SELECT INTO loc_email par_email FROM Venue WHERE v_email_address = par_email;
         if loc_email isnull THEN
 
       if par_email = '' or  par_name = '' or par_description = ''  or par_location = '' or par_capacity = '' or par_pricing = '' or par_email = '' THEN
@@ -293,7 +293,7 @@ $$
         loc_email VARCHAR;
         loc_res TEXT;
     BEGIN
-      SELECT INTO loc_email par_email FROM Catering_services WHERE email_address = par_email;
+      SELECT INTO loc_email par_email FROM Catering_services WHERE c_email_address = par_email;
         if loc_email isnull THEN
 
       if par_email = '' or  par_name = '' or par_description = ''  or par_location = '' or par_pricing = '' or par_email = '' THEN
